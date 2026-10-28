@@ -1140,7 +1140,6 @@
 				DAF7D8AC2E207C5100AB0820 /* CopyFiles */,
 				DABFA98B2EBFBA35000C5A8B /* Embed Helper LaunchDaemon Plist */,
 				DA262B242EA942750027CA69 /* Embed Helper Executable */,
-				F1CE00000000000000003AA /* Embed Finder Extensions */,
 				A17D0000000000000000000D /* Embed Widget Extensions */,
 				DA452EBA2EAA5A010070E5C9 /* Resign Sapphire Helper */,
 				DAC019182E9EA03E00CA587F /* Upload Crashlytics Symbols */,
