@@ -1140,8 +1140,6 @@
 				DAF7D8AC2E207C5100AB0820 /* CopyFiles */,
 				DABFA98B2EBFBA35000C5A8B /* Embed Helper LaunchDaemon Plist */,
 				DA262B242EA942750027CA69 /* Embed Helper Executable */,
-				CAFE100000000000000012AA /* Embed System Extensions */,
-				CAFE20000000000000000FBB /* Embed Audio Driver */,
 				F1CE00000000000000003AA /* Embed Finder Extensions */,
 				A17D0000000000000000000D /* Embed Widget Extensions */,
 				DA452EBA2EAA5A010070E5C9 /* Resign Sapphire Helper */,
@@ -1151,12 +1149,8 @@
 			);
 			dependencies = (
 				A17D00000000000000000010 /* PBXTargetDependency */,
-				CAFE100000000000000014AA /* PBXTargetDependency */,
-				CAFE200000000000000011BB /* PBXTargetDependency */,
 				DA452EB92EAA58100070E5C9 /* PBXTargetDependency */,
 				DA7C49B02E15D3800049937A /* PBXTargetDependency */,
-				F1CE00000000000000000CAA /* PBXTargetDependency */,
-				F2DE000000000000000011BB /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				DA183FC92E122AF30056667D /* Sapphire */,
