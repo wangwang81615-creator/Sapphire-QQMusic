@@ -43,26 +43,26 @@ struct ContinuitySettingsView: View { var body: some View { PremiumUnavailableVi
 struct EmojiSettingsView: View { var body: some View { PremiumUnavailableView(title: "Emoji") } }
 struct MouseSettingsView: View { var body: some View { PremiumUnavailableView(title: "Mouse") } }
 struct MonitoringSettingsView: View { var body: some View { PremiumUnavailableView(title: "Monitoring") } }
-struct ArchivesAndDMGInstallerSettingsView: View { var body: some View { PremiumUnavailableView(title: "Archives") } }
+struct ArchivesAndDMGInstallerSettingsView: View { var body: some View { PremiumUnavailableView(title: "档案") } }
 struct AppLockSettingsView: View { var body: some View { PremiumUnavailableView(title: "App Lock") } }
-struct DockLayoutsSettingsView: View { var body: some View { PremiumUnavailableView(title: "Dock Layouts") } }
+struct DockLayoutsSettingsView: View { var body: some View { PremiumUnavailableView(title: "码头布局") } }
 struct MediaOptimizerSettingsView: View { var body: some View { PremiumUnavailableView(title: "Media Optimizer") } }
 
 struct StorageWorkspaceView: View {
     @ObservedObject var model: StorageViewModel
-    var body: some View { PremiumUnavailableView(title: "Storage Workspace") }
+    var body: some View { PremiumUnavailableView(title: "存储工作区") }
 }
 
 struct EightDAudioView: View {
     let bundleID: String
     let appName: String
-    var body: some View { PremiumUnavailableView(title: "8D Audio") }
+    var body: some View { PremiumUnavailableView(title: "8D音频") }
 }
 
 struct SurroundAudioView: View {
     let bundleID: String
     let appName: String
-    var body: some View { PremiumUnavailableView(title: "Surround Audio") }
+    var body: some View { PremiumUnavailableView(title: "环绕音频") }
 }
 
 struct StorageDetailView: View {

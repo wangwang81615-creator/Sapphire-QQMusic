@@ -209,7 +209,7 @@ struct ScheduleItemRowView: View {
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(.secondary)
             } else {
-                Text("All-Day")
+                Text("全天")
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(.secondary)
             }

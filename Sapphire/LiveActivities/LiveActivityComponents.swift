@@ -545,7 +545,7 @@ struct MusicUpNextView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text("UP NEXT")
+            Text("上一个")
                 .font(.system(size: 7.5, weight: .heavy, design: .rounded))
                 .kerning(1.3)
                 .foregroundColor(.gray.opacity(0.9))
@@ -995,7 +995,7 @@ struct BluetoothDisconnectedView {
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(.white.opacity(0.9))
                 .lineLimit(1)
-            Text("Disconnected")
+            Text("已断开连接")
                 .font(.system(size: 11))
                 .foregroundColor(.white.opacity(0.6))
         }
@@ -1091,10 +1091,10 @@ struct EyeBreakFullActivityView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Look Away")
+                    Text("移开目光")
                         .font(.system(size: 22, weight: .bold, design: .rounded))
 
-                    Text("Focus 20ft away.")
+                    Text("焦点在 20 英尺外。")
                         .font(.callout)
                         .foregroundColor(.secondary)
                 }
@@ -1104,7 +1104,7 @@ struct EyeBreakFullActivityView: View {
                         eyeBreakManager.dismissBreak()
                         liveActivityManager.dismissCurrentActivity()
                     } label: {
-                        Text("Skip")
+                        Text("跳过")
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(EyeBreakPillButtonStyle(isProminent: false, isHovered: skipHovered))
@@ -1198,7 +1198,7 @@ struct UpdateAvailableActivityView {
 
     static func right(version: String) -> some View {
         VStack(alignment: .leading, spacing: 1) {
-            Text("Update Available")
+            Text("可用更新")
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(.white.opacity(0.9))
             Text("Version \(version)")
@@ -1225,7 +1225,7 @@ struct UpdateAvailableWidgetView: View {
                 .foregroundStyle(.cyan)
 
             VStack(spacing: 3) {
-                Text("Update Available")
+                Text("可用更新")
                     .font(.title3.bold())
                     .foregroundColor(.white.opacity(0.95))
                 if let availableVersion {
@@ -1236,7 +1236,7 @@ struct UpdateAvailableWidgetView: View {
             }
 
             VStack(alignment: .leading, spacing: 10) {
-                Text("How to update")
+                Text("如何更新")
                     .font(.subheadline.weight(.semibold))
                     .foregroundColor(.white.opacity(0.9))
                 stepRow(number: 1, text: "Open the About page in Settings")
@@ -1251,7 +1251,7 @@ struct UpdateAvailableWidgetView: View {
             Button(action: openAboutSettings) {
                 HStack(spacing: 8) {
                     Image(systemName: "gearshape.fill")
-                    Text("Open About in Settings")
+                    Text("在“设置”中打开“关于”")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.black)
@@ -1262,7 +1262,7 @@ struct UpdateAvailableWidgetView: View {
             }
             .buttonStyle(.plain)
 
-            Text("Updates are installed from the About page in Sapphire's settings.")
+            Text("更新是从 Sapphire 设置中的“关于”页面安装的。")
                 .font(.caption)
                 .foregroundColor(.white.opacity(0.45))
                 .multilineTextAlignment(.center)
@@ -1461,7 +1461,7 @@ struct TimerFinishedActivityView: View {
                             .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
-                    .help("Dismiss timer")
+                    .help("关闭计时器")
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 14)
@@ -1633,7 +1633,7 @@ struct NotificationLiveActivityView: View {
     @ViewBuilder
     private var replyBox: some View {
         HStack(spacing: 8) {
-            TextField("Reply...", text: $replyText)
+            TextField("回复...", text: $replyText)
                 .textFieldStyle(.plain).onSubmit(sendIMessage).focused($isTextFieldFocused)
             Button(action: sendIMessage) {
                 Image(systemName: "arrow.up.circle.fill")
@@ -1977,7 +1977,7 @@ struct CalibrationActivityView: View {
                     .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(.cyan)
 
-                Text("Battery Calibration")
+                Text("电池校准")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
             }
 

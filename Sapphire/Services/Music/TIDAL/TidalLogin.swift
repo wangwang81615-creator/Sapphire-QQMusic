@@ -21,7 +21,7 @@ struct TidalLoginWebView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Log in to TIDAL").font(.headline)
+                Text("登录潮汐").font(.headline)
                 Spacer()
                 Button("Cancel", action: cancelLogin)
                     .controlSize(.small)

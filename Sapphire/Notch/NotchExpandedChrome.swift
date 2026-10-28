@@ -317,15 +317,15 @@ struct NotchCaffeinateMenu: View {
         if caffeineManager.isActive, let endsAt = caffeineManager.timeoutEndsAt {
             Text("Awake until \(endsAt.formatted(date: .omitted, time: .shortened))")
         }
-        Section("Keep Awake For") {
+        Section("保持清醒") {
             ForEach(Self.durations, id: \.minutes) { duration in
                 Button(duration.label) { caffeineManager.start(forMinutes: duration.minutes) }
             }
-            Button("Until Turned Off") { caffeineManager.startIndefinitely() }
+            Button("直至关闭") { caffeineManager.startIndefinitely() }
         }
         if caffeineManager.isActive {
             Divider()
-            Button("Turn Off") { caffeineManager.stop() }
+            Button("关闭") { caffeineManager.stop() }
         }
     }
 }

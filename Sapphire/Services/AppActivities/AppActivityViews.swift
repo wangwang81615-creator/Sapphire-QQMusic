@@ -92,7 +92,7 @@ struct AppActivityDetailView: View {
     var body: some View {
         VStack(spacing: 10) {
             if monitor.activities.isEmpty {
-                Text("Nothing active right now.")
+                Text("现在没有任何活动。")
                     .font(.system(size: 12))
                     .foregroundStyle(.white.opacity(0.6))
                     .frame(maxWidth: .infinity, minHeight: 60)

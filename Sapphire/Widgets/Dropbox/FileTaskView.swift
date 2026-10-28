@@ -388,7 +388,7 @@ private struct HeaderView: View {
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(.primary)
 
-            Text("File Drops")
+            Text("文件掉落")
                 .font(.headline)
                 .fontWeight(.bold)
 
@@ -412,7 +412,7 @@ private struct EmptyStateView: View {
             Image(systemName: "tray")
                 .font(.system(size: 40, weight: .light))
                 .foregroundColor(.secondary)
-            Text("No Active Files or Shelf Items")
+            Text("没有活动文件或架子项目")
                 .font(.headline)
                 .foregroundColor(.secondary)
         }
@@ -536,7 +536,7 @@ private struct LocalFileRowView: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.fileName).font(.callout).fontWeight(.semibold).lineLimit(1)
-                Text("On Shelf").font(.caption).foregroundColor(.secondary).lineLimit(1)
+                Text("上架").font(.caption).foregroundColor(.secondary).lineLimit(1)
             }
             Spacer(minLength: 8)
 
@@ -563,7 +563,7 @@ private struct AirDropRowView: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(task.fileName).font(.callout).fontWeight(.semibold).lineLimit(1)
-                Text("Receiving via AirDrop...").font(.caption).foregroundColor(.secondary).lineLimit(1)
+                Text("通过 AirDrop 接收...").font(.caption).foregroundColor(.secondary).lineLimit(1)
             }
             Spacer(minLength: 8)
 

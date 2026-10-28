@@ -226,7 +226,7 @@ private struct MenuBarHiddenItemsBarView: View {
             if bar.isLoading {
                 ProgressView().controlSize(.small).frame(maxWidth: .infinity)
             } else if bar.entries.isEmpty {
-                Text("No hidden items")
+                Text("没有隐藏物品")
                     .font(.callout)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)

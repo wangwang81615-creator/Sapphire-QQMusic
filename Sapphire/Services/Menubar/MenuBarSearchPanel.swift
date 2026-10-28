@@ -221,7 +221,7 @@ private struct MenuBarSearchView: View {
             HStack(spacing: 10) {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
-                TextField("Search menu bar items", text: $controller.query)
+                TextField("搜索菜单栏项目", text: $controller.query)
                     .textFieldStyle(.plain)
                     .font(.system(size: 17))
                     .focused($isQueryFocused)
@@ -292,7 +292,7 @@ private struct MenuBarSearchView: View {
                 Image(systemName: "clock.arrow.circlepath")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .help("Recently opened")
+                    .help("最近开业")
             }
             if entry.isHidden {
                 Text("Hidden")

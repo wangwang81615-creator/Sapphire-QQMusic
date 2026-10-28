@@ -29,7 +29,7 @@ struct FocusInsightsPanel: View {
 
             Divider().opacity(0.25).padding(.horizontal, 16)
 
-            Text("This week")
+            Text("本周")
                 .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 16)
@@ -105,11 +105,11 @@ struct FocusInsightsPanel: View {
 
     private var sectionHeader: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("Insights")
+            Text("见解")
                 .font(.system(size: 13, weight: .semibold))
                 .padding(.horizontal, 16)
                 .padding(.top, 14)
-            Text("One place for how you’ve been focusing — not three competing charts.")
+            Text("一个地方可以展示您的注意力，而不是三个相互竞争的图表。")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 16)

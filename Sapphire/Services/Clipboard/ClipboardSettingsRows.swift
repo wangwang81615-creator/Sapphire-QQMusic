@@ -25,9 +25,9 @@ struct PlainTextPasteShortcutRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text("Shortcut")
+                Text("快捷方式")
                     .font(.system(size: 14, weight: .medium))
-                Text("Uses the app's own Paste and Match Style when it has one. Must include ⌘ or ⌃. Plain ⌘V is never changed.")
+                Text("使用应用程序自己的粘贴和匹配样式（如果有）。必须包含 ⌘ 或 ⌃。普通 ⌘V 永远不会改变。")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -65,7 +65,7 @@ struct ClipboardStorageLimitRow: View {
 
     var body: some View {
         CustomSliderRowView(
-            label: "Storage Limit",
+            label: "存储限制",
             value: Binding(
                 get: { Double(settings.settings.clipboardHistoryStorageLimitMB) },
                 set: { settings.settings.clipboardHistoryStorageLimitMB = Int($0.rounded()) }
@@ -73,7 +73,7 @@ struct ClipboardStorageLimitRow: View {
             range: Double(ClipboardHistoryBudget.storageLimitRangeMB.lowerBound)...Double(ClipboardHistoryBudget.storageLimitRangeMB.upperBound),
             specifier: "%.0f MB"
         )
-        .help("Oldest items go first once history passes this size. Pinned items are always kept.")
+        .help("一旦历史超过这个大小，最旧的项目就会首先出现。固定的项目始终保留。")
     }
 }
 
@@ -85,7 +85,7 @@ struct ClipboardIgnoredAppsRow: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Ignored Apps")
+                    Text("被忽略的应用程序")
                         .font(.system(size: 14, weight: .medium))
                     Text("Nothing copied in these apps is saved. \(settings.settings.clipboardIgnoredAppBundleIDs.count) app\(settings.settings.clipboardIgnoredAppBundleIDs.count == 1 ? "" : "s") ignored.")
                         .font(.caption)
@@ -103,7 +103,7 @@ struct ClipboardIgnoredAppsRow: View {
                 )
                 HStack {
                     Spacer()
-                    Button("Restore Password Manager Defaults") {
+                    Button("恢复密码管理器默认值") {
                         var ids = settings.settings.clipboardIgnoredAppBundleIDs
                         for id in ClipboardIgnoredApps.defaultBundleIDs where !ids.contains(id) { ids.append(id) }
                         settings.settings.clipboardIgnoredAppBundleIDs = ids

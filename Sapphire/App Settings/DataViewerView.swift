@@ -28,7 +28,7 @@ struct DataViewerView: View {
                     emptyView
                 }
             }
-            .navigationTitle("Collected Data")
+            .navigationTitle("收集的数据")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
@@ -58,7 +58,7 @@ struct DataViewerView: View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.5)
-            Text("Loading data summary...")
+            Text("正在加载数据摘要...")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -73,7 +73,7 @@ struct DataViewerView: View {
                 .font(.system(size: 48))
                 .foregroundStyle(.orange)
 
-            Text("Failed to Load Data")
+            Text("加载数据失败")
                 .font(.title2.bold())
 
             Text(message)
@@ -82,7 +82,7 @@ struct DataViewerView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 400)
 
-            Button("Try Again") {
+            Button("再试一次") {
                 loadData()
             }
             .buttonStyle(.borderedProminent)
@@ -98,10 +98,10 @@ struct DataViewerView: View {
                 .font(.system(size: 48))
                 .foregroundStyle(.secondary)
 
-            Text("No Data Collected Yet")
+            Text("尚未收集数据")
                 .font(.title2.bold())
 
-            Text("Enable monitoring to start collecting profiling data")
+            Text("启用监控以开始收集分析数据")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -138,21 +138,21 @@ struct DataViewerView: View {
             HStack(spacing: 20) {
                 StatCard(
                     icon: "chart.bar.fill",
-                    title: "Total Data Points",
+                    title: "总数据点",
                     value: "\(summary.totalDataPoints)",
                     color: .blue
                 )
 
                 StatCard(
                     icon: "externaldrive.fill",
-                    title: "Database Size",
+                    title: "数据库大小",
                     value: String(format: "%.2f MB", summary.databaseSizeMB),
                     color: .purple
                 )
 
                 StatCard(
                     icon: "checkmark.circle.fill",
-                    title: "Active Monitors",
+                    title: "活动监视器",
                     value: "\(summary.countsByMonitorType.count)",
                     color: .green
                 )
@@ -163,7 +163,7 @@ struct DataViewerView: View {
 
     private func byMonitorTypeSection(_ summary: DataSummary) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Data Points by Monitor Type")
+            Text("按监视器类型划分的数据点")
                 .font(.headline)
 
             LazyVStack(spacing: 12) {
@@ -179,14 +179,14 @@ struct DataViewerView: View {
 
     private func dateRangeSection(_ summary: DataSummary) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Data Range")
+            Text("数据范围")
                 .font(.headline)
 
             VStack(spacing: 12) {
                 if let oldest = summary.oldestEntry {
                     DataRangeRow(
                         icon: "calendar.badge.clock",
-                        title: "Oldest Entry",
+                        title: "最旧的条目",
                         date: oldest
                     )
                 }
@@ -194,7 +194,7 @@ struct DataViewerView: View {
                 if let newest = summary.newestEntry {
                     DataRangeRow(
                         icon: "calendar.badge.checkmark",
-                        title: "Newest Entry",
+                        title: "最新条目",
                         date: newest
                     )
                 }
@@ -204,7 +204,7 @@ struct DataViewerView: View {
                     HStack {
                         Image(systemName: "chart.line.uptrend.xyaxis")
                             .foregroundStyle(.blue)
-                        Text("Span:")
+                        Text("跨度：")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                         Text("\(days) days")
@@ -222,14 +222,14 @@ struct DataViewerView: View {
 
     private func storageSection(_ summary: DataSummary) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Storage Details")
+            Text("存储详情")
                 .font(.headline)
 
             VStack(spacing: 12) {
                 HStack {
                     Image(systemName: "lock.shield.fill")
                         .foregroundStyle(.purple)
-                    Text("All data is AES-256 encrypted")
+                    Text("所有数据均经过 AES-256 加密")
                         .font(.subheadline)
                     Spacer()
                 }
@@ -240,7 +240,7 @@ struct DataViewerView: View {
                 HStack {
                     Image(systemName: "externaldrive.badge.checkmark")
                         .foregroundStyle(.green)
-                    Text("Stored locally on your device")
+                    Text("本地存储在您的设备上")
                         .font(.subheadline)
                     Spacer()
                 }

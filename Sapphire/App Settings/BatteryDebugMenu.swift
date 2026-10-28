@@ -62,10 +62,10 @@ struct BatteryDebugMenu: View {
         HStack(spacing: 10) {
             Image(systemName: "hammer.fill")
                 .foregroundStyle(.orange)
-            Text("Debug Menu")
+            Text("调试菜单")
                 .font(.title3.bold())
             Spacer()
-            Button("Refresh All") {
+            Button("全部刷新") {
                 Task { await refreshEverything() }
             }
             .buttonStyle(.bordered)
@@ -95,20 +95,20 @@ struct BatteryDebugMenu: View {
             .font(.caption.monospaced())
 
             HStack(spacing: 8) {
-                Button("Refresh Status") {
+                Button("刷新状态") {
                     helperManager.updateStatus()
                     helperManager.checkIfRunning()
                 }
                 Button("Ping") {
                     Task { await pingHelper() }
                 }
-                Button("Install / Activate") {
+                Button("安装/激活") {
                     helperManager.beginInstallation()
                 }
-                Button("Reinstall") {
+                Button("重新安装") {
                     helperManager.reactivateHelper()
                 }
-                Button("Reset Background Activity") {
+                Button("重置后台活动") {
                     helperManager.resetOwnBackgroundActivity()
                 }
             }
@@ -171,19 +171,19 @@ struct BatteryDebugMenu: View {
             sectionTitle("Charging Controls", systemImage: "bolt.fill", color: .yellow)
 
             HStack(spacing: 8) {
-                Button("Pause Charging") {
+                Button("暂停充电") {
                     Task { await pauseCharging() }
                 }
-                Button("Resume Charging") {
+                Button("恢复充电") {
                     BatteryManager.shared.enableCharging(true)
                     BatteryManager.shared.setChargeLimit(100)
                     appendLog("enableCharging(true) + setChargeLimit(100)")
                 }
-                Button("Start Discharge") {
+                Button("开始放电") {
                     BatteryManager.shared.setDischarge(discharging: true, safetyFloor: 5, rechargeOnFloor: true, bypassSafetyFloor: false)
                     appendLog("setDischarge(true, safetyFloor: 5, rechargeOnFloor: true, bypassSafetyFloor: false)")
                 }
-                Button("Stop Discharge") {
+                Button("停止放电") {
                     BatteryManager.shared.setDischarge(discharging: false)
                     appendLog("setDischarge(false)")
                 }
@@ -192,7 +192,7 @@ struct BatteryDebugMenu: View {
             .controlSize(.small)
 
             HStack(spacing: 8) {
-                Text("Limit:")
+                Text("限制：")
                 TextField("80", value: $limitInput, formatter: Self.integerFormatter)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 60)
@@ -205,15 +205,15 @@ struct BatteryDebugMenu: View {
             }
 
             HStack(spacing: 8) {
-                Button("MagSafe Green") {
+                Button("MagSafe 绿色") {
                     BatteryManager.shared.setMagSafeLED(color: 3)
                     appendLog("setMagSafeLED(green)")
                 }
-                Button("MagSafe Amber") {
+                Button("MagSafe 琥珀色") {
                     BatteryManager.shared.setMagSafeLED(color: 4)
                     appendLog("setMagSafeLED(amber)")
                 }
-                Button("MagSafe Off") {
+                Button("磁力安全关闭") {
                     BatteryManager.shared.setMagSafeLED(color: 1)
                     appendLog("setMagSafeLED(off)")
                 }
@@ -239,19 +239,19 @@ struct BatteryDebugMenu: View {
             sectionTitle("On-Demand Data", systemImage: "list.bullet.rectangle", color: .purple)
 
             HStack(spacing: 8) {
-                Button("Load SMC Keys") {
+                Button("加载 SMC 密钥") {
                     Task { await loadSMCKeys() }
                 }
-                Button("Load Fans") {
+                Button("负载风扇") {
                     Task { await loadFanInfo() }
                 }
-                Button("Load Adapter") {
+                Button("负载适配器") {
                     Task { await loadAdapter() }
                 }
-                Button("Load Temperature") {
+                Button("负载温度") {
                     Task { await loadTemperature() }
                 }
-                Button("Load Hardware %") {
+                Button("负载硬件%") {
                     Task { await loadHardwarePercent() }
                 }
             }
@@ -285,7 +285,7 @@ struct BatteryDebugMenu: View {
         VStack(alignment: .leading, spacing: 8) {
             sectionTitle("Action Log", systemImage: "terminal.fill", color: .gray)
             if log.isEmpty {
-                Text("No actions yet.")
+                Text("尚未采取任何行动。")
                     .font(.caption.monospaced())
                     .foregroundStyle(.tertiary)
             } else {
@@ -295,7 +295,7 @@ struct BatteryDebugMenu: View {
                     .textSelection(.enabled)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            Button("Clear Log") { log.removeAll() }
+            Button("清除日志") { log.removeAll() }
                 .buttonStyle(.bordered)
                 .controlSize(.small)
         }

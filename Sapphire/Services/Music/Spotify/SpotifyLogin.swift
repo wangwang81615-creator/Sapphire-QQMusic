@@ -14,8 +14,8 @@ struct SpotifyLoginWebView: View {
 
     var body: some View {
         VStack {
-            Text("Complete Login").font(.title).padding()
-            Text("Sign in to Spotify below. Old sessions are cleared first so a revoked login cannot auto-complete.")
+            Text("完成登录").font(.title).padding()
+            Text("在下方登录 Spotify。旧会话首先被清除，因此撤销的登录无法自动完成。")
                 .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center).padding(.horizontal).padding(.bottom)
 
             SpotifyLoginWebViewRepresentable(onComplete: onComplete)

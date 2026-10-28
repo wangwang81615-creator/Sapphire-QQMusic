@@ -298,7 +298,7 @@ final class NotchWidgetPlaneContainer: NSView {
             filter.setValue(0, forKey: "inputRadius")
             return filter
         }
-        guard let blur = CIFilter(name: "CIGaussianBlur") else { return nil }
+        guard let blur = CIFilter(name: "CI高斯模糊") else { return nil }
         blur.name = name
         blur.setValue(0, forKey: kCIInputRadiusKey)
         return blur
@@ -414,7 +414,7 @@ final class NotchWidgetPlaneContainer: NSView {
         layer.sublayerTransform = settled ? CATransform3DIdentity : topCentredScale(scale, in: layer)
         layer.opacity = settled ? 1 : opacity
         if radius > 0.05 {
-            if !followBlurInstalled, let blur = CIFilter(name: "CIGaussianBlur") {
+            if !followBlurInstalled, let blur = CIFilter(name: "CI高斯模糊") {
                 blur.name = Self.followBlurFilterName
                 layer.filters = [blur]
                 followBlurInstalled = true

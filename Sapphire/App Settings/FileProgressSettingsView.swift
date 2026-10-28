@@ -29,17 +29,17 @@ struct FileProgressSettingsView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 20) {
-                Text("File Progress (Beta)").font(.largeTitle.bold()).padding(.bottom)
+                Text("文件进度（测试版）").font(.largeTitle.bold()).padding(.bottom)
 
                 VStack(alignment: .leading, spacing: 0) {
                     ToggleRow(
-                        title: "Show Transfers in the Notch",
+                        title: "在缺口中显示转移",
                         description: "A live activity with the app's icon and progress while something downloads, copies or arrives over AirDrop.",
                         isOn: $settings.settings.fileProgressLiveActivityEnabled
                     )
                     Divider().padding(.leading, 20)
                     ToggleRow(
-                        title: "Open the Transfer List When Clicked",
+                        title: "单击时打开传输列表",
                         description: "Click the live activity for every transfer, with pause, cancel, open and Show in Finder.",
                         isOn: $settings.settings.fileProgressOpenOnClick
                     )
@@ -48,7 +48,7 @@ struct FileProgressSettingsView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Apps").font(.headline).padding([.top, .horizontal])
-                    Text("Each app is followed the way it reports its own transfers, so you see exact progress where the app provides it.")
+                    Text("每个应用程序都按照其报告自己的传输的方式进行跟踪，因此您可以在应用程序提供的地方看到确切的进度。")
                         .font(.caption).foregroundStyle(.secondary)
                         .padding(.horizontal).padding(.bottom, 8)
                     ForEach(Array(installedApps.enumerated()), id: \.element) { index, app in
@@ -77,19 +77,19 @@ struct FileProgressSettingsView: View {
                 .disabled(!settings.settings.fileProgressLiveActivityEnabled)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    ToggleRow(title: "Show Speed", description: "Download or copy speed next to the percentage.",
+                    ToggleRow(title: "显示速度", description: "Download or copy speed next to the percentage.",
                               isOn: $settings.settings.fileProgressShowSpeed)
                     Divider().padding(.leading, 20)
-                    ToggleRow(title: "Show Time Remaining", description: "An estimate of how long is left.",
+                    ToggleRow(title: "显示剩余时间", description: "An estimate of how long is left.",
                               isOn: $settings.settings.fileProgressShowTimeRemaining)
                     Divider().padding(.leading, 20)
-                    ToggleRow(title: "Add Finished Files to the File Shelf",
+                    ToggleRow(title: "将完成的文件添加到文件架",
                               description: "Put each completed download on the shelf so it's one drag away.",
                               isOn: $settings.settings.fileProgressAddFinishedToShelf)
                     Divider().padding(.leading, 20)
                     VStack(alignment: .leading, spacing: 6) {
                         HStack {
-                            Text("Keep Finished Transfers Visible")
+                            Text("保持已完成的传输可见")
                             Spacer()
                             Text("\(Int(settings.settings.fileProgressKeepFinishedSeconds)) s").foregroundStyle(.secondary).monospacedDigit()
                         }
@@ -101,8 +101,8 @@ struct FileProgressSettingsView: View {
                 .disabled(!settings.settings.fileProgressLiveActivityEnabled)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Watched Folders").font(.headline).padding([.top, .horizontal])
-                    Text("Downloads, Desktop, Documents and each browser's own download folder are found automatically. Add any other folder apps save into.")
+                    Text("观看的文件夹").font(.headline).padding([.top, .horizontal])
+                    Text("下载、桌面、文档和每个浏览器自己的下载文件夹都会自动找到。添加保存应用程序的任何其他文件夹。")
                         .font(.caption).foregroundStyle(.secondary)
                         .padding(.horizontal).padding(.bottom, 8)
                     ForEach(tracker.watchedFolders, id: \.self) { folder in
@@ -115,7 +115,7 @@ struct FileProgressSettingsView: View {
                                 .lineLimit(1).truncationMode(.middle)
                             Spacer()
                             if isExtra {
-                                Button("Remove") {
+                                Button("删除") {
                                     settings.settings.fileProgressExtraFolders.removeAll {
                                         ($0 as NSString).expandingTildeInPath == folder.path
                                     }
@@ -130,7 +130,7 @@ struct FileProgressSettingsView: View {
                     }
                     HStack {
                         Spacer()
-                        Button("Add Folder…", action: addFolder)
+                        Button("添加文件夹...", action: addFolder)
                     }
                     .padding()
                 }

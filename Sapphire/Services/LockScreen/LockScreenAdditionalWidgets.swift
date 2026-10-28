@@ -33,7 +33,7 @@ struct LockScreenCaffeineInfoView: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "cup.and.saucer.fill")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("Caffeine On")
+                    Text("咖啡因开启")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.orange)
@@ -43,7 +43,7 @@ struct LockScreenCaffeineInfoView: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "cup.and.saucer")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("Caffeine Off")
+                    Text("关掉咖啡因")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())
@@ -76,7 +76,7 @@ struct LockScreenTimerInfoView: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "timer")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("No Timer")
+                    Text("无定时器")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())
@@ -138,7 +138,7 @@ struct LockScreenNotesInfoView: View {
             HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                 Image(systemName: "note.text")
                     .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                Text("No Notes")
+                Text("无注释")
             }
             .foregroundColor(.secondary)
             .modifier(TransparentEffect())
@@ -178,7 +178,7 @@ struct LockScreenClipboardInfoView: View {
             HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                 Image(systemName: "list.clipboard")
                     .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                Text("Clipboard Empty")
+                Text("剪贴板为空")
             }
             .foregroundColor(.secondary)
             .modifier(TransparentEffect())
@@ -277,7 +277,7 @@ struct LockScreenTimerMiniWidget: View {
                     LockScreenTimerClockText(timerManager: timerManager, fontSize: 18)
                         .foregroundStyle(.white)
                 } else {
-                    Text("No active timer")
+                    Text("无活动计时器")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -326,7 +326,7 @@ struct LockScreenFocusMiniWidget: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Focus")
                     .font(.system(size: 15, weight: .semibold, design: .rounded))
-                Text(status.isActive ? info.name : "Focus Off")
+                Text(status.isActive ? info.name : "焦点关闭")
                     .font(.system(size: 13, weight: .medium, design: .rounded))
                     .foregroundStyle(status.isActive ? .white : .secondary)
                     .lineLimit(1)
@@ -380,7 +380,7 @@ struct LockScreenBluetoothMiniWidget: View {
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 } else {
-                    Text("No device connected")
+                    Text("没有连接设备")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }

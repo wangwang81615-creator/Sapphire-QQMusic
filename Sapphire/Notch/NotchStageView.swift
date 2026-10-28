@@ -1006,7 +1006,7 @@ final class NotchOutlineFollower {
             filter.setValue(0, forKey: "inputRadius")
             return filter
         }
-        guard let blur = CIFilter(name: "CIGaussianBlur") else { return nil }
+        guard let blur = CIFilter(name: "CI高斯模糊") else { return nil }
         blur.name = blurFilterName
         blur.setValue(0, forKey: kCIInputRadiusKey)
         return blur

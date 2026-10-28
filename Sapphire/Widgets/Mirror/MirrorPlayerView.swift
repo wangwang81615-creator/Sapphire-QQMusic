@@ -151,7 +151,7 @@ struct MirrorPlayerView: View {
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
         .fixedSize()
-        .help("Choose camera")
+        .help("选择相机")
     }
 
     private var stopButton: some View {
@@ -167,7 +167,7 @@ struct MirrorPlayerView: View {
                 .overlay(Capsule().stroke(.white.opacity(0.2), lineWidth: 0.5))
         }
         .buttonStyle(.plain)
-        .help("Turn camera off")
+        .help("关闭相机")
     }
 
     private var closeButton: some View {
@@ -187,7 +187,7 @@ struct MirrorPlayerView: View {
                 .overlay(Circle().stroke(.white.opacity(0.12), lineWidth: 0.5))
         }
         .buttonStyle(.plain)
-        .help("Close and stop camera")
+        .help("关闭并停止相机")
     }
 
     private var offlineState: some View {
@@ -235,7 +235,7 @@ struct MirrorPlayerView: View {
                     Button {
                         camera.start()
                     } label: {
-                        Label("Turn On Camera", systemImage: "camera.fill")
+                        Label("打开相机", systemImage: "camera.fill")
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
@@ -251,7 +251,7 @@ struct MirrorPlayerView: View {
                     }
                     .buttonStyle(.bordered)
                 } else if camera.isError {
-                    Button("Retry") {
+                    Button("重试") {
                         camera.start()
                     }
                     .buttonStyle(.bordered)
@@ -300,7 +300,7 @@ struct MirrorFullscreenView: View {
                     if camera.isLive {
                         HStack(spacing: 5) {
                             Circle().fill(Color.red).frame(width: 7, height: 7)
-                            Text("LIVE")
+                            Text("现场直播")
                                 .font(.system(size: 11, weight: .bold, design: .rounded))
                         }
                         .foregroundStyle(.white)
@@ -349,7 +349,7 @@ struct MirrorFullscreenView: View {
                                 .background(Color.red.opacity(0.85), in: Capsule())
                         }
                         .buttonStyle(.plain)
-                        .help("Turn camera off")
+                        .help("关闭相机")
                     }
 
                     Button {
@@ -362,7 +362,7 @@ struct MirrorFullscreenView: View {
                             .background(.black.opacity(0.5), in: Circle())
                     }
                     .buttonStyle(.plain)
-                    .help("Exit fullscreen")
+                    .help("退出全屏")
                 }
                 .padding(16)
 

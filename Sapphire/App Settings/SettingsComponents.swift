@@ -488,7 +488,7 @@ struct AppTogglesListView: View {
 
         VStack(alignment: .leading, spacing: 8) {
             if showSearch {
-                ClearableSearchField(placeholder: "Search installed apps", text: $query)
+                ClearableSearchField(placeholder: "搜索已安装的应用程序", text: $query)
                 .padding(10)
                 .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .padding(.horizontal)
@@ -497,7 +497,7 @@ struct AppTogglesListView: View {
             if let onSelectAll {
                 HStack(spacing: 12) {
                     Button("Select All") { onSelectAll(true) }
-                    Button("Deselect All") { onSelectAll(false) }
+                    Button("取消全选") { onSelectAll(false) }
                 }
                 .font(.caption)
                 .padding(.horizontal)
@@ -1043,14 +1043,14 @@ struct LiquidGlassOptionsEditor: View {
             appearanceRow
             Divider().padding(.leading, 20)
             ToggleRow(
-                title: "Hovered State",
-                description: "Use the glass's raised, highlighted state.",
+                title: "悬停状态",
+                description: "使用玻璃的凸起、突出显示状态。",
                 isOn: $options.hovered
             )
             Divider().padding(.leading, 20)
             HStack {
                 Spacer()
-                Button("Restore Default Glass") { options = defaults }
+                Button("恢复默认玻璃") { options = defaults }
                     .disabled(options == defaults)
             }
             .padding()
@@ -1102,13 +1102,13 @@ struct LiquidGlassOptionsEditor: View {
             set: { options.tintHex = LiquidGlassOptions.hex(from: NSColor($0)) }
         )
         return HStack(spacing: 12) {
-            SettingsRowLabel(title: "Tint", description: hasTint.wrappedValue ? options.tintHex : "No tint over the glass.")
+            SettingsRowLabel(title: "色调", description: hasTint.wrappedValue ? options.tintHex : "No tint over the glass.")
             Spacer()
             if hasTint.wrappedValue {
                 ColorPicker("Tint Color", selection: color, supportsOpacity: true)
                     .labelsHidden()
             }
-            SettingsSwitch(title: "Tint", isOn: hasTint)
+            SettingsSwitch(title: "色调", isOn: hasTint)
         }
         .padding()
     }
@@ -1116,7 +1116,7 @@ struct LiquidGlassOptionsEditor: View {
     private var radiusRow: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                SettingsRowLabel(title: "Corner Radius", description: "How rounded the glass cards are.")
+                SettingsRowLabel(title: "拐角半径", description: "玻璃卡有多圆。")
                 Spacer()
                 Text("\(Int(options.cornerRadius.rounded())) pt")
                     .font(.body.monospacedDigit())
@@ -1129,7 +1129,7 @@ struct LiquidGlassOptionsEditor: View {
 
     private var appearanceRow: some View {
         HStack(spacing: 12) {
-            SettingsRowLabel(title: "Appearance", description: "Force light or dark glass, or follow the system.")
+            SettingsRowLabel(title: "Appearance", description: "强制使用浅色或深色玻璃，或遵循系统。")
             Spacer()
             Picker("", selection: $options.appearance) {
                 ForEach([LiquidGlassAppearance.auto, .light, .dark]) { appearance in

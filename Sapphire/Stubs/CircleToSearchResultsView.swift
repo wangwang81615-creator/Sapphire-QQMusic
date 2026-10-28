@@ -17,7 +17,7 @@ struct CircleToSearchResultsView: View {
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: "magnifyingglass.circle.fill").font(.system(size: 22))
-            Text("Circle to Search unavailable in this build").font(.caption)
+            Text("循环搜索在此版本中不可用").font(.caption)
         }
         .frame(width: 320)
     }

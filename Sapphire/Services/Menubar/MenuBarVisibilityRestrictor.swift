@@ -193,7 +193,7 @@ final class MenuBarVisibilityRestrictor {
         if armed, clockTapToken == nil {
             let mask = (1 << CGEventType.leftMouseDown.rawValue) | (1 << CGEventType.leftMouseUp.rawValue)
             clockTapToken = GlobalEventTap.shared.register(
-                name: "MenuBarClockBridge",
+                name: "菜单栏时钟桥",
                 mask: CGEventMask(mask),
                 priority: EventTapPriority.filter
             ) { [weak self] type, event in

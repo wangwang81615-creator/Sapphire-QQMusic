@@ -21,8 +21,8 @@ struct NotchAppearanceDisplaySection: View {
             if screens.count > 1 {
                 displayPicker
             }
-            NotchAppearanceEditorView(appearance: widgetBinding, title: "Expanded Notch Appearance")
-            NotchAppearanceEditorView(appearance: liveActivityBinding, title: "Collapsed Notch Appearance")
+            NotchAppearanceEditorView(appearance: widgetBinding, title: "扩大的缺口外观")
+            NotchAppearanceEditorView(appearance: liveActivityBinding, title: "塌陷凹口外观")
         }
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)) { _ in
             screensRevision += 1
@@ -39,9 +39,9 @@ struct NotchAppearanceDisplaySection: View {
         let hasOverride = selectedDisplay.map { current.hasAppearanceOverride(forDisplayID: $0) } ?? false
         return VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 12) {
-                SettingsRowLabel(title: "Appearance For", description: pickerDescription(hasOverride: hasOverride))
+                SettingsRowLabel(title: "外观对于", description: pickerDescription(hasOverride: hasOverride))
                 Spacer(minLength: 8)
-                Picker("Appearance For", selection: $selectedDisplay) {
+                Picker("外观对于", selection: $selectedDisplay) {
                     Text("All Displays").tag(String?.none)
                     ForEach(screens, id: \.displayIdentifier) { screen in
                         let custom = current.hasAppearanceOverride(forDisplayID: screen.displayIdentifier)
@@ -59,15 +59,15 @@ struct NotchAppearanceDisplaySection: View {
                         settings.settings.value.applyAppearanceToAllDisplays(from: key)
                         selectedDisplay = nil
                     } label: {
-                        Label("Use for All Displays", systemImage: "rectangle.on.rectangle")
+                        Label("适用于所有显示器", systemImage: "rectangle.on.rectangle")
                     }
-                    .help("Make this display's appearance the default and clear every display's own appearance")
+                    .help("将此显示器的外观设置为默认外观并清除每个显示器自己的外观")
                     Button {
                         resetOverride(for: key)
                     } label: {
-                        Label("Reset to Default", systemImage: "arrow.counterclockwise")
+                        Label("重置为默认值", systemImage: "arrow.counterclockwise")
                     }
-                    .help("This display goes back to the appearance every display uses")
+                    .help("该显示器恢复到每个显示器使用的外观")
                 }
                 .buttonStyle(.plain)
                 .foregroundColor(.accentColor)

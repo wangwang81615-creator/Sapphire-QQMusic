@@ -16,7 +16,7 @@ struct OverviewSettingsView: View {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Overview").font(.largeTitle.bold())
-                    Text("Ask about any setting, get suggestions, or have Sapphire change things for you.")
+                    Text("询问任何设置、获取建议或让 Sapphire 为您进行更改。")
                         .foregroundStyle(.secondary)
                 }
 
@@ -51,7 +51,7 @@ private struct SettingsAssistantCard: View {
     ]
 
     var body: some View {
-        SettingsCard(title: "Ask Sapphire", description: "Runs on-device with Apple Intelligence. Changes apply right away and can be undone.") {
+        SettingsCard(title: "询问蓝宝石", description: "通过 Apple Intelligence 在设备上运行。更改立即生效并且可以撤消。") {
             VStack(alignment: .leading, spacing: 12) {
                 if let reason = assistant.unavailableReason {
                     InfoContainer(text: reason, iconName: "apple.intelligence", color: .orange)
@@ -71,7 +71,7 @@ private struct SettingsAssistantCard: View {
 
     private var starterPrompts: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Try asking")
+            Text("尝试询问")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 240), spacing: 8, alignment: .leading)], alignment: .leading, spacing: 8) {
@@ -96,7 +96,7 @@ private struct SettingsAssistantCard: View {
             if assistant.isResponding {
                 HStack(spacing: 8) {
                     ProgressView().controlSize(.small)
-                    Text("Thinking…").font(.callout).foregroundStyle(.secondary)
+                    Text("思考……").font(.callout).foregroundStyle(.secondary)
                 }
             }
             HStack {
@@ -112,7 +112,7 @@ private struct SettingsAssistantCard: View {
 
     private var inputBar: some View {
         HStack(spacing: 8) {
-            TextField("Ask about a setting, or say what to change…", text: $draft)
+            TextField("询问设置，或说出要更改的内容...", text: $draft)
                 .textFieldStyle(.plain)
                 .focused($isInputFocused)
                 .onSubmit(send)
@@ -189,7 +189,7 @@ private struct ChangeRow: View {
                 .strikethrough(isUndone)
             Spacer()
             if isUndone {
-                Text("Undone").font(.caption).foregroundStyle(.secondary)
+                Text("未完成").font(.caption).foregroundStyle(.secondary)
             } else {
                 Button("Undo", action: onUndo).buttonStyle(.plain).font(.caption).foregroundStyle(Color.accentColor)
             }

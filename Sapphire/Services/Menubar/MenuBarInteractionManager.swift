@@ -222,7 +222,7 @@ final class MenuBarInteractionManager {
     private func startScrollMonitoring() {
         guard scrollTapToken == nil else { return }
         scrollTapToken = GlobalEventTap.shared.register(
-            name: "MenuBarScrollReveal",
+            name: "菜单栏滚动显示",
             mask: 1 << CGEventType.scrollWheel.rawValue,
             priority: EventTapPriority.observer,
             enabled: false

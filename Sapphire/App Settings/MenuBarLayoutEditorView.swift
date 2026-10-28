@@ -16,12 +16,12 @@ struct MenuBarLayoutEditorView: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Menu Bar Layout").font(.headline)
-                    Text("Choose where each app's items go. Option-click the control item to arrange them in the menu bar instead; Sapphire learns the new layout when you click it again.")
+                    Text("菜单栏布局").font(.headline)
+                    Text("选择每个应用程序的项目的去向。按住 Option 键单击控制项可将它们排列在菜单栏中；当您再次单击时，Sapphire 会学习新的布局。")
                         .font(.caption).foregroundColor(.secondary)
                 }
                 Spacer()
-                Button("Refresh") { model.reload() }
+                Button("刷新") { model.reload() }
                     .buttonStyle(.bordered).controlSize(.small)
             }
             .padding()
@@ -33,7 +33,7 @@ struct MenuBarLayoutEditorView: View {
 
             Divider().padding(.leading, 20)
             ToggleRow(
-                title: "Show Hidden Items in a Bar",
+                title: "显示酒吧中的隐藏项目",
                 description: "Clicking the control item opens a bar under the menu bar with the hidden items instead of making room for them. Useful when the notch leaves no space",
                 isOn: $settings.settings.menuBarUseHiddenItemsBar
             )
@@ -64,7 +64,7 @@ struct MenuBarLayoutEditorView: View {
             VStack(alignment: .leading, spacing: 1) {
                 Text(row.title).font(.system(size: 14, weight: .medium)).lineLimit(1)
                 if !row.isRunning {
-                    Text("Not running").font(.caption).foregroundStyle(.secondary)
+                    Text("未运行").font(.caption).foregroundStyle(.secondary)
                 }
             }
             Spacer(minLength: 12)

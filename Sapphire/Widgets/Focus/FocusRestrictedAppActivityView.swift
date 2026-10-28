@@ -100,7 +100,7 @@ struct FocusRestrictedAppActivityView: View {
         if let remaining {
             Text("Unlocked in \(remaining.asMinuteSecondClock) — or when your session ends, whichever comes first.")
         } else {
-            Text("This app was closed because it's blocked during your focus session.")
+            Text("此应用程序已关闭，因为它在您的焦点会话期间被阻止。")
         }
     }
 
@@ -125,7 +125,7 @@ struct FocusRestrictedAppActivityView: View {
                 .foregroundStyle(.orange)
                 .clipShape(Capsule())
             } else {
-                actionButton(title: "Unlock", systemName: "lock.open.fill", isPrimary: true) {
+                actionButton(title: "解锁", systemName: "lock.open.fill", isPrimary: true) {
                     FocusSessionManager.shared.requestTemporaryUnlock(bundleID: bundleID)
                     withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
                         requested = true

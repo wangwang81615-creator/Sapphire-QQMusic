@@ -799,7 +799,7 @@ struct LyricsView: View {
     }
 
     private var emptyLyricsView: some View {
-        Text("No lyrics available.")
+        Text("没有可用的歌词。")
             .font(.headline)
             .foregroundColor(.secondary)
     }
@@ -848,7 +848,7 @@ struct LyricsView: View {
             Button(action: openLyricsWindow) {
                 HStack(spacing: 4) {
                     Image(systemName: "macwindow")
-                    Text("Open in Window")
+                    Text("在窗口中打开")
                 }
                 .font(.system(size: 8, weight: .semibold))
             }
@@ -1151,7 +1151,7 @@ private struct LyricsDetachedRightPane: View {
             Group {
                 if lyrics.isEmpty {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Lyrics aren't available.")
+                        Text("歌词不可用。")
                             .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.white.opacity(0.4))
                     }

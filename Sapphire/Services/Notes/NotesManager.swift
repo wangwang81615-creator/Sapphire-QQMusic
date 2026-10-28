@@ -122,7 +122,7 @@ final class NotesManager: ObservableObject {
 
     private func load() {
         guard let data = UserDefaults.standard.data(forKey: storageKey) else {
-            notes = [QuickNote(title: "Welcome", body: "Tap to expand and edit your notes.")]
+            notes = [QuickNote(title: "欢迎", body: "Tap to expand and edit your notes.")]
             return
         }
         guard let elements = try? JSONDecoder().decode([TolerantNote].self, from: data) else {

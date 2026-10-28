@@ -28,7 +28,7 @@ struct ShopifyOrdersView: View {
             }
 
             if !shopify.isConfigured {
-                Text("Connect Shopify in the Shopify section of Settings to view recent orders.")
+                Text("在“设置”的 Shopify 部分中连接 Shopify 以查看最近的订单。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else if shopify.isLoading && shopify.orders.isEmpty {
@@ -38,7 +38,7 @@ struct ShopifyOrdersView: View {
                     .font(.caption)
                     .foregroundStyle(.orange)
             } else if shopify.orders.isEmpty {
-                Text("No orders found.")
+                Text("没有找到订单。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else {

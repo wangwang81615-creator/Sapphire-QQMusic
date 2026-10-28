@@ -167,14 +167,14 @@ struct FocusProfile: Identifiable, Codable, Equatable, Hashable {
         deep.social.blockTikTok = true
         deep.social.blockShortFormWeb = true
 
-        var study = makeDefault(name: "Study", symbol: "book.fill")
+        var study = makeDefault(name: "学习", symbol: "book.fill")
         study.durationSeconds = 50 * 60
         study.breakSeconds = 10 * 60
         study.intensity = .standard
         study.social.blockYouTubeShorts = true
         study.social.blockInstagramReels = true
 
-        var windDown = makeDefault(name: "Wind Down", symbol: "bed.double.fill")
+        var windDown = makeDefault(name: "放松", symbol: "bed.double.fill")
         windDown.durationSeconds = 30 * 60
         windDown.intensity = .gentle
         windDown.breakEnabled = false
@@ -182,7 +182,7 @@ struct FocusProfile: Identifiable, Codable, Equatable, Hashable {
         windDown.social.blockTikTok = true
         windDown.social.instagramFollowingOnly = true
 
-        var meeting = makeDefault(name: "Meetings", symbol: "person.3.fill")
+        var meeting = makeDefault(name: "会议", symbol: "person.3.fill")
         meeting.durationSeconds = 60 * 60
         meeting.intensity = .minimal
         meeting.blockingEnabled = false

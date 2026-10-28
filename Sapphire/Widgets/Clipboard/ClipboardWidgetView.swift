@@ -186,7 +186,7 @@ struct ClipboardPlayerView: View {
                 tint: tint,
                 onTap: { performCopy(item, via: clipboardManager) }
             )
-            .help("Copy again")
+            .help("再次复制")
         }
         .padding(12)
         .notchTintedCard(tint)
@@ -197,7 +197,7 @@ struct ClipboardPlayerView: View {
         .contextMenu {
             Button("Copy") { performCopy(item, via: clipboardManager) }
             Button(item.isPinned ? "Unpin" : "Pin") { clipboardManager.togglePin(id: item.id) }
-            Button("Share…") { performShare(item, via: clipboardManager) }
+            Button("分享...") { performShare(item, via: clipboardManager) }
             Button("Delete", role: .destructive) { clipboardManager.removeItem(id: item.id) }
         }
     }

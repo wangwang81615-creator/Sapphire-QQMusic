@@ -16,10 +16,10 @@ struct SettingsSidebarGroup: Identifiable {
 extension SettingsSection {
     static let sidebarGroups: [SettingsSidebarGroup] = [
         .init(title: "General", sections: (SettingsAssistant.isSupported ? [.overview] : []) + [.general, .keyboardShortcuts, .bluetoothUnlock, .intelligence, .nearbyShare, .continuity]),
-        .init(title: "Notch", sections: [.appearance, .widgets, .liveActivities, .appActivities, .fileProgress, .lockScreen, .notifications, .hud]),
-        .init(title: "Widgets & Content", sections: [.music, .weather, .calendar, .sports, .finance, .battery, .audio, .bluetooth, .shortcuts, .fileShelf, .notes, .clipboard, .mirror, .caffeine]),
-        .init(title: "System & Utilities", sections: [.systemEnhance, .snapZones, .dockLayouts, .mediaOptimizer, .mouse, .monitoring, .devActivity, .emoji, .archives, .apps, .storage]),
-        .init(title: "Focus & Security", sections: [.eyeBreak, .focusSession, .appLock]),
+        .init(title: "缺口", sections: [.appearance, .widgets, .liveActivities, .appActivities, .fileProgress, .lockScreen, .notifications, .hud]),
+        .init(title: "小部件和内容", sections: [.music, .weather, .calendar, .sports, .finance, .battery, .audio, .bluetooth, .shortcuts, .fileShelf, .notes, .clipboard, .mirror, .caffeine]),
+        .init(title: "系统与实用程序", sections: [.systemEnhance, .snapZones, .dockLayouts, .mediaOptimizer, .mouse, .monitoring, .devActivity, .emoji, .archives, .apps, .storage]),
+        .init(title: "焦点与安全", sections: [.eyeBreak, .focusSession, .appLock]),
         .init(title: "", sections: [.about])
     ]
 }
@@ -61,7 +61,7 @@ struct SettingsSidebarView: View {
             Spacer().frame(height: 45)
 
             // MARK: 1. Search Settings (Top of Sidebar)
-            ClearableSearchField(placeholder: "Search settings", text: $searchText)
+            ClearableSearchField(placeholder: "搜索设置", text: $searchText)
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
             .background(Color.white.opacity(0.06))
@@ -136,7 +136,7 @@ struct SettingsSidebarView: View {
                         .frame(width: 30, height: 30)
                         .background(Color.red.opacity(0.15))
                         .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                    Text("Quit")
+                    Text("戒烟")
                         .font(.system(size: 15, weight: .medium))
                         .foregroundStyle(.white)
                 }
@@ -223,7 +223,7 @@ fileprivate struct SidebarRowView: View {
             Image(systemName: section.systemImage).font(.system(size: 11, weight: .bold)).foregroundStyle(.white).frame(width: 22, height: 22).background(LinearGradient(colors: section.iconGradientColors, startPoint: .topLeading, endPoint: .bottomTrailing).opacity(0.8)).clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
             Text(section.label).font(.system(size: 13, weight: .medium)).foregroundStyle(.white)
             if section.isBeta {
-                Text("BETA")
+                Text("测试版")
                     .font(.system(size: 8, weight: .bold))
                     .foregroundStyle(.orange)
                     .padding(.horizontal, 4)

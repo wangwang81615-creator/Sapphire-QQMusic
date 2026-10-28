@@ -81,7 +81,7 @@ final class MenuBarHotkeyMonitor {
 
         if !resolved.isEmpty, tapToken == nil {
             tapToken = GlobalEventTap.shared.register(
-                name: "MenuBarHotkeys",
+                name: "菜单栏热键",
                 mask: 1 << CGEventType.keyDown.rawValue,
                 priority: EventTapPriority.shortcut
             ) { [weak self] type, event in

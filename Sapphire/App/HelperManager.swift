@@ -121,7 +121,7 @@ struct HelperStatusBanner: View {
 
             HStack(spacing: 8) {
                 if let issue = helperManager.lastIssue {
-                    Button("Instructions") {
+                    Button("使用说明") {
                         HelperAlertPresenter.present(issue)
                     }
                     .buttonStyle(.bordered)
@@ -142,7 +142,7 @@ struct HelperStatusBanner: View {
                         .disabled(helperManager.isResettingHelper)
                         .buttonStyle(.borderedProminent)
                         .tint(.orange)
-                        Button("Relaunch") {
+                        Button("重新启动") {
                             HelperManager.relaunchApp()
                         }
                         .buttonStyle(.bordered)
@@ -154,7 +154,7 @@ struct HelperStatusBanner: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.orange)
                     } else if helperManager.status != .enabled {
-                        Button("Install") {
+                        Button("安装") {
                             helperManager.beginInstallation()
                         }
                         .buttonStyle(.borderedProminent)

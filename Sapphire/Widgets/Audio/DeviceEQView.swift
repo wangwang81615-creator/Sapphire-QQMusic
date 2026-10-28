@@ -72,7 +72,7 @@ struct DeviceEQView: View {
         VStack(spacing: 0) {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Master Equalizer")
+                    Text("主均衡器")
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(.secondary)
                     Text(device.name)
@@ -103,7 +103,7 @@ struct DeviceEQView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     if applicableAppEQs.isEmpty {
-                        ModernChip(title: "No App Overrides", isSelected: false) {}
+                        ModernChip(title: "没有应用程序覆盖", isSelected: false) {}
                             .disabled(true)
                             .opacity(0.5)
                     } else {
@@ -147,7 +147,7 @@ struct EQBandCountPicker: View {
     @Binding var selection: Int
 
     var body: some View {
-        Picker("EQ Bands", selection: $selection) {
+        Picker("均衡器频段", selection: $selection) {
             ForEach(AudioEQBandLayout.allCases) { layout in
                 Text(layout.displayName).tag(layout.rawValue)
             }
@@ -155,7 +155,7 @@ struct EQBandCountPicker: View {
         .pickerStyle(.menu)
         .labelsHidden()
         .fixedSize()
-        .help("Choose how many equalizer frequency bands to adjust")
+        .help("选择要调整的均衡器频段数")
         .accessibilityLabel("Equalizer bands")
     }
 }
@@ -428,7 +428,7 @@ struct EQBassControl: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
             HStack {
-                Label("Clear Bass", systemImage: "dial.low.fill")
+                Label("清晰的低音", systemImage: "dial.low.fill")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
                 Text(bassGain == 0 ? "0 dB" : String(format: "%+.0f dB", bassGain))
@@ -452,7 +452,7 @@ struct EQBassControl: View {
             HStack(alignment: .top, spacing: 6) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 10))
-                Text("Raising the Clear Bass slider or the low EQ bands adds level below ~150 Hz and can clip into audible distortion. Ease off if it sounds crunchy.")
+                Text("提高 Clear Bass 滑块或低 EQ 频段会增加约 150 Hz 以下的电平，并可能导致声音失真。如果听起来很脆，就放松一下。")
                     .font(.system(size: 10))
                     .fixedSize(horizontal: false, vertical: true)
             }

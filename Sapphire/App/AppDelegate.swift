@@ -1058,7 +1058,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
                 }
             }
         }
-        networkMonitor?.start(queue: DispatchQueue(label: "NetworkMonitor", qos: .utility))
+        networkMonitor?.start(queue: DispatchQueue(label: "网络监控器", qos: .utility))
     }
 
     private var hasPresentedHelperConnectionAlertThisSession = false
@@ -1555,7 +1555,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
                     accessibilityDescription: "Sapphire Launchpad"
                 )
                 let menu = NSMenu()
-                menu.addItem(NSMenuItem(title: "Show Launchpad", action: #selector(showLaunchpadAction), keyEquivalent: ""))
+                menu.addItem(NSMenuItem(title: "显示启动板", action: #selector(showLaunchpadAction), keyEquivalent: ""))
                 menu.addItem(.separator())
                 menu.addItem(NSMenuItem(title: "Quit Sapphire", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
                 for item in menu.items { item.target = self }

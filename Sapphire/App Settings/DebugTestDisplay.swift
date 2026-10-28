@@ -23,7 +23,7 @@ final class DebugTestDisplay: NSObject, ObservableObject {
     private var window: NSWindow?
     private var previewLayer: CALayer?
     private var stream: SCStream?
-    private let frameQueue = DispatchQueue(label: "Sapphire.DebugTestDisplay.frames")
+    private let frameQueue = DispatchQueue(label: "蓝宝石.DebugTestDisplay.frames")
 
     func toggle() {
         isActive ? stop() : start()

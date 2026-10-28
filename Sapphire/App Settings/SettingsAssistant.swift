@@ -326,9 +326,9 @@ private enum RequestKind {
 private struct ChangeDecision {
     @Guide(description: "change only for an instruction such as \"turn off X\", \"enable X\", \"set X to 5\" or \"hide X\". question for anything asked as a question (\"can I…?\", \"how do I…?\", \"is there…?\") or a request for ideas.")
     var kind: RequestKind
-    @Guide(description: "For a change: the exact key of the listed setting to change. Otherwise empty.")
+    @Guide(description: "对于更改：要更改的列出设置的确切键。否则为空。")
     var key: String
-    @Guide(description: "For a change: the new value from that setting's allowed values. on when they say turn on, enable, show or start; off when they say turn off, disable, stop or remove. A number or an option name for other settings. Otherwise empty.")
+    @Guide(description: "对于更改：该设置的允许值中的新值。当他们说打开、启用、显示或启动时打开；当他们说关闭、禁用、停止或删除时关闭。其他设置的数字或选项名称。否则为空。")
     var value: String
 }
 #endif

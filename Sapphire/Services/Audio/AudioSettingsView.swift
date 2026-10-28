@@ -24,13 +24,13 @@ struct AudioSettingsView: View {
                     .padding(.bottom, 4)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Notch")
+                    Text("缺口")
                         .font(.headline)
                         .padding([.top, .horizontal])
 
                     CompactToggleRow(
-                        title: "Multi-Audio in Notch",
-                        description: "Show the per-app mixer in the expanded notch.",
+                        title: "凹口多音频",
+                        description: "在扩展的凹口中显示每个应用程序的混合器。",
                         isOn: Binding(
                             get: { settings.settings.notchButtonOrder.contains(.multiAudio) },
                             set: { enabled in
@@ -45,20 +45,20 @@ struct AudioSettingsView: View {
                     .disabled(permissionsManager.screenRecordingStatus != .granted)
                     Divider().padding(.leading, 20)
                     CompactToggleRow(
-                        title: "Haptic Feedback",
-                        description: "Subtle vibration when adjusting audio controls.",
+                        title: "触觉反馈",
+                        description: "调整音频控制时出现轻微振动。",
                         isOn: $settings.settings.hapticFeedbackEnabled
                     )
                     Divider().padding(.leading, 20)
                     HStack(spacing: 16) {
                         VStack(alignment: .leading, spacing: 3) {
-                            Text("Equalizer Bands")
-                            Text("Choose the number of frequency controls shown in app and device equalizers.")
+                            Text("均衡器频段")
+                            Text("选择应用程序和设备均衡器中显示的频率控制数量。")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Picker("Equalizer Bands", selection: $displayedBandCount) {
+                        Picker("均衡器频段", selection: $displayedBandCount) {
                             ForEach(AudioEQBandLayout.allCases) { layout in
                                 Text(layout.displayName).tag(layout.rawValue)
                             }
@@ -79,9 +79,9 @@ struct AudioSettingsView: View {
 
                 VStack(alignment: .leading, spacing: 10) {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("App & Device Mixer")
+                        Text("应用程序和设备混合器")
                             .font(.headline)
-                        Text("The same volume, routing, EQ, 8D, surround, balance, and delay controls available in the notch.")
+                        Text("凹口中提供相同的音量、路由、EQ、8D、环绕、平衡和延迟控制。")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -95,40 +95,40 @@ struct AudioSettingsView: View {
                 .modifier(SettingsContainerModifier())
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Reset")
+                    Text("重置")
                         .font(.headline)
                         .padding([.top, .horizontal])
 
                     AudioResetRow(
-                        title: "Reset Per-App Adjustments",
-                        subtitle: "Clears custom volumes, mutes, EQ, and 8D spatial audio for all apps.",
+                        title: "重置每个应用程序的调整",
+                        subtitle: "清除所有应用程序的自定义音量、静音、EQ 和 8D 空间音频。",
                         buttonTitle: "Reset Apps",
                         buttonColor: .red
                     ) {
                         showResetAppConfirmation = true
                     }
-                    .alert("Reset Per-App Settings?", isPresented: $showResetAppConfirmation) {
+                    .alert("重置每个应用程序设置？", isPresented: $showResetAppConfirmation) {
                         Button("Cancel", role: .cancel) { }
-                        Button("Reset", role: .destructive) { resetAllAppSettings() }
+                        Button("重置", role: .destructive) { resetAllAppSettings() }
                     } message: {
-                        Text("This restores default volume, flat EQ, surround, and 8D audio for every application.")
+                        Text("这将为每个应用程序恢复默认音量、平坦均衡器、环绕声和 8D 音频。")
                     }
 
                     Divider().padding(.leading, 20)
 
                     AudioResetRow(
-                        title: "Reset Device Settings",
-                        subtitle: "Clears master volume, balance, delay, and EQ for all devices.",
+                        title: "重置设备设置",
+                        subtitle: "清除所有设备的主音量、平衡、延迟和均衡器。",
                         buttonTitle: "Reset Devices",
                         buttonColor: .red
                     ) {
                         showResetDeviceConfirmation = true
                     }
-                    .alert("Reset Device Settings?", isPresented: $showResetDeviceConfirmation) {
+                    .alert("重置设备设置？", isPresented: $showResetDeviceConfirmation) {
                         Button("Cancel", role: .cancel) { }
-                        Button("Reset", role: .destructive) { resetAllDeviceSettings() }
+                        Button("重置", role: .destructive) { resetAllDeviceSettings() }
                     } message: {
-                        Text("This reverts all connected output devices to their default state.")
+                        Text("这会将所有连接的输出设备恢复为其默认状态。")
                     }
                 }
                 .modifier(SettingsContainerModifier())
@@ -221,7 +221,7 @@ private struct AudioSettingsAdjustmentSheet: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Audio Adjustment")
+                Text("音频调整")
                     .font(.headline)
                 Spacer()
                 Button("Done") { dismiss() }
@@ -264,13 +264,13 @@ private struct MicrophoneAmplifierSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Microphone Gain Preview")
+            Text("麦克风增益预览")
                 .font(.headline)
                 .padding([.top, .horizontal])
 
             CompactToggleRow(
-                title: "Preview gain",
-                description: "Applies gain to Sapphire's live level meter so you can check clipping. Other apps still receive the original microphone signal.",
+                title: "预览增益",
+                description: "将增益应用于 Sapphire 的实时电平表，以便您可以检查削波。其他应用程序仍然接收原始麦克风信号。",
                 isOn: $mic.amplifierEnabled
             )
 
@@ -278,7 +278,7 @@ private struct MicrophoneAmplifierSettingsView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Preview gain")
+                    Text("预览增益")
                     Spacer()
                     Text("×\(mic.amplifierGain, specifier: "%.1f")")
                         .font(.caption.monospacedDigit())
@@ -362,20 +362,20 @@ private struct AudioSwitchingSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Output Switching & Microphone")
+            Text("输出切换和麦克风")
                 .font(.headline)
                 .padding([.top, .horizontal])
 
             AudioShortcutRow(
-                title: "Cycle output device",
-                subtitle: "Makes the next output below the system default.",
+                title: "循环输出装置",
+                subtitle: "使下一个输出低于系统默认值。",
                 identifier: "audioOutputCycleShortcut",
                 shortcut: $switcher.cycleShortcut
             )
 
             if !audio.availableOutputDevices.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Outputs in the cycle")
+                    Text("循环中的输出")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     ForEach(audio.availableOutputDevices) { device in
@@ -391,12 +391,12 @@ private struct AudioSwitchingSettingsView: View {
             Divider().padding(.leading, 20)
 
             CompactToggleRow(
-                title: "Lower volume when headphones disconnect",
-                description: "Drops the speakers to a safe level when headphones go away, and puts their volume back when the headphones return.",
+                title: "耳机断开连接时降低音量",
+                description: "当耳机消失时，将扬声器音量降至安全水平，并在耳机返回时恢复音量。",
                 isOn: $switcher.lowerVolumeOnHeadphoneDisconnect
             )
             HStack {
-                Text("Speaker level")
+                Text("扬声器电平")
                 Slider(value: $switcher.headphoneDisconnectLevel, in: 0...0.8, step: 0.05)
                 Text("\(Int(switcher.headphoneDisconnectLevel * 100))%")
                     .font(.caption.monospacedDigit())
@@ -411,7 +411,7 @@ private struct AudioSwitchingSettingsView: View {
 
             AudioShortcutRow(
                 title: "Mute microphone",
-                subtitle: "Toggles mute on every input device.",
+                subtitle: "在每个输入设备上切换静音。",
                 identifier: "microphoneMuteShortcut",
                 shortcut: $switcher.micMuteShortcut
             )
@@ -420,20 +420,20 @@ private struct AudioSwitchingSettingsView: View {
 
             HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Preferred microphone")
-                    Text("Kept as the system input, even when headphones with their own microphone connect.")
+                    Text("首选麦克风")
+                    Text("即使连接带有麦克风的耳机，仍保留为系统输入。")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                Picker("Preferred microphone", selection: preferredInputBinding) {
-                    Text("System choice").tag(String?.none)
+                Picker("首选麦克风", selection: preferredInputBinding) {
+                    Text("系统选择").tag(String?.none)
                     ForEach(audio.availableInputDevices) { device in
                         Text(device.name).tag(String?.some(device.uid))
                     }
                     if let preferred = audio.preferredInputUID,
                        !audio.availableInputDevices.contains(where: { $0.uid == preferred }) {
-                        Text("Disconnected device").tag(String?.some(preferred))
+                        Text("断开连接的设备").tag(String?.some(preferred))
                     }
                 }
                 .labelsHidden()

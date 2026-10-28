@@ -67,7 +67,7 @@ struct BatteryDetailView: View {
             HStack(alignment: .top, spacing: 10) {
                 powerHero
                 VStack(spacing: 10) {
-                    compactMetric(title: "Battery Health", value: "\(stats.maxCapacityPercentage)%", icon: "heart.fill", color: .pink)
+                    compactMetric(title: "电池健康状况", value: "\(stats.maxCapacityPercentage)%", icon: "heart.fill", color: .pink)
                     compactMetric(title: "Cycle Count", value: "\(stats.cycleCount)", icon: "arrow.triangle.2.circlepath", color: .purple)
                 }
                 .frame(width: 160)
@@ -92,11 +92,11 @@ struct BatteryDetailView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text("BATTERY")
+            Text("电池")
                 .font(.system(size: 10, weight: .bold))
                 .tracking(1.5)
                 .foregroundColor(levelColor)
-            Text("Power overview")
+            Text("电源概览")
                 .font(.system(size: 23, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
         }
@@ -172,7 +172,7 @@ struct BatteryDetailView: View {
                         dragLimit = nil
                     }
             )
-            .help("Drag to set the charge limit — charging pauses at this level to help preserve battery health.")
+            .help("拖动以设置充电限制 - 充电在此级别暂停以帮助保持电池健康。")
         }
         .frame(height: 24)
     }

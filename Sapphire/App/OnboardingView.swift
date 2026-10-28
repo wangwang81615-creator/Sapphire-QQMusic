@@ -101,7 +101,7 @@ private struct WelcomeStepView: View {
                 .frame(width: 80, height: 80)
                 .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
 
-            Text("Welcome to Sapphire")
+            Text("欢迎来到蓝宝石")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .multilineTextAlignment(.center)
 
@@ -113,7 +113,7 @@ private struct WelcomeStepView: View {
 
             Spacer()
 
-            OnboardingButton(title: "Get Started", action: onGetStarted)
+            OnboardingButton(title: "开始使用", action: onGetStarted)
         }
     }
 }
@@ -124,11 +124,11 @@ private struct PermissionsStepView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Permissions")
+            Text("权限")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .padding(.top, 40).padding(.bottom, 10)
 
-            Text("Sapphire needs a few permissions for its core features.")
+            Text("Sapphire 的核心功能需要一些权限。")
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -138,8 +138,8 @@ private struct PermissionsStepView: View {
             ScrollView {
                 VStack(spacing: 25) {
                     PermissionSectionView(title: "Required", permissions: permissionsManager.requiredPermissions, manager: permissionsManager)
-                    PermissionSectionView(title: "Recommended", permissions: permissionsManager.recommendedPermissions, description: "These permissions enable major features like widgets and live activities.", manager: permissionsManager)
-                    PermissionSectionView(title: "Optional", permissions: permissionsManager.optionalPermissions, description: "These permissions enable minor or cosmetic features.", manager: permissionsManager)
+                    PermissionSectionView(title: "Recommended", permissions: permissionsManager.recommendedPermissions, description: "这些权限支持小部件和实时活动等主要功能。", manager: permissionsManager)
+                    PermissionSectionView(title: "Optional", permissions: permissionsManager.optionalPermissions, description: "这些权限可启用次要或装饰功能。", manager: permissionsManager)
                 }.padding(.horizontal, 50)
             }
 
@@ -172,11 +172,11 @@ private struct HelperInstallationStepView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Install Helper Service")
+            Text("安装助手服务")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .padding(.top, 40).padding(.bottom, 10)
 
-            Text("Sapphire needs a privileged helper for battery management and system integrations. macOS will ask you to allow it under Login Items → Background Activity.")
+            Text("蓝宝石需要一个特权帮手来进行电池管理和系统集成。 macOS 会要求您在“登录项目”→“后台活动”下允许它。")
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -227,7 +227,7 @@ private struct HelperInstallationStepView: View {
                 .animation(.easeInOut, value: helperManager.isRunning)
 
             Button(action: onContinue) {
-                Text("Skip for now").font(.subheadline).foregroundColor(.secondary)
+                Text("暂时跳过").font(.subheadline).foregroundColor(.secondary)
             }
             .buttonStyle(.plain)
             .padding(.top, 8)
@@ -287,10 +287,10 @@ private struct PrivacyStepView: View {
                 .font(.system(size: 48, weight: .bold))
                 .foregroundStyle(.indigo)
 
-            Text("Your Privacy Matters")
+            Text("您的隐私很重要")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
-            Text("We believe in transparency. Please review our data handling practices below.")
+            Text("我们相信透明度。请查看下面我们的数据处理实践。")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -300,22 +300,22 @@ private struct PrivacyStepView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     PrivacySection(
-                        title: "Data We Collect (Analytics)",
+                        title: "我们收集的数据（分析）",
                         content: "To improve Sapphire, we collect completely anonymous, aggregated usage data. This helps us understand which features are popular, identify bugs, and make the app better for everyone."
                     )
 
                     PrivacySection(
-                        title: "What This Includes:",
+                        title: "这包括什么：",
                         content: "• Feature usage frequency (e.g., how often a widget is used)\n• App version and macOS version\n• Anonymous crash reports"
                     )
 
                     PrivacySection(
-                        title: "Data We NEVER Collect",
+                        title: "我们从不收集的数据",
                         content: "We are committed to your privacy. We DO NOT automatically collect, store, or transmit any personal or sensitive information. This includes, but is not limited to:\n• Your name, email, or other personal identifiers\n• Screen contents or keyboard input\n• Application data from other apps"
                     )
 
                     PrivacySection(
-                        title: "Data Storage & Third Parties",
+                        title: "数据存储和第三方",
                         content: "Anonymous data is processed by google for analytics. This data is always aggregated and cannot be used to identify you."
                     )
                 }
@@ -330,7 +330,7 @@ private struct PrivacyStepView: View {
             .padding(.top, 20)
 
             Toggle(isOn: $settings.settings.googleAnalyticsEnabled) {
-                Text("Share anonymous usage data with Google Analytics to help improve Sapphire. You can change this anytime in Settings > General.")
+                Text("与 Google Analytics 共享匿名使用数据，以帮助改进 Sapphire。您可以随时在“设置”>“常规”中更改此设置。")
                     .font(.callout)
             }
             .padding(.horizontal, 50)
@@ -356,10 +356,10 @@ private struct MusicChoiceStepView: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            Text("Choose Your Music Service")
+            Text("选择您的音乐服务")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
-            Text("Select your primary music player for the best integration.")
+            Text("选择您的主要音乐播放器以获得最佳集成。")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -408,24 +408,24 @@ private struct SpotifySetupStepView: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            Text("Spotify Setup").font(.system(size: 32, weight: .bold, design: .rounded))
-            Text("Log in to enable enhanced features like liking tracks and skipping ads directly from the notch.").font(.title3).multilineTextAlignment(.center).foregroundColor(.secondary).padding(.horizontal)
+            Text("Spotify 设置").font(.system(size: 32, weight: .bold, design: .rounded))
+            Text("登录即可启用增强功能，例如直接从刘海中点赞曲目和跳过广告。").font(.title3).multilineTextAlignment(.center).foregroundColor(.secondary).padding(.horizontal)
             VStack(alignment: .center, spacing: 15) {
                 if musicManager.isPrivateAPIAuthenticated {
-                    HStack(spacing: 10) { Image(systemName: "checkmark.circle.fill").font(.title).foregroundColor(.green); Text("Logged in successfully!").font(.headline) }
+                    HStack(spacing: 10) { Image(systemName: "checkmark.circle.fill").font(.title).foregroundColor(.green); Text("登录成功！").font(.headline) }
                 } else {
-                    Text("Private API Login").font(.headline)
-                    Text("This method works for both Free and Premium users. Use at your own risk.").font(.caption).foregroundColor(.secondary).multilineTextAlignment(.center)
+                    Text("私有API登录").font(.headline)
+                    Text("此方法适用于免费用户和高级用户。使用风险自负。").font(.caption).foregroundColor(.secondary).multilineTextAlignment(.center)
                     if isLoading {
-                        VStack(spacing: 8) { ProgressView(); Text("Logging in...").font(.caption).foregroundColor(.secondary) }.frame(height: 40)
+                        VStack(spacing: 8) { ProgressView(); Text("正在登录...").font(.caption).foregroundColor(.secondary) }.frame(height: 40)
                     } else {
-                        Button("Log In with Spotify", action: handlePrivateApiLogin).buttonStyle(.borderedProminent).tint(.green).controlSize(.large).frame(height: 40)
+                        Button("使用 Spotify 登录", action: handlePrivateApiLogin).buttonStyle(.borderedProminent).tint(.green).controlSize(.large).frame(height: 40)
                     }
                     if let error = error { Text(error).font(.caption).foregroundColor(.red).padding(.top, 4) }
                 }
             }.padding(25).background(.black.opacity(0.15)).clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous)).overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(Color.white.opacity(0.1), lineWidth: 1)).padding(50)
             Spacer()
-            if musicManager.isPrivateAPIAuthenticated { OnboardingButton(title: "Continue", action: onNext) } else if !isLoading { Button("Skip for Now", action: onNext).buttonStyle(.plain).foregroundColor(.secondary).padding(.bottom, 50) } else { OnboardingButton(title: "Continue", action: {}).hidden().padding(.bottom, 50) }
+            if musicManager.isPrivateAPIAuthenticated { OnboardingButton(title: "Continue", action: onNext) } else if !isLoading { Button("暂时跳过", action: onNext).buttonStyle(.plain).foregroundColor(.secondary).padding(.bottom, 50) } else { OnboardingButton(title: "Continue", action: {}).hidden().padding(.bottom, 50) }
         }
         .sheet(item: Bindable(spotifyPrivateAPI).loginChallenge) { _ in
             SpotifyLoginWebView(
@@ -458,18 +458,18 @@ private struct BatterySetupStepView: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            Text("Intelligent Battery Management")
+            Text("智能电池管理")
                 .fontWeight(.bold)
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
-            Text("Protect your battery's health and extend its lifespan with these features.")
+            Text("通过这些功能保护电池的健康并延长其使用寿命。")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 50)
 
             VStack(spacing: 15) {
-                ModernOnboardingRow(iconName: "battery.100.bolt", iconColor: .green, title: "Set Charge Limit", description: "Prevent wear by stopping charging at a lower level. 80% is recommended.") {
+                ModernOnboardingRow(iconName: "battery.100.bolt", iconColor: .green, title: "Set Charge Limit", description: "通过在较低电量时停止充电来防止磨损。建议80%。") {
                     Picker("", selection: chargeLimitBinding) {
                         Text("80%").tag(80)
                         Text("90%").tag(90)
@@ -480,11 +480,11 @@ private struct BatterySetupStepView: View {
                     .frame(width: 150)
                 }
 
-                ModernOnboardingRow(iconName: "sailboat.fill", iconColor: .blue, title: "Enable Sailing Mode", description: "Reduces micro-charging cycles when the limit is reached.") {
+                ModernOnboardingRow(iconName: "sailboat.fill", iconColor: .blue, title: "启用航行模式", description: "达到限制时减少微充电周期。") {
                     SettingsSwitch(isOn: $settings.settings.sailingModeEnabled)
                 }
 
-                ModernOnboardingRow(iconName: "thermometer.medium", iconColor: .red, title: "Enable Heat Protection", description: "Pauses charging if the battery gets too hot.") {
+                ModernOnboardingRow(iconName: "thermometer.medium", iconColor: .red, title: "启用热保护", description: "如果电池过热，则暂停充电。") {
                     SettingsSwitch(isOn: $settings.settings.heatProtectionEnabled)
                 }
             }
@@ -503,15 +503,15 @@ private struct CorePreferencesStepView: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            Text("Quick Setup").font(.system(size: 32, weight: .bold, design: .rounded))
-            Text("Personalize your experience. You can change these any time in Settings.").font(.title3).multilineTextAlignment(.center).foregroundColor(.secondary).padding(.horizontal, 50)
+            Text("快速设置").font(.system(size: 32, weight: .bold, design: .rounded))
+            Text("个性化您的体验。您可以随时在“设置”中更改这些内容。").font(.title3).multilineTextAlignment(.center).foregroundColor(.secondary).padding(.horizontal, 50)
             VStack(spacing: 15) {
-                ModernOnboardingRow(iconName: "sparkles.tv", iconColor: .cyan, title: "Show Custom HUDs", description: "Replace default volume & brightness indicators.") { SettingsSwitch(isOn: showHudsBinding) }
-                ModernOnboardingRow(iconName: "eye.fill", iconColor: .cyan, title: "Enable Eye Break Reminders", description: "Get reminded to look away from your screen periodically.") {
+                ModernOnboardingRow(iconName: "sparkles.tv", iconColor: .cyan, title: "显示自定义 HUD", description: "替换默认的音量和亮度指示器。") { SettingsSwitch(isOn: showHudsBinding) }
+                ModernOnboardingRow(iconName: "eye.fill", iconColor: .cyan, title: "启用眼睛休息提醒", description: "提醒您定期将目光从屏幕上移开。") {
                     SettingsSwitch(isOn: $settings.settings.eyeBreakLiveActivityEnabled)
                 }
-                ModernOnboardingRow(iconName: "thermometer.sun.fill", iconColor: .orange, title: "Temperature Unit", description: "Preferred unit for weather forecasts.") { Picker("", selection: $settings.settings.weatherUseCelsius) { Text("°C").tag(true); Text("°F").tag(false) }.pickerStyle(.segmented).labelsHidden().frame(width: 100) }
-                ModernOnboardingRow(iconName: "bolt.horizontal.circle.fill", iconColor: .purple, title: "Launch at Login", description: "Start Sapphire automatically with your Mac.") { SettingsSwitch(isOn: $settings.settings.launchAtLogin) }
+                ModernOnboardingRow(iconName: "thermometer.sun.fill", iconColor: .orange, title: "温度单位", description: "天气预报的首选单位。") { Picker("", selection: $settings.settings.weatherUseCelsius) { Text("°C").tag(true); Text("°F").tag(false) }.pickerStyle(.segmented).labelsHidden().frame(width: 100) }
+                ModernOnboardingRow(iconName: "bolt.horizontal.circle.fill", iconColor: .purple, title: "登录时启动", description: "使用 Mac 自动启动 Sapphire。") { SettingsSwitch(isOn: $settings.settings.launchAtLogin) }
             }.padding(50)
             Spacer()
             OnboardingButton(title: "Continue", action: onNext)
@@ -526,26 +526,26 @@ private struct LockScreenSetupStepView: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            Text("Lock Screen Features")
+            Text("锁屏功能")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
-            Text("Enhance your Mac's lock screen with live activities and widgets directly in the notch area.")
+            Text("直接在凹口区域中使用实时活动和小部件来增强 Mac 的锁定屏幕。")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 50)
 
             VStack(spacing: 15) {
-                ModernOnboardingRow(iconName: "lock.display", iconColor: .red, title: "Enable on Lock Screen", description: "Show Sapphire's notch and features when your Mac is locked.") {
+                ModernOnboardingRow(iconName: "lock.display", iconColor: .red, title: "在锁定屏幕上启用", description: "当 Mac 锁定时显示 Sapphire 的凹口和功能。") {
                     SettingsSwitch(isOn: $settings.settings.lockScreenShowNotch)
                 }
 
                 VStack(spacing: 15) {
-                    ModernOnboardingRow(iconName: "timer", iconColor: .cyan, title: "Show Live Activities", description: "Display timers, music, and more.") {
+                    ModernOnboardingRow(iconName: "timer", iconColor: .cyan, title: "显示现场活动", description: "显示计时器、音乐等。") {
                         SettingsSwitch(isOn: $settings.settings.lockScreenLiveActivityEnabled)
                     }
 
-                    ModernOnboardingRow(iconName: "info.circle.fill", iconColor: .blue, title: "Show Info Widgets", description: "Display static info like weather or battery.") {
+                    ModernOnboardingRow(iconName: "info.circle.fill", iconColor: .blue, title: "显示信息小部件", description: "显示天气或电池等静态信息。") {
                         SettingsSwitch(isOn: $settings.settings.lockScreenShowInfoWidget)
                     }
                 }
@@ -573,10 +573,10 @@ private struct SubscriptionOverviewStepView: View {
         VStack(spacing: 20) {
             Spacer()
 
-            Text("Your Sapphire Plan")
+            Text("您的蓝宝石计划")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
-            Text("Link an account anytime in Settings to sync your subscription across devices.")
+            Text("随时在“设置”中关联帐户，以跨设备同步您的订阅。")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -639,20 +639,20 @@ private struct SubscriptionOverviewStepView: View {
             .frame(height: 390)
 
             if currentTier == .free {
-                Text("Upgrade to Basic or higher for beta updates, Gemini Live, and more.")
+                Text("升级到 Basic 或更高版本以获取 Beta 更新、Gemini Live 等。")
                     .font(.callout)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 50)
 
-                Link("Upgrade on website instead", destination: URL(string: "https://sapphire-app.tech/")!)
+                Link("改为在网站上升级", destination: URL(string: "https://sapphire-app.tech/")!)
                     .font(.caption)
                     .foregroundStyle(.purple)
             }
 
             Spacer()
 
-            OnboardingButton(title: "Skip", action: onNext)
+            OnboardingButton(title: "跳过", action: onNext)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
@@ -724,7 +724,7 @@ private struct OnboardingPlanCard: View {
                             .font(.system(size: 17, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                         if isCurrent {
-                            Text("CURRENT")
+                            Text("电流")
                                 .font(.system(size: 8, weight: .black))
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 3)
@@ -851,7 +851,7 @@ private struct FinishStepView: View {
                 .frame(width: 96, height: 96)
                 .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
 
-            Text("You're All Set!")
+            Text("一切就绪！")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
 
             Text("Version \(currentAppVersion)")
@@ -875,9 +875,9 @@ private struct FinishStepView: View {
                 .padding(.top)
 
             Spacer()
-            OnboardingButton(title: "Explore Sapphire", action: onComplete)
+            OnboardingButton(title: "探索蓝宝石", action: onComplete)
 
-            Text("© 2025 Shariq Charolia. All rights reserved.")
+            Text("© 2025 沙里克·查罗利亚。版权所有。")
                 .font(.caption).foregroundStyle(.tertiary).padding(.bottom, 20)
         }
         .onAppear {
@@ -891,9 +891,9 @@ private struct OnboardingUpdateStatusView: View {
     var body: some View {
         Group {
             switch updateChecker.status {
-            case .checking: HStack(spacing: 8) { ProgressView().controlSize(.small); Text("Checking for updates...").foregroundStyle(.secondary) }
-            case .upToDate: HStack(spacing: 8) { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green); Text("You are up to date!").foregroundStyle(.secondary) }
-            case .available(let version, _): VStack(spacing: 8) { Text("Version \(version) is available!").font(.headline); Link(destination: URL(string: "https://github.com/cshariq/Sapphire/releases")!) { Text("Download from GitHub") }.buttonStyle(.bordered).tint(.accentColor) }
+            case .checking: HStack(spacing: 8) { ProgressView().controlSize(.small); Text("正在检查更新...").foregroundStyle(.secondary) }
+            case .upToDate: HStack(spacing: 8) { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green); Text("你是最新的！").foregroundStyle(.secondary) }
+            case .available(let version, _): VStack(spacing: 8) { Text("Version \(version) is available!").font(.headline); Link(destination: URL(string: "https://github.com/cshariq/Sapphire/releases")!) { Text("从 GitHub 下载") }.buttonStyle(.bordered).tint(.accentColor) }
             case .error(let message): HStack(spacing: 8) { Image(systemName: "xmark.octagon.fill").foregroundColor(.red); Text(message).foregroundStyle(.secondary).lineLimit(1) }
             default: EmptyView()
             }
@@ -975,7 +975,7 @@ private struct PermissionRowView: View {
             case .denied: Image(systemName: "xmark.circle.fill").font(.title2).foregroundColor(.red)
             case .notRequested:
                 Button(action: { manager.requestPermission(permission.type) }) {
-                    Text("Request")
+                    Text("请求")
                         .fontWeight(.bold)
                         .padding(.horizontal, 18)
                         .padding(.vertical, 8)

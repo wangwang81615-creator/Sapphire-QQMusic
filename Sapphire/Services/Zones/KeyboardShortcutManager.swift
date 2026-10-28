@@ -111,7 +111,7 @@ class KeyboardShortcutManager {
     }
 
     private func registerTrustAwareness() {
-        AccessibilityTrustMonitor.shared.register(name: "KeyboardShortcutManager", owner: self) {
+        AccessibilityTrustMonitor.shared.register(name: "键盘快捷键管理器", owner: self) {
             $0.isAccessibilitySuspended = true
             $0.removeTap()
         } reinstall: {
@@ -181,7 +181,7 @@ class KeyboardShortcutManager {
         let eventsToMonitor: CGEventMask = (1 << CGEventType.keyDown.rawValue)
 
         tapToken = GlobalEventTap.shared.register(
-            name: "KeyboardShortcutManager",
+            name: "键盘快捷键管理器",
             mask: eventsToMonitor,
             priority: EventTapPriority.shortcut
         ) { [weak self] type, event in

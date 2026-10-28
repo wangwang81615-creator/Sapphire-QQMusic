@@ -174,7 +174,7 @@ private struct LockScreenCalendarInfoSlot: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetInternalHSpacing) {
                     Image(systemName: "calendar")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("No More Events Today")
+                    Text("今天没有更多活动")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())
@@ -223,7 +223,7 @@ private struct LockScreenMusicInfoSlot: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "music.note")
                         .font(.callout)
-                    Text("Nothing Playing")
+                    Text("没有播放")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())
@@ -277,7 +277,7 @@ private struct LockScreenFocusInfoSlot: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "moon.zzz.fill")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("Focus Off")
+                    Text("焦点关闭")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())
@@ -311,7 +311,7 @@ private struct LockScreenBluetoothInfoSlot: View {
                 HStack(spacing: LockScreenConfiguration.infoWidgetGenericHSpacing) {
                     Image(systemName: "headphones")
                         .font(.system(size: LockScreenConfiguration.infoWidgetIconFontSize))
-                    Text("No Device")
+                    Text("无设备")
                 }
                 .foregroundColor(.secondary)
                 .modifier(TransparentEffect())

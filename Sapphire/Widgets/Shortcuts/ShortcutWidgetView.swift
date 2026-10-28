@@ -21,7 +21,7 @@ struct ShortcutWidgetView: View {
                     Image(systemName: "square.grid.3x1.folder.badge.plus")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(.secondary)
-                    Text("Add shortcuts")
+                    Text("添加快捷方式")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

@@ -140,7 +140,7 @@ struct WeatherPlayerView: View {
 
     private var hourlyForecastSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("HOURLY FORECAST")
+            Text("每小时预报")
                 .font(.caption2.weight(.bold))
                 .opacity(0.6)
                 .kerning(0.5)

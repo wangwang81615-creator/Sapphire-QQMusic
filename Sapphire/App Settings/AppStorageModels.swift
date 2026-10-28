@@ -1138,7 +1138,7 @@ private enum StorageScanner {
                 logicalSize = 0
                 failures.append(DirectoryScanFailure(
                     url: child,
-                    message: "Skipped a mounted volume. Scan that volume directly to include it."
+                    message: "跳过已安装的卷。直接扫描该卷以包含它。"
                 ))
             } else if collectCandidates,
                       !isSymbolicLink,
@@ -1266,7 +1266,7 @@ private enum StorageScanner {
         }
         sizeBuckets.removeAll(keepingCapacity: false)
         guard !sampleCandidates.isEmpty else {
-            await progress(StorageScanProgress(state: .hashingDuplicates, fraction: 0.99, label: "No duplicate candidates"))
+            await progress(StorageScanProgress(state: .hashingDuplicates, fraction: 0.99, label: "没有重复的候选人"))
             return ([], [])
         }
 
@@ -1316,7 +1316,7 @@ private enum StorageScanner {
             await progress(StorageScanProgress(
                 state: .hashingDuplicates,
                 fraction: 0.99,
-                label: "Duplicate verification complete"
+                label: "重复验证完成"
             ))
         }
 
@@ -2131,7 +2131,7 @@ enum DirectorySize {
         }) else {
             measurement.failures.append(DirectoryScanFailure(
                 url: url,
-                message: "The folder path could not be represented by the file system."
+                message: "文件系统无法表示文件夹路径。"
             ))
             return measurement
         }
@@ -3627,7 +3627,7 @@ private struct StoragePresentedScan {
         updateScanPresentation(
             state: .loadingCache,
             progress: 0,
-            label: "Looking for a recent storage index…"
+            label: "正在查找最近的存储索引..."
         )
 
         let key = StorageCacheKey(url: target, deepScan: deepScanEnabled)
@@ -3653,7 +3653,7 @@ private struct StoragePresentedScan {
                     return
                 }
                 self.isLoading = false
-                self.updateScanPresentation(state: .idle, label: "Ready to scan")
+                self.updateScanPresentation(state: .idle, label: "准备扫描")
             }
         }
     }
@@ -3668,7 +3668,7 @@ private struct StoragePresentedScan {
         loadTask?.cancel()
         loadTask = nil
         isLoading = false
-        updateScanPresentation(state: .cancelled, label: "Scan cancelled")
+        updateScanPresentation(state: .cancelled, label: "扫描已取消")
     }
 
     func detachScan() {
@@ -3678,7 +3678,7 @@ private struct StoragePresentedScan {
         loadTask?.cancel()
         loadTask = nil
         isLoading = false
-        updateScanPresentation(state: .idle, label: "Scan continues in the background")
+        updateScanPresentation(state: .idle, label: "扫描在后台继续进行")
     }
 
     func refreshCapacity() {
@@ -3723,7 +3723,7 @@ private struct StoragePresentedScan {
                   let free = values.volumeAvailableCapacity,
                   capacity > 0 else {
                 return .failure(CapacityReadFailure(
-                    message: "Storage capacity is unavailable for this location.",
+                    message: "该位置没有存储容量。",
                     volumeURL: values.volume ?? url
                 ))
             }
@@ -3997,7 +3997,7 @@ private struct StoragePresentedScan {
                     self.presentedScan = failedScan
                     self.updateScanPresentation(
                         state: .failed(error.localizedDescription),
-                        label: "Scan failed"
+                        label: "扫描失败"
                     )
                 }
             }
@@ -4100,7 +4100,7 @@ private struct StoragePresentedScan {
             let size = trashEntries.reduce(Int64(0)) { saturatingAdd($0, $1.size) }
             recommendations.append(CleanupRecommendation(
                 category: .trash,
-                description: "Sapphire never permanently deletes Trash contents; review and empty Trash in Finder when ready",
+                description: "Sapphire 永远不会永久删除垃圾箱内容；准备好后在 Finder 中查看并清空垃圾箱",
                 potentialSpaceFreed: size,
                 actionDescription: "Review Trash in Finder",
                 isAutomatic: false,
@@ -4113,7 +4113,7 @@ private struct StoragePresentedScan {
             let size = largeFiles.reduce(Int64(0)) { saturatingAdd($0, $1.size) }
             recommendations.append(CleanupRecommendation(
                 category: .largeFiles,
-                description: "Large files that could be moved or compressed",
+                description: "可以移动或压缩的大文件",
                 potentialSpaceFreed: size,
                 actionDescription: "Review \(largeFiles.count) large files",
                 isAutomatic: false,
@@ -4128,7 +4128,7 @@ private struct StoragePresentedScan {
             let size = oldFiles.reduce(Int64(0)) { saturatingAdd($0, $1.size) }
             recommendations.append(CleanupRecommendation(
                 category: .oldFiles,
-                description: "Older files that may no longer be needed",
+                description: "可能不再需要的旧文件",
                 potentialSpaceFreed: size,
                 actionDescription: "Review \(oldFiles.count) older file\(oldFiles.count == 1 ? "" : "s")",
                 isAutomatic: false,
@@ -4140,7 +4140,7 @@ private struct StoragePresentedScan {
             let size = downloads.reduce(Int64(0)) { saturatingAdd($0, $1.size) }
             recommendations.append(CleanupRecommendation(
                 category: .downloads,
-                description: "Downloaded files worth reviewing before removal",
+                description: "删除前值得查看的下载文件",
                 potentialSpaceFreed: size,
                 actionDescription: "Review \(downloads.count) download\(downloads.count == 1 ? "" : "s")",
                 isAutomatic: false,
@@ -4155,7 +4155,7 @@ private struct StoragePresentedScan {
             }
             recommendations.append(CleanupRecommendation(
                 category: .duplicates,
-                description: "Byte-for-byte identical files that can be reviewed safely",
+                description: "可以安全地查看逐字节相同的文件",
                 potentialSpaceFreed: size,
                 actionDescription: "Review \(duplicateGroups.count) duplicate group\(duplicateGroups.count == 1 ? "" : "s")",
                 isAutomatic: false,

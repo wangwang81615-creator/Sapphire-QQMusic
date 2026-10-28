@@ -13,8 +13,8 @@ struct KeepAwakeTriggerSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Keep Awake Automatically").font(.headline).padding([.top, .horizontal])
-            Text("Caffeinate turns on by itself while any of these is true, and off again when none is. Switching caffeinate off yourself pauses them until the condition ends.")
+            Text("自动保持清醒").font(.headline).padding([.top, .horizontal])
+            Text("当其中任何一个成立时，咖啡因会自行打开，而当没有一个成立时，咖啡因会再次关闭。自己关掉咖啡因会暂停它们，直到症状结束。")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
@@ -30,7 +30,7 @@ struct KeepAwakeTriggerSettingsView: View {
             }
 
             ToggleRow(
-                title: "While Selected Apps Are Running",
+                title: "当选定的应用程序正在运行时",
                 description: "Stay awake as long as one of the apps below is open.",
                 isOn: $settings.settings.caffeinateWhileAppsRun
             )
@@ -43,7 +43,7 @@ struct KeepAwakeTriggerSettingsView: View {
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "While on AC Power",
+                title: "使用交流电源时",
                 description: "Stay awake whenever the Mac is plugged in.",
                 isOn: $settings.settings.caffeinateWhileOnACPower
             )
@@ -51,7 +51,7 @@ struct KeepAwakeTriggerSettingsView: View {
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "While an External Display Is Connected",
+                title: "连接外接显示器时",
                 description: "Stay awake while a monitor is attached. AirPlay and Sidecar displays don't count.",
                 isOn: $settings.settings.caffeinateWhileExternalDisplay
             )
@@ -59,7 +59,7 @@ struct KeepAwakeTriggerSettingsView: View {
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "Pause While the Screen Is Locked",
+                title: "屏幕锁定时暂停",
                 description: "Let the Mac sleep normally after you lock it, even if a condition above is still true. Caffeinate you turned on yourself isn't affected.",
                 isOn: $settings.settings.caffeinatePauseTriggersWhenLocked
             )
@@ -74,7 +74,7 @@ private struct KeepAwakeAppList: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             if bundleIDs.isEmpty {
-                Text("No apps chosen yet.")
+                Text("尚未选择任何应用程序。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -96,7 +96,7 @@ private struct KeepAwakeAppList: View {
                     .help("Remove \(Self.name(for: bundleID))")
                 }
             }
-            Button("Add App…", action: chooseApps)
+            Button("添加应用程序...", action: chooseApps)
                 .controlSize(.small)
         }
     }

@@ -26,7 +26,7 @@ struct FinanceSettingsView: View {
 }
 
 struct AccountSettingsView: View {
-    var body: some View { UnavailableFeatureView(name: "Account management") }
+    var body: some View { UnavailableFeatureView(name: "账户管理") }
 }
 
 struct BetaBlockerView: View {
@@ -34,7 +34,7 @@ struct BetaBlockerView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Beta validation is not included in this build.")
+            Text("此版本中不包含 Beta 验证。")
                 .foregroundColor(.secondary)
             Button("Continue", action: onValidationComplete)
         }
@@ -50,7 +50,7 @@ struct NativePaymentSheetView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Purchases are not included in this build.")
+            Text("购买不包含在此版本中。")
                 .foregroundColor(.secondary)
             Button("Close", action: onDismiss)
         }

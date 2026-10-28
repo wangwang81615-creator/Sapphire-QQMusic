@@ -77,14 +77,14 @@ struct CalendarNotificationLayout<Details: View>: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(CalendarActivityButtonStyle())
-                .help("Dismiss this notification")
+                .help("关闭此通知")
 
                 Button(action: onSnooze) {
-                    Label("Snooze 5 min", systemImage: "clock.arrow.circlepath")
+                    Label("贪睡 5 分钟", systemImage: "clock.arrow.circlepath")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(CalendarActivityButtonStyle(color: color, isProminent: true))
-                .help("Show this notification again in five minutes")
+                .help("五分钟后再次显示此通知")
             }
         }
         .padding(.horizontal, 16)

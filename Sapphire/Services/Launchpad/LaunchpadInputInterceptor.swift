@@ -53,7 +53,7 @@ class LaunchpadInputInterceptor {
         ]
         let eventsToMonitor = eventTypes.reduce(CGEventMask(0)) { $0 | (1 << $1.rawValue) }
         tapToken = GlobalEventTap.shared.register(
-            name: "LaunchpadInputInterceptor",
+            name: "Launchpad输入拦截器",
             mask: eventsToMonitor,
             // This used to be a listen-only tap, so observe before any shared
             // handler can swallow the first typing event.
@@ -69,7 +69,7 @@ class LaunchpadInputInterceptor {
     /// launchpad was closed while permission was revoked, `isMonitoring` is
     /// already false and the reinstall is a no-op until the next `start()`.
     private func registerTrustAwareness() {
-        AccessibilityTrustMonitor.shared.register(name: "LaunchpadInputInterceptor") { [weak self] in
+        AccessibilityTrustMonitor.shared.register(name: "Launchpad输入拦截器") { [weak self] in
             self?.stop()
         } reinstall: { [weak self] in
             guard let self, self.isMonitoring else { return }
@@ -86,7 +86,7 @@ class LaunchpadInputInterceptor {
         isMonitoring = false
         stateLock.withLock { isAwaitingFirstTypingKey = false }
         folderFrame = .zero
-        AccessibilityTrustMonitor.shared.unregister(name: "LaunchpadInputInterceptor")
+        AccessibilityTrustMonitor.shared.unregister(name: "Launchpad输入拦截器")
         print("[LaunchpadInputInterceptor] Smart event filter disabled.")
     }
 

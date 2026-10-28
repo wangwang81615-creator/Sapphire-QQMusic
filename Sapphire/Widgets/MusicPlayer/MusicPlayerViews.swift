@@ -380,7 +380,7 @@ struct MusicPlayerView: View {
                         .buttonStyle(.plain)
                         .frame(width: 56, height: 56, alignment: .bottomTrailing)
                         .offset(x: 4, y: 4)
-                        .help("Nearby concerts")
+                        .help("附近的音乐会")
                     }
                 }
                 .frame(width: 56, height: 56)
@@ -915,7 +915,7 @@ struct NextTrackInline: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("UP NEXT")
+                    Text("上一个")
                         .font(.system(size: 7, weight: .heavy, design: .rounded))
                         .kerning(1.1)
                         .foregroundStyle(accent)

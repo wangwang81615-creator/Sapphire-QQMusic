@@ -45,10 +45,10 @@ struct MultiAudioPermissionRequiredView: View {
                 .font(.system(size: 40))
                 .foregroundColor(.orange)
 
-            Text("Screen Recording Required")
+            Text("需要屏幕录制")
                 .font(.title2).bold()
 
-            Text("Multi-audio won't work without Screen Recording permission. Sapphire needs it to adjust app volumes, eqs and more.")
+            Text("如果没有屏幕录制权限，多音频将无法工作。 Sapphire 需要它来调整应用程序音量、EQ 等。")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -67,11 +67,11 @@ struct MultiAudioPermissionRequiredView: View {
             .buttonStyle(.borderedProminent)
             .tint(.orange)
 
-            Text("After enabling it, reopen this menu.")
+            Text("启用后，重新打开此菜单。")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
 
-            Text("Use the back control in the notch to return.")
+            Text("使用凹口中的后退控制键返回。")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
@@ -105,7 +105,7 @@ struct SystemAudioPanel: View {
             MultiAudioPermissionRequiredView(navigationStack: $navigationStack)
         } else if unified {
             VStack(alignment: .leading, spacing: 18) {
-                Text("APPS")
+                Text("应用程序系统")
                     .font(.system(size: 11, weight: .black))
                     .foregroundStyle(.secondary)
                     .tracking(1.2)
@@ -297,10 +297,10 @@ fileprivate struct AppControlCard: View {
         )
         .contextMenu {
             Button(isPinned ? "Unpin" : "Pin to Top", action: onPin)
-            Button("Move Up") { onMove(-1) }
-            Button("Move Down") { onMove(1) }
+            Button("向上移动") { onMove(-1) }
+            Button("下移") { onMove(1) }
             Divider()
-            Button("Hide from Mixer", action: onHide)
+            Button("隐藏混音器", action: onHide)
         }
     }
 }
@@ -320,7 +320,7 @@ fileprivate struct AppRouteMenu: View {
             Button {
                 onRoute(nil)
             } label: {
-                if route == nil { Label("Mixer Output", systemImage: "checkmark") } else { Text("Mixer Output") }
+                if route == nil { Label("混音器输出", systemImage: "checkmark") } else { Text("混音器输出") }
             }
             Divider()
             ForEach(outputs) { device in
@@ -332,7 +332,7 @@ fileprivate struct AppRouteMenu: View {
             }
             if route != nil, !routeIsConnected {
                 Divider()
-                Text("Saved device is disconnected")
+                Text("保存的设备已断开连接")
             }
         } label: {
             Image(systemName: route == nil ? "hifispeaker" : (routeIsConnected ? "arrow.triangle.branch" : "exclamationmark.triangle"))
@@ -345,7 +345,7 @@ fileprivate struct AppRouteMenu: View {
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
         .fixedSize()
-        .help("Output device for this app")
+        .help("此应用程序的输出设备")
     }
 }
 
@@ -415,7 +415,7 @@ struct DeviceSectionView: View {
     var body: some View {
         VStack(spacing: 24) {
             VStack(alignment: .leading, spacing: 10) {
-                Text("OUTPUTS").font(.system(size: 11, weight: .black)).foregroundStyle(.secondary).tracking(1.2).padding(.horizontal, 4)
+                Text("输出").font(.system(size: 11, weight: .black)).foregroundStyle(.secondary).tracking(1.2).padding(.horizontal, 4)
                 VStack(spacing: 8) {
                     ForEach(audioManager.availableOutputDevices) { device in
                         let isSel = audioManager.selectedOutputDeviceIDs.contains(device.id)
@@ -442,7 +442,7 @@ struct DeviceSectionView: View {
 
             if !audioManager.availableInputDevices.isEmpty {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("INPUTS").font(.system(size: 11, weight: .black)).foregroundStyle(.secondary).tracking(1.2).padding(.horizontal, 4)
+                    Text("输入").font(.system(size: 11, weight: .black)).foregroundStyle(.secondary).tracking(1.2).padding(.horizontal, 4)
                     VStack(spacing: 8) {
                         ForEach(audioManager.availableInputDevices) { device in
                             let isDefault = device.id == audioManager.currentInputDeviceID

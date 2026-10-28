@@ -160,7 +160,7 @@ struct FileActionView: View {
             VStack(alignment: .leading, spacing: 3) {
                 if isRenaming {
                     HStack(spacing: 5) {
-                        TextField("File name", text: $renameText)
+                        TextField("文件名", text: $renameText)
                             .textFieldStyle(.plain)
                             .font(.system(size: 13, weight: .semibold))
                             .focused($renameFocused)
@@ -181,7 +181,7 @@ struct FileActionView: View {
                         }
                         .buttonStyle(.plain)
                     }
-                    Text("Type a new name, then press Return or tap .")
+                    Text("输入新名称，然后按 Return 或点击 。")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 } else {
@@ -203,7 +203,7 @@ struct FileActionView: View {
             DetailButton(title: "Open", systemImage: "play.fill", isProminent: true) {
                 NSWorkspace.shared.open(liveItem.storedAt)
             }
-            DetailButton(title: "In Finder", systemImage: "folder.fill", isProminent: false, tint: .primary) {
+            DetailButton(title: "在查找器中", systemImage: "folder.fill", isProminent: false, tint: .primary) {
                 NSWorkspace.shared.activateFileViewerSelecting([liveItem.storedAt])
             }
         }
@@ -215,10 +215,10 @@ struct FileActionView: View {
                 presentSharePicker()
             }
             .background(ShareAnchorView(anchor: shareAnchor))
-            QuickIconAction(systemImage: "plus.square.on.square", title: "Duplicate") {
+            QuickIconAction(systemImage: "plus.square.on.square", title: "重复") {
                 manager.duplicateFile(item)
             }
-            QuickIconAction(systemImage: "doc.on.clipboard", title: "Copy Path") {
+            QuickIconAction(systemImage: "doc.on.clipboard", title: "复制路径") {
                 copyPath()
             }
         }
@@ -228,7 +228,7 @@ struct FileActionView: View {
         VStack(spacing: 0) {
             MetadataRow(label: "Type", value: metadata.type, icon: "doc.text")
             Divider().overlay(Color.white.opacity(0.08))
-            MetadataRow(label: "Size", value: metadata.size, icon: "internaldrive")
+            MetadataRow(label: "尺寸", value: metadata.size, icon: "internaldrive")
             Divider().overlay(Color.white.opacity(0.08))
             MetadataRow(label: "Added", value: metadata.added, icon: "calendar")
             Divider().overlay(Color.white.opacity(0.08))
@@ -242,7 +242,7 @@ struct FileActionView: View {
     private var convertSection: some View {
         if !availableFormats.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Convert To")
+                Text("转换为")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
@@ -280,7 +280,7 @@ struct FileActionView: View {
                         }
                     }
                     if canExtractText {
-                        DetailButton(title: "Extract Text", systemImage: "text.viewfinder", isProminent: false, tint: .primary) {
+                        DetailButton(title: "提取文本", systemImage: "text.viewfinder", isProminent: false, tint: .primary) {
                             runExtractText()
                         }
                     }
@@ -309,7 +309,7 @@ struct FileActionView: View {
                 }
             } else {
                 HStack(spacing: 8) {
-                    DetailButton(title: "Rename", systemImage: "pencil", isProminent: false, tint: .primary) {
+                    DetailButton(title: "重命名", systemImage: "pencil", isProminent: false, tint: .primary) {
                         beginRename()
                     }
                     DetailButton(title: "Trash", systemImage: "trash", isProminent: false, tint: .red) {

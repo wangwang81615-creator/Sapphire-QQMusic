@@ -198,7 +198,7 @@ final class LayerNumericTextView: NSView {
     }
 
     private func blurFilter(radius: CGFloat) -> CIFilter? {
-        let filter = CIFilter(name: "CIGaussianBlur")
+        let filter = CIFilter(name: "CI高斯模糊")
         filter?.name = Self.blurName
         filter?.setValue(radius, forKey: kCIInputRadiusKey)
         return filter

@@ -24,17 +24,17 @@ struct AppActivitiesSettingsView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 20) {
-                Text("App Activities (Beta)").font(.largeTitle.bold()).padding(.bottom)
+                Text("应用程序活动（测试版）").font(.largeTitle.bold()).padding(.bottom)
 
                 VStack(alignment: .leading, spacing: 0) {
                     ToggleRow(
-                        title: "Show App Activities in the Notch",
+                        title: "在缺口中显示应用程序活动",
                         description: "A live activity with the app's icon and a timer while you're in a meeting, on a call, recording, or connected to another Mac. Click it for controls.",
                         isOn: $settings.settings.appActivitiesEnabled
                     )
                     Divider().padding(.leading, 20)
                     ToggleRow(
-                        title: "Return to Your App After a Control",
+                        title: "控制后返回您的应用程序",
                         description: "Some apps only take shortcuts in front; after muting or toggling video, switch back to what you were using.",
                         isOn: $settings.settings.appActivityRestoreFocus
                     )
@@ -43,7 +43,7 @@ struct AppActivitiesSettingsView: View {
 
                 if !monitor.activities.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Active Now").font(.headline)
+                        Text("现在活跃").font(.headline)
                         ForEach(monitor.activities) { activity in
                             HStack(spacing: 10) {
                                 AppActivityIcon(app: activity.app, size: 22)
@@ -60,7 +60,7 @@ struct AppActivitiesSettingsView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Apps").font(.headline).padding([.top, .horizontal])
-                    Text("Controls need Accessibility permission; Google Meet also needs permission to control your browser.")
+                    Text("控件需要辅助功能权限； Google Meet 还需要获得控制您的浏览器的权限。")
                         .font(.caption).foregroundStyle(.secondary)
                         .padding(.horizontal).padding(.bottom, 8)
                     let apps = AppActivityApp.allCases.filter(\.isInstalled)

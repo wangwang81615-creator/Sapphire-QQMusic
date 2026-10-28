@@ -571,7 +571,7 @@ final class StatusBarController {
         if usesForwardedPrimaryAction, secondaryClickToken == nil {
             let mask = (1 << CGEventType.rightMouseDown.rawValue) | (1 << CGEventType.rightMouseUp.rawValue)
             secondaryClickToken = GlobalEventTap.shared.register(
-                name: "MenuBarChevronSecondaryClick",
+                name: "菜单栏ChevronSecondaryClick",
                 mask: CGEventMask(mask),
                 priority: EventTapPriority.filter
             ) { [weak self] type, event in

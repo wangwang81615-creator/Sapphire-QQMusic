@@ -280,9 +280,9 @@ private struct DeviceDropZoneView: View {
         VStack(spacing: 6) {
             Image(systemName: "iphone.slash")
                 .font(.system(size: 26, weight: .light))
-            Text("No Devices")
+            Text("没有设备")
                 .font(.system(.headline, design: .rounded).weight(.medium))
-            Text("Pair one in Continuity settings")
+            Text("在连续性设置中配对")
                 .font(.system(size: 10, design: .rounded))
         }
         .foregroundStyle(.tertiary)
@@ -415,9 +415,9 @@ private struct EmptyDropZoneView: View {
         VStack(spacing: 8) {
             Image(systemName: "slider.horizontal.3")
                 .font(.system(size: 25, weight: .light))
-            Text("No destinations enabled")
+            Text("没有启用目的地")
                 .font(.system(.headline, design: .rounded).weight(.medium))
-            Text("Choose destinations in File Shelf settings")
+            Text("在文件架设置中选择目标")
                 .font(.system(size: 10, design: .rounded))
         }
         .foregroundStyle(.secondary)

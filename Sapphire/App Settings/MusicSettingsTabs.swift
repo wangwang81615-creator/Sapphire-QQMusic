@@ -44,8 +44,8 @@ struct MusicPlayerFeaturesCard: View {
 
     var body: some View {
         SettingsCard(
-            title: "Player Features",
-            description: "Extras shown in the music player. Each one applies to every service that supports it."
+            title: "播放器特点",
+            description: "音乐播放器中显示额外内容。每一项都适用于支持它的每一项服务。"
         ) {
             if !isSpotifyAvailable {
                 InfoContainer(
@@ -130,7 +130,7 @@ struct AppleMusicAccountCard: View {
     var body: some View {
         SettingsCard(
             title: "Apple Music",
-            description: "Sapphire uses MusicKit for Apple Music artwork, artist details, the queue and your library. No login is needed beyond Apple Music access."
+            description: "Sapphire 使用 MusicKit 来管理 Apple Music 作品、艺术家详细信息、队列和音乐库。除了访问 Apple Music 之外，无需登录。"
         ) {
             HStack(spacing: 10) {
                 Image(systemName: statusIcon).foregroundStyle(statusColor)

@@ -337,7 +337,7 @@ struct QueueAndPlaylistsView: View {
                         musicManager.spotifyPrivateAPI.logout()
                     }
                 } label: {
-                    Text("Log out")
+                    Text("退出")
                         .font(.system(size: 9, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary.opacity(0.9))
                 }
@@ -527,8 +527,8 @@ struct QueueAndPlaylistsView: View {
                                             }
                                         }
                                         .contextMenu {
-                                            Button("Play Next") { Task { _ = await musicManager.appleMusic.playNext(songIDs: [track.id]); refreshData() } }
-                                            Button("Play Later") { Task { _ = await musicManager.appleMusic.playLater(songIDs: [track.id]); refreshData() } }
+                                            Button("播放下一个") { Task { _ = await musicManager.appleMusic.playNext(songIDs: [track.id]); refreshData() } }
+                                            Button("稍后玩") { Task { _ = await musicManager.appleMusic.playLater(songIDs: [track.id]); refreshData() } }
                                         }
                                     }
                                 }
@@ -536,7 +536,7 @@ struct QueueAndPlaylistsView: View {
                         }
 
                         if !details.relatedAlbums.isEmpty {
-                            materialExpressiveCard(title: "Similar Albums", systemImage: "square.stack", accent: MaterialChartPalette.tertiary) {
+                            materialExpressiveCard(title: "类似专辑", systemImage: "square.stack", accent: MaterialChartPalette.tertiary) {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHStack(spacing: 12) {
                                         ForEach(details.relatedAlbums) { album in
@@ -551,7 +551,7 @@ struct QueueAndPlaylistsView: View {
                         }
 
                         if !details.similarArtists.isEmpty {
-                            materialExpressiveCard(title: "Similar Artists", systemImage: "person.2.fill", accent: MaterialChartPalette.primary) {
+                            materialExpressiveCard(title: "类似的艺术家", systemImage: "person.2.fill", accent: MaterialChartPalette.primary) {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHStack(spacing: 12) {
                                         ForEach(details.similarArtists) { artist in
@@ -652,7 +652,7 @@ struct QueueAndPlaylistsView: View {
                             PlayCountIndicator(playCount: playCount)
                         }
                         if details.isInLibrary {
-                            Label("In Library", systemImage: "checkmark.circle.fill")
+                            Label("在图书馆", systemImage: "checkmark.circle.fill")
                                 .font(.system(size: 9, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -715,7 +715,7 @@ struct QueueAndPlaylistsView: View {
             details.libraryAddedDate.map { ("Added", $0.formatted(date: .abbreviated, time: .omitted)) },
             details.hasLyrics ? ("Lyrics", "Available") : nil
         ].compactMap { $0 }
-        return materialExpressiveCard(title: "About This Song", systemImage: "info.circle", accent: MaterialChartPalette.tertiary) {
+        return materialExpressiveCard(title: "关于这首歌", systemImage: "info.circle", accent: MaterialChartPalette.tertiary) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(rows, id: \.0) { row in
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
@@ -740,7 +740,7 @@ struct QueueAndPlaylistsView: View {
                     Image(systemName: "music.note.list")
                         .font(.system(size: 20, weight: .light))
                         .foregroundStyle(.tertiary)
-                    Text("Nothing queued in Apple Music.")
+                    Text("Apple Music 中没有任何排队内容。")
                         .font(.system(size: 11, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -777,14 +777,14 @@ struct QueueAndPlaylistsView: View {
                                 }
                             }
                             .contextMenu {
-                                Button("Play Now") {
+                                Button("立即播放") {
                                     Task {
                                         await musicManager.appleMusic.playQueueTrack(track)
                                         appleMusicQueue = await musicManager.appleMusic.fetchUpNextTracks()
                                     }
                                 }
                                 if musicManager.appleMusic.canRemove(track) {
-                                    Button("Remove from Up Next") {
+                                    Button("从下一个中删除") {
                                         appleMusicQueue.removeAll { $0.id == track.id }
                                         Task {
                                             _ = await musicManager.appleMusic.removeFromQueue(track)
@@ -793,14 +793,14 @@ struct QueueAndPlaylistsView: View {
                                     }
                                 }
                                 if let storeID = track.catalogID {
-                                    Button("Go to Artist") {
+                                    Button("前往艺术家") {
                                         Task {
                                             if let artist = await musicManager.appleMusic.findArtist(named: track.artist) {
                                                 openAppleMusicDetail(.artist(artist))
                                             }
                                         }
                                     }
-                                    Button("Start Station") { Task { _ = await musicManager.appleMusic.playSongStation(songID: storeID) } }
+                                    Button("起始站") { Task { _ = await musicManager.appleMusic.playSongStation(songID: storeID) } }
                                 }
                             }
                         }
@@ -861,7 +861,7 @@ struct QueueAndPlaylistsView: View {
         } else if musicManager.title != nil {
             nativeQueueBootstrappingView
         } else {
-            CustomUnavailableView(title: "Nothing Playing", systemImage: "speaker.slash.fill", description: "Start playing music in Spotify to see artist picks, concerts, and your queue.")
+            CustomUnavailableView(title: "没有播放", systemImage: "speaker.slash.fill", description: "开始在 Spotify 中播放音乐，查看艺术家精选、音乐会和队列。")
         }
     }
 
@@ -888,10 +888,10 @@ struct QueueAndPlaylistsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            materialExpressiveCard(title: "Loading…", systemImage: "arrow.clockwise", accent: MaterialChartPalette.primary) {
+            materialExpressiveCard(title: "加载中...", systemImage: "arrow.clockwise", accent: MaterialChartPalette.primary) {
                 HStack(spacing: 8) {
                     ProgressView().controlSize(.small)
-                    Text("Connecting to Spotify…")
+                    Text("正在连接到 Spotify...")
                         .font(.system(size: 11, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -920,7 +920,7 @@ struct QueueAndPlaylistsView: View {
                                 nowPlayingHeroCard(nowPlaying)
 
                                 if !musicManager.spotifyPrivateAPI.similarAlbums.isEmpty {
-                                    materialExpressiveCard(title: "Similar Albums", systemImage: "square.stack", accent: MaterialChartPalette.tertiary) {
+                                    materialExpressiveCard(title: "类似专辑", systemImage: "square.stack", accent: MaterialChartPalette.tertiary) {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 12) {
                                                 ForEach(musicManager.spotifyPrivateAPI.similarAlbums.prefix(10)) { album in
@@ -934,7 +934,7 @@ struct QueueAndPlaylistsView: View {
                                 }
 
                                 if !musicManager.spotifyPrivateAPI.relatedTracks.isEmpty {
-                                    materialExpressiveCard(title: "More Like This", systemImage: "sparkles", accent: MaterialChartPalette.secondary) {
+                                    materialExpressiveCard(title: "更多类似的", systemImage: "sparkles", accent: MaterialChartPalette.secondary) {
                                         LazyVStack(spacing: 4) {
                                             ForEach(musicManager.spotifyPrivateAPI.relatedTracks.prefix(6)) { track in
                                                 RecommendedTrackRow(track: track, onPlay: handlePlaybackResult)
@@ -944,7 +944,7 @@ struct QueueAndPlaylistsView: View {
                                 }
 
                                 if !musicManager.spotifyPrivateAPI.artistConcerts.isEmpty {
-                                    materialExpressiveCard(title: "Nearby Concerts", systemImage: "ticket.fill", accent: MaterialChartPalette.error) {
+                                    materialExpressiveCard(title: "附近的音乐会", systemImage: "ticket.fill", accent: MaterialChartPalette.error) {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 12) {
                                                 ForEach(musicManager.spotifyPrivateAPI.artistConcerts.prefix(8)) { concert in
@@ -958,7 +958,7 @@ struct QueueAndPlaylistsView: View {
                                 }
 
                                 if !musicManager.spotifyPrivateAPI.trackArtistCredits.isEmpty {
-                                    materialExpressiveCard(title: "Credits", systemImage: "person.2.fill", accent: MaterialChartPalette.secondary) {
+                                    materialExpressiveCard(title: "制作人员", systemImage: "person.2.fill", accent: MaterialChartPalette.secondary) {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 10) {
                                                 ForEach(musicManager.spotifyPrivateAPI.trackArtistCredits) { credit in
@@ -1018,7 +1018,7 @@ struct QueueAndPlaylistsView: View {
 
                     materialExpressiveCard(title: "Up Next", systemImage: "list.bullet", accent: MaterialChartPalette.primary) {
                         if musicManager.nativeQueue.isEmpty {
-                            Text("Nothing queued — add tracks from Library or suggestions.")
+                            Text("没有排队 - 从库中添加曲目或建议。")
                                 .font(.system(size: 11, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .padding(.vertical, 6)
@@ -1231,7 +1231,7 @@ struct QueueAndPlaylistsView: View {
                 .transition(.opacity)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    SectionHeader(title: "Next Up").padding(.bottom, 5)
+                    SectionHeader(title: "下一步").padding(.bottom, 5)
                     if !queue.queue.isEmpty {
                         ScrollView(showsIndicators: false) {
                             LazyVStack(alignment: .leading, spacing: 8) {
@@ -1240,9 +1240,9 @@ struct QueueAndPlaylistsView: View {
                             .padding(.bottom, 30)
                         }
                         .mask(LinearGradient(gradient: Gradient(stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.95), .init(color: .clear, location: 1.0)]), startPoint: .top, endPoint: .bottom))
-                    } else { CustomUnavailableView(title: "No Songs Up Next", systemImage: "music.note.list", description: "Add songs to your queue to see them here.") }
+                    } else { CustomUnavailableView(title: "下一首没有歌曲", systemImage: "music.note.list", description: "将歌曲添加到您的队列中以在此处查看它们。") }
                 }
-            } else { CustomUnavailableView(title: "Queue Unavailable", systemImage: "speaker.slash.fill", description: "Start playing music with a Premium account to view your queue.") }
+            } else { CustomUnavailableView(title: "队列不可用", systemImage: "speaker.slash.fill", description: "使用高级帐户开始播放音乐以查看您的队列。") }
         }
 
     }
@@ -1298,7 +1298,7 @@ struct QueueAndPlaylistsView: View {
                     .menuStyle(.borderlessButton)
                 } else if isAppleMusic {
                     Button { Task { await fetchData(for: .library) } } label: {
-                        Label("Refresh", systemImage: "arrow.clockwise")
+                        Label("刷新", systemImage: "arrow.clockwise")
                             .font(.system(size: 11, weight: .semibold, design: .rounded))
                             .padding(.horizontal, 12)
                             .padding(.vertical, 7)
@@ -1318,7 +1318,7 @@ struct QueueAndPlaylistsView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     if currentPlaylists.isEmpty {
                         CustomUnavailableView(
-                            title: "No Playlists Found",
+                            title: "未找到播放列表",
                             systemImage: "music.mic",
                             description: isAppleMusic ? "Add playlists in Apple Music to see them here." : nil
                         )
@@ -1373,7 +1373,7 @@ struct QueueAndPlaylistsView: View {
 
                 HStack(spacing: 10) {
                     if musicManager.spotifyPrivateAPI.jamSessionActive {
-                        Label("Jam Active", systemImage: "person.3.fill")
+                        Label("果酱活跃", systemImage: "person.3.fill")
                             .font(.caption.bold())
                             .foregroundColor(.green)
                             .padding(.horizontal, 8).padding(.vertical, 4)
@@ -1381,7 +1381,7 @@ struct QueueAndPlaylistsView: View {
                             .clipShape(Capsule())
                     }
                     if musicManager.spotifyPrivateAPI.libraryImportEligible {
-                        Label("Import Available", systemImage: "square.and.arrow.down")
+                        Label("可以导入", systemImage: "square.and.arrow.down")
                             .font(.caption.bold())
                             .foregroundColor(.blue)
                             .padding(.horizontal, 8).padding(.vertical, 4)
@@ -1448,7 +1448,7 @@ struct QueueAndPlaylistsView: View {
                     }
                 } else {
                     if !musicManager.spotifyPrivateAPI.recentlyPlayedItems.isEmpty {
-                        SectionHeader(title: "Recently Played")
+                        SectionHeader(title: "最近玩过")
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 12) {
                                 ForEach(musicManager.spotifyPrivateAPI.recentlyPlayedItems) { item in
@@ -1464,7 +1464,7 @@ struct QueueAndPlaylistsView: View {
                     }
 
                     if !musicManager.spotifyPrivateAPI.popularReleases.isEmpty {
-                        SectionHeader(title: "Popular Releases")
+                        SectionHeader(title: "热门版本")
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 12) {
                                 ForEach(musicManager.spotifyPrivateAPI.popularReleases) { release in
@@ -1478,7 +1478,7 @@ struct QueueAndPlaylistsView: View {
                     }
 
                     if !musicManager.spotifyPrivateAPI.playlistRecommendations.isEmpty {
-                        SectionHeader(title: "Made For You")
+                        SectionHeader(title: "为您打造")
                         LazyVStack(spacing: 8) {
                             ForEach(musicManager.spotifyPrivateAPI.playlistRecommendations) { track in
                                 RecommendedTrackRow(track: track) { result in
@@ -1495,9 +1495,9 @@ struct QueueAndPlaylistsView: View {
                     && musicManager.spotifyPrivateAPI.popularReleases.isEmpty
                     && musicManager.spotifyPrivateAPI.playlistRecommendations.isEmpty {
                     CustomUnavailableView(
-                        title: "Your Home",
+                        title: "你的家",
                         systemImage: "house.fill",
-                        description: "Home shelves from Spotify will appear here once loaded."
+                        description: "Spotify 的家庭书架一旦加载就会出现在这里。"
                     )
                 }
             }
@@ -1797,7 +1797,7 @@ struct TrackHoverActionsView: View {
                     .foregroundStyle(.secondary.opacity(0.85))
             }
             .buttonStyle(.plain)
-            .help("Add to Playlist")
+            .help("添加到播放列表")
             .popover(isPresented: $showingPlaylistMenu) {
                 AddToPlaylistMenuView(
                     trackURI: trackURI,
@@ -1829,7 +1829,7 @@ struct TrackHoverActionsView: View {
                     .foregroundStyle(.secondary.opacity(0.85))
             }
             .buttonStyle(.plain)
-            .help("Add to Queue")
+            .help("添加到队列")
         }
     }
 
@@ -1879,7 +1879,7 @@ struct AddToPlaylistMenuView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Add to Playlist")
+            Text("添加到播放列表")
                 .font(.system(size: 12, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 12)
@@ -1890,7 +1890,7 @@ struct AddToPlaylistMenuView: View {
             if isCheckingMembership {
                 HStack(spacing: 6) {
                     ProgressView().controlSize(.mini)
-                    Text("Checking playlists…")
+                    Text("正在检查播放列表...")
                         .font(.system(size: 11, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -1902,7 +1902,7 @@ struct AddToPlaylistMenuView: View {
             let removeCandidates = allPlaylists.filter { containedPlaylistURIs.contains($0.uri) }
 
             if addCandidates.isEmpty && removeCandidates.isEmpty {
-                Text("No playlists available.")
+                Text("没有可用的播放列表。")
                     .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 12)
@@ -2081,7 +2081,7 @@ struct NativeQueueTrackRow: View {
                     .foregroundStyle(isHovered ? MaterialChartPalette.error : .secondary.opacity(0.55))
             }
             .buttonStyle(.plain)
-            .help("Remove from queue")
+            .help("从队列中删除")
         }
         .padding(.vertical, 7)
         .padding(.horizontal, 8)
@@ -2106,7 +2106,7 @@ struct NativeQueueTrackRow: View {
                     ))
                 }
             }
-            Button("Remove from Queue", role: .destructive) {
+            Button("从队列中删除", role: .destructive) {
                 Task { _ = await musicManager.spotifyPrivateAPI.removeFromQueue(uid: track.uid) }
             }
         }
@@ -2274,7 +2274,7 @@ struct PlaylistGridCard: View {
                         .background(MaterialChartPalette.primary.opacity(0.16), in: Circle())
                 }
                 .buttonStyle(.plain)
-                .help("Play playlist")
+                .help("播放播放列表")
             } else if isPlaying {
                 Image(systemName: "waveform")
                     .foregroundStyle(MaterialChartPalette.tertiary)
@@ -2395,7 +2395,7 @@ struct RecommendedTrackRow: View {
             Button("Play") {
                 Task { onPlay(await musicManager.play(trackUri: track.uri, contextUri: track.albumURI, trackUid: nil, trackIndex: nil)) }
             }
-            Button("Add to Queue") {
+            Button("添加到队列") {
                 Task {
                     _ = await musicManager.spotifyPrivateAPI.addToQueue(
                         uri: track.uri,
@@ -2741,7 +2741,7 @@ struct DevicesView: View {
                 Spacer()
                 deviceSubTabBar
                 if musicManager.isOfficialAPIAuthenticated {
-                    Button("Log out") { musicManager.spotifyOfficialAPI.logout() }
+                    Button("退出") { musicManager.spotifyOfficialAPI.logout() }
                         .buttonStyle(.plain).font(.caption).foregroundColor(.secondary)
                 }
             }
@@ -2807,7 +2807,7 @@ struct DevicesView: View {
     @ViewBuilder
     private var appleMusicDeviceListContent: some View {
         if musicManager.airplayDevices.isEmpty {
-            Text("No AirPlay devices found.")
+            Text("未找到 AirPlay 设备。")
                 .font(.system(size: 12, weight: .medium, design: .rounded))
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -2833,7 +2833,7 @@ struct DevicesView: View {
     @ViewBuilder
     private var appleMusicDeviceList: some View {
         if musicManager.airplayDevices.isEmpty {
-            Text("No AirPlay devices found.")
+            Text("未找到 AirPlay 设备。")
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
@@ -2887,7 +2887,7 @@ struct DevicesView: View {
             if musicManager.isPrivateAPIAuthenticated,
                sortedNativeDevices.filter({ $0.deviceId != musicManager.spotifyPrivateAPI.controllerDeviceID }).isEmpty,
                sortedOfficialDevices.isEmpty {
-                Text("No Spotify speakers online. Open the Spotify desktop app (or another Connect device) to play audio — Sapphire only controls playback.")
+                Text("没有在线 Spotify 扬声器。打开 Spotify 桌面应用程序（或其他 Connect 设备）来播放音频 - Sapphire 仅控制播放。")
                     .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .padding(12)
@@ -3143,7 +3143,7 @@ fileprivate struct SpotifyNativeDeviceRow: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(device.name).fontWeight(.medium)
                     if isControllerOnly {
-                        Text("This Mac · controls only (no audio)")
+                        Text("此 Mac · 仅控制（无音频）")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
@@ -3190,7 +3190,7 @@ fileprivate struct FreeUserNoticeView: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "exclamationmark.lock.fill").font(.title3).foregroundColor(.yellow)
-            Text("Switching devices requires a Spotify Premium account or a private api login.").font(.subheadline).foregroundColor(.secondary)
+            Text("切换设备需要 Spotify Premium 帐户或私人 api 登录。").font(.subheadline).foregroundColor(.secondary)
         }.padding().background(Color.yellow.opacity(0.1)).clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
@@ -3380,7 +3380,7 @@ struct PlaylistView: View {
                     if isLoading {
                         ProgressView().scaleEffect(1.2)
                     } else {
-                        Text("This playlist is empty.")
+                        Text("该播放列表是空的。")
                             .foregroundStyle(.secondary)
                     }
                 } else {
@@ -3423,7 +3423,7 @@ struct PlaylistView: View {
                                 ProgressView()
                                     .padding(.vertical, 12)
                             } else if spotifyPrivateAPI.playlistHasMore {
-                                Text("Scroll for more")
+                                Text("滚动查看更多")
                                     .font(.caption)
                                     .foregroundStyle(.tertiary)
                                     .padding(.vertical, 8)
@@ -3459,10 +3459,10 @@ struct PlaylistView: View {
             guard isUsingPrivateAPI else { return }
             viewModels = models
         }
-        .alert("Spotify App Is Not Open", isPresented: $showSpotifyNotOpenAlert) {
+        .alert("Spotify 应用程序未打开", isPresented: $showSpotifyNotOpenAlert) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("To control playback with a free account, please open the Spotify desktop app first.")
+            Text("要使用免费帐户控制播放，请先打开 Spotify 桌面应用程序。")
         }
         .onChange(of: sortOption) { _, _ in saveSortState() }
         .onChange(of: sortDirection) { _, _ in saveSortState() }
@@ -3588,7 +3588,7 @@ struct PlaylistView: View {
             sortHeader(.title, width: nil, alignment: .leading)
                 .frame(minWidth: 220, maxWidth: .infinity, alignment: .leading)
 
-            Text("Added by")
+            Text("添加者")
                 .frame(width: 100, alignment: .leading)
                 .foregroundStyle(.secondary)
 
@@ -3839,7 +3839,7 @@ private struct PlaylistTrackRow: View {
             }
         }
         .contextMenu {
-            Button("Add to Queue", action: onAddToQueue)
+            Button("添加到队列", action: onAddToQueue)
             Button("Play") {
                 Task {
                     if !contextUri.hasPrefix("spotify:"),
@@ -3979,10 +3979,10 @@ struct SpotifyArtistDetailView: View {
         }
         .frame(width: 820, height: 360)
         .task { await load() }
-        .alert("Spotify App Is Not Open", isPresented: $showSpotifyNotOpenAlert) {
+        .alert("Spotify 应用程序未打开", isPresented: $showSpotifyNotOpenAlert) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("To control playback with a free account, please open the Spotify desktop app first.")
+            Text("要使用免费帐户控制播放，请先打开 Spotify 桌面应用程序。")
         }
     }
 
@@ -4209,7 +4209,7 @@ struct SpotifyAlbumDetailView: View {
                 Button {
                     Task { handle(await musicManager.play(contextUri: uri)) }
                 } label: {
-                    Label("Play album", systemImage: "play.fill")
+                    Label("播放专辑", systemImage: "play.fill")
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 7)
@@ -4226,7 +4226,7 @@ struct SpotifyAlbumDetailView: View {
                 ContentUnavailableView(
                     "Album tracks",
                     systemImage: "opticaldisc",
-                    description: Text("Play the album, or open it in Spotify for the full track list.")
+                    description: Text("播放专辑，或在 Spotify 中打开它以获取完整的曲目列表。")
                 )
             } else {
                 ScrollView {
@@ -4242,10 +4242,10 @@ struct SpotifyAlbumDetailView: View {
         }
         .frame(width: 820, height: 360)
         .task { await load() }
-        .alert("Spotify App Is Not Open", isPresented: $showSpotifyNotOpenAlert) {
+        .alert("Spotify 应用程序未打开", isPresented: $showSpotifyNotOpenAlert) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("To control playback with a free account, please open the Spotify desktop app first.")
+            Text("要使用免费帐户控制播放，请先打开 Spotify 桌面应用程序。")
         }
     }
 
@@ -4282,7 +4282,7 @@ struct SpotifyMusicSearchView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
                 NotchSearchField(
-                    placeholder: "Search songs, artists, albums…",
+                    placeholder: "搜索歌曲、艺术家、专辑...",
                     text: $query,
                     autofocus: autofocusSearch
                 )
@@ -4324,16 +4324,16 @@ struct SpotifyMusicSearchView: View {
                     emptyReplacement()
                 } else {
                     CustomUnavailableView(
-                        title: "Search Spotify",
+                        title: "搜索 Spotify",
                         systemImage: "magnifyingglass",
-                        description: "Find tracks, artists, albums, and playlists."
+                        description: "查找曲目、艺术家、专辑和播放列表。"
                     )
                 }
             } else {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 14) {
                         if !suggestions.isEmpty {
-                            Text("Suggestions")
+                            Text("建议")
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                             FlowWrap(items: suggestions.prefix(8).map(\.text)) { text in
@@ -4945,13 +4945,13 @@ struct LoginPromptView: View {
                 .font(.system(size: 40))
                 .foregroundColor(.yellow)
 
-            Text("Login Required")
+            Text("需要登录")
                 .font(.title2).bold()
 
-            Text("Please log in to Spotify via the Music section in Sapphire's settings to use this feature.")
+            Text("请通过 Sapphire 设置中的音乐部分登录 Spotify 以使用此功能。")
                 .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
 
-            Text("Use the back control in the notch to return.")
+            Text("使用凹口中的后退控制键返回。")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
@@ -4969,13 +4969,13 @@ struct ApiKeysMissingView: View {
                 .font(.system(size: 40))
                 .foregroundColor(.yellow)
 
-            Text("Spotify API Keys Missing")
+            Text("Spotify API 密钥丢失")
                 .font(.title2).bold()
 
-            Text("To enable Spotify integration, please add your API credentials in Sapphire's settings.")
+            Text("要启用 Spotify 集成，请在 Sapphire 的设置中添加您的 API 凭据。")
                 .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
 
-            Text("Use the back control in the notch to return.")
+            Text("使用凹口中的后退控制键返回。")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
@@ -4993,13 +4993,13 @@ struct GeminiApiKeysMissingView: View {
                 .font(.system(size: 40))
                 .symbolRenderingMode(.multicolor)
 
-            Text("Gemini API Key Missing")
+            Text("Gemini API 密钥丢失")
                 .font(.title2).bold()
 
-            Text("To use Gemini Live, please add your Google AI Studio API key in Sapphire's settings.")
+            Text("要使用 Gemini Live，请在 Sapphire 的设置中添加您的 Google AI Studio API 密钥。")
                 .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
 
-            Text("Use the back control in the notch to return.")
+            Text("使用凹口中的后退控制键返回。")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
@@ -5359,7 +5359,7 @@ struct AppleMusicSearchView: View {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 13, weight: .medium))
                 .foregroundStyle(.secondary)
-            TextField("Search Apple Music…", text: $vm.query)
+            TextField("搜索苹果音乐...", text: $vm.query)
                 .textFieldStyle(.plain)
                 .font(.system(size: 13, weight: .regular, design: .rounded))
                 .onSubmit { vm.search() }
@@ -5391,7 +5391,7 @@ struct AppleMusicSearchView: View {
         if !musicKit.account.isAuthorized {
             accessCard
         } else if vm.isSearching && vm.results.isEmpty {
-            centeredPlaceholder(systemImage: "magnifyingglass", label: "Searching…")
+            centeredPlaceholder(systemImage: "magnifyingglass", label: "正在寻找...")
         } else if !vm.suggestions.isEmpty && vm.results.isEmpty && !vm.hasSearched {
             suggestionsList
         } else if vm.results.isEmpty && vm.hasSearched {
@@ -5543,14 +5543,14 @@ struct AppleMusicSearchView: View {
     @ViewBuilder
     private func songMenu(_ song: AppleMusicSong, in list: [AppleMusicSong]) -> some View {
         Button("Play") { vm.play(song, in: list) }
-        Button("Play Next") { vm.playNext(song) }
-        Button("Play Later") { vm.playLater(song) }
+        Button("播放下一个") { vm.playNext(song) }
+        Button("稍后玩") { vm.playLater(song) }
         Divider()
-        Button("Start Station") { vm.startStation(for: song) }
-        Button("Go to Artist") { vm.openArtist(named: song.artistName) }
+        Button("起始站") { vm.startStation(for: song) }
+        Button("前往艺术家") { vm.openArtist(named: song.artistName) }
         Divider()
         Button("Add to Library") { vm.addToLibrary(song) }
-        Button("Open in Music") { apple.open(url: song.url) }
+        Button("在音乐中打开") { apple.open(url: song.url) }
         if song.url != nil {
             Button("Copy Link") { vm.copyLink(song.url) }
         }
@@ -5583,16 +5583,16 @@ struct AppleMusicSearchView: View {
         switch item {
         case .album(let album):
             Button("Play") { vm.perform("Couldn’t play \(album.title).") { await apple.playAlbum(albumID: album.id) } }
-            Button("Go to Artist") { vm.openArtist(named: album.artistName) }
-            Button("Open in Music") { apple.open(url: album.url) }
+            Button("前往艺术家") { vm.openArtist(named: album.artistName) }
+            Button("在音乐中打开") { apple.open(url: album.url) }
         case .artist(let artist):
-            Button("Play Top Songs") { vm.perform("Couldn’t play \(artist.name).") { await apple.playArtistTopTracks(artistID: artist.id) } }
-            Button("Start Station") { vm.perform("No station for \(artist.name).") { await apple.playArtistStation(artistID: artist.id) } }
-            Button("Open in Music") { apple.open(url: artist.url) }
+            Button("播放热门歌曲") { vm.perform("Couldn’t play \(artist.name).") { await apple.playArtistTopTracks(artistID: artist.id) } }
+            Button("起始站") { vm.perform("No station for \(artist.name).") { await apple.playArtistStation(artistID: artist.id) } }
+            Button("在音乐中打开") { apple.open(url: artist.url) }
         case .playlist(let playlist):
             Button("Play") { vm.perform("Couldn’t play \(playlist.name).") { await apple.playPlaylist(playlist) } }
             Button("Shuffle") { vm.perform("Couldn’t play \(playlist.name).") { await apple.playPlaylist(playlist, shuffled: true) } }
-            Button("Open in Music") { apple.open(url: playlist.url) }
+            Button("在音乐中打开") { apple.open(url: playlist.url) }
         case .station(let station):
             Button("Play") { vm.perform("Couldn’t start \(station.name).") { await apple.playStation(stationID: station.id) } }
         }
@@ -5631,13 +5631,13 @@ struct AppleMusicSearchView: View {
                 }
 
                 if !vm.recentContainers.isEmpty {
-                    discoverSection(title: "Recently Played", systemImage: "clock.fill") {
+                    discoverSection(title: "最近玩过", systemImage: "clock.fill") {
                         shelfStrip(vm.recentContainers)
                     }
                 }
 
                 if !vm.recentlyPlayed.isEmpty {
-                    discoverSection(title: "Recent Songs", systemImage: "clock.arrow.circlepath") {
+                    discoverSection(title: "最近的歌曲", systemImage: "clock.arrow.circlepath") {
                         songList(vm.recentlyPlayed, limit: 6)
                     }
                 }
@@ -5655,13 +5655,13 @@ struct AppleMusicSearchView: View {
                 }
 
                 if !vm.mostPlayed.isEmpty {
-                    discoverSection(title: "Your Most Played", systemImage: "flame.fill") {
+                    discoverSection(title: "您最常玩的游戏", systemImage: "flame.fill") {
                         songList(vm.mostPlayed, limit: 6, showPlayCount: true)
                     }
                 }
 
                 if !vm.heavyRotation.isEmpty {
-                    discoverSection(title: "Heavy Rotation", systemImage: "repeat") {
+                    discoverSection(title: "重度旋转", systemImage: "repeat") {
                         tileStrip(vm.heavyRotation.map { .album($0) }, width: 64)
                     }
                 }
@@ -5675,7 +5675,7 @@ struct AppleMusicSearchView: View {
                 }
 
                 if vm.discoverLoaded && !vm.isLoadingDiscover && vm.discoverIsEmpty {
-                    centeredPlaceholder(systemImage: "music.quarternote.3", label: "Search for songs, artists or albums")
+                    centeredPlaceholder(systemImage: "music.quarternote.3", label: "搜索歌曲、艺术家或专辑")
                         .frame(height: 140)
                 }
 
@@ -5756,7 +5756,7 @@ struct AppleMusicSearchView: View {
         let symbol = healthy ? "checkmark.circle.fill" : (account.isAuthorized ? "exclamationmark.triangle.fill" : "xmark.circle.fill")
         let tint: Color = healthy ? .green : (account.isAuthorized ? .orange : .red)
         return VStack(alignment: .leading, spacing: 4) {
-            Label("Apple Music connection", systemImage: symbol)
+            Label("Apple 音乐连接", systemImage: symbol)
                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                 .foregroundStyle(tint)
             Text(apple.diagnosticsSummary)
@@ -5870,12 +5870,12 @@ struct AppleMusicSearchView: View {
                 .lineLimit(4)
         }
         if let latest = detail.latestRelease {
-            discoverSection(title: "Latest Release", systemImage: "sparkle") {
+            discoverSection(title: "最新版本", systemImage: "sparkle") {
                 AppleMusicAlbumRow(album: latest) { vm.open(.album(latest)) }
             }
         }
         if !detail.topSongs.isEmpty {
-            discoverSection(title: "Top Songs", systemImage: "music.note") {
+            discoverSection(title: "热门歌曲", systemImage: "music.note") {
                 songList(detail.topSongs, limit: 10, numbered: true)
             }
         }
@@ -5885,12 +5885,12 @@ struct AppleMusicSearchView: View {
         albumShelf("Compilations", detail.compilations)
         albumShelf("Appears On", detail.appearsOn)
         if !detail.featuredPlaylists.isEmpty {
-            discoverSection(title: "Featured Playlists", systemImage: "music.note.list") {
+            discoverSection(title: "精选播放列表", systemImage: "music.note.list") {
                 tileStrip(detail.featuredPlaylists.map { .playlist($0) })
             }
         }
         if !detail.similarArtists.isEmpty {
-            discoverSection(title: "Similar Artists", systemImage: "person.2.fill") {
+            discoverSection(title: "类似的艺术家", systemImage: "person.2.fill") {
                 tileStrip(detail.similarArtists.map { .artist($0) })
             }
         }
@@ -5964,7 +5964,7 @@ struct AppleMusicSearchView: View {
         albumShelf("Other Versions", detail.otherVersions)
         albumShelf("You Might Also Like", detail.relatedAlbums)
         if !detail.appearsOn.isEmpty {
-            discoverSection(title: "Featured On", systemImage: "music.note.list") {
+            discoverSection(title: "精选于", systemImage: "music.note.list") {
                 tileStrip(detail.appearsOn.map { .playlist($0) })
             }
         }
@@ -6002,7 +6002,7 @@ struct AppleMusicSearchView: View {
             }
         }
         if !detail.featuredArtists.isEmpty {
-            discoverSection(title: "Featured Artists", systemImage: "person.2.fill") {
+            discoverSection(title: "特色艺术家", systemImage: "person.2.fill") {
                 tileStrip(detail.featuredArtists.map { .artist($0) })
             }
         }

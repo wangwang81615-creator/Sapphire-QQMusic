@@ -331,15 +331,15 @@ nonisolated final class ClaudeUsageReader {
         let topModel = byModel.max { $0.value < $1.value }?.key
 
         var stats = [
-            DevUsageStat(label: "Last 5 hours", value: "\(UsageFormat.dollars(recentCost)) · \(UsageFormat.tokens(recent.reduce(0) { $0 + $1.totalTokens }))"),
-            DevUsageStat(label: "7 days", value: UsageFormat.dollars(weekCost)),
-            DevUsageStat(label: "Output today", value: UsageFormat.tokens(today.reduce(0) { $0 + $1.output })),
+            DevUsageStat(label: "最后 5 小时", value: "\(UsageFormat.dollars(recentCost)) · \(UsageFormat.tokens(recent.reduce(0) { $0 + $1.totalTokens }))"),
+            DevUsageStat(label: "7天", value: UsageFormat.dollars(weekCost)),
+            DevUsageStat(label: "今日产量", value: UsageFormat.tokens(today.reduce(0) { $0 + $1.output })),
         ]
-        if let topModel { stats.append(DevUsageStat(label: "Top model", value: topModel)) }
+        if let topModel { stats.append(DevUsageStat(label: "顶级模特", value: topModel)) }
 
         return DevUsageCard(
             id: "claude",
-            title: "Claude Code",
+            title: "克劳德·科德",
             symbol: DevToolCatalog.claude.symbol,
             tint: DevToolCatalog.claude.tint,
             headline: "\(UsageFormat.tokens(todayTokens)) tokens today",
@@ -500,8 +500,8 @@ nonisolated final class CodexUsageReader {
             subtitle: "\(sessions) session\(sessions == 1 ? "" : "s") today",
             meters: meters,
             stats: [
-                DevUsageStat(label: "Last 5 hours", value: UsageFormat.tokens(recent.reduce(0) { $0 + $1.input + $1.output })),
-                DevUsageStat(label: "Cached input today", value: UsageFormat.tokens(today.reduce(0) { $0 + $1.cached })),
+                DevUsageStat(label: "最后 5 小时", value: UsageFormat.tokens(recent.reduce(0) { $0 + $1.input + $1.output })),
+                DevUsageStat(label: "今天缓存的输入", value: UsageFormat.tokens(today.reduce(0) { $0 + $1.cached })),
             ],
             daily: daily,
             footnote: "Limits are as of Codex's last reply.",
@@ -594,12 +594,12 @@ nonisolated final class GeminiCLIUsageReader {
 
         return DevUsageCard(
             id: "gemini",
-            title: "Gemini CLI",
+            title: "双子座命令行界面",
             symbol: DevToolCatalog.gemini.symbol,
             tint: DevToolCatalog.gemini.tint,
             headline: "\(UsageFormat.tokens(todayTokens)) tokens today",
             subtitle: "\(today.count) repl\(today.count == 1 ? "y" : "ies") today",
-            stats: [DevUsageStat(label: "7 days", value: UsageFormat.tokens(turns.reduce(0) { $0 + $1.tokens }))],
+            stats: [DevUsageStat(label: "7天", value: UsageFormat.tokens(turns.reduce(0) { $0 + $1.tokens }))],
             daily: daily,
             compactValue: UsageFormat.tokens(todayTokens)
         )
@@ -690,7 +690,7 @@ nonisolated enum AntigravityUsageReader {
             headline: "\(today) agent run\(today == 1 ? "" : "s") today",
             subtitle: quotas.isEmpty ? nil : "\(quotas.count) models in your plan",
             meters: Array(meters),
-            stats: [DevUsageStat(label: "7 days", value: "\(runDates.filter { $0 >= window.weekStart }.count) runs")],
+            stats: [DevUsageStat(label: "7天", value: "\(runDates.filter { $0 >= window.weekStart }.count) runs")],
             daily: daily,
             footnote: "Model quotas as Antigravity last cached them.",
             compactValue: meters.first.map { "\(Int(((1 - $0.usedFraction) * 100).rounded()))% left" } ?? "\(today) runs"
@@ -864,11 +864,11 @@ nonisolated enum CursorUsageReader {
             sql: "SELECT value FROM ItemTable WHERE key = 'cursorAuth/stripeMembershipType'"
         ).first?.first??.trimmingCharacters(in: CharacterSet(charactersIn: "\" "))
 
-        var stats = [DevUsageStat(label: "7 days", value: "\(Int(daily.reduce(0, +))) lines")]
-        if let agent = bySource["composer"] { stats.append(DevUsageStat(label: "Agent today", value: "\(agent) lines")) }
-        if let tab = bySource["tab"] { stats.append(DevUsageStat(label: "Tab today", value: "\(tab) lines")) }
+        var stats = [DevUsageStat(label: "7天", value: "\(Int(daily.reduce(0, +))) lines")]
+        if let agent = bySource["composer"] { stats.append(DevUsageStat(label: "今天代理", value: "\(agent) lines")) }
+        if let tab = bySource["tab"] { stats.append(DevUsageStat(label: "今天标签", value: "\(tab) lines")) }
         if let model = models.max(by: { $0.value < $1.value })?.key {
-            stats.append(DevUsageStat(label: "Top model", value: model))
+            stats.append(DevUsageStat(label: "顶级模特", value: model))
         }
 
         return DevUsageCard(

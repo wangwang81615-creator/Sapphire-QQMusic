@@ -165,7 +165,7 @@ private struct ClipboardFilePreview: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
             if isMissing {
-                Text("No longer at this location")
+                Text("不再在这个位置")
                     .font(.system(size: 10))
                     .foregroundStyle(.orange.opacity(0.85))
             } else if let sizeText {

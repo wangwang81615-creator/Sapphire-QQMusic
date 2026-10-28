@@ -66,7 +66,7 @@ struct DevDashboardView: View {
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(.white)
             }
-            Text("Developer")
+            Text("开发商")
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
             if !monitor.tasks.isEmpty {
@@ -96,7 +96,7 @@ struct DevDashboardView: View {
                 Image(systemName: "moon.zzz.fill")
                     .font(.system(size: 22))
                     .foregroundStyle(.white.opacity(0.35))
-                Text("Nothing is running")
+                Text("什么都没有运行")
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white.opacity(0.8))
                 Text(emptyHint)
@@ -105,7 +105,7 @@ struct DevDashboardView: View {
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 360)
                 Button { tab = .terminal } label: {
-                    Label("Run a command", systemImage: "terminal")
+                    Label("运行命令", systemImage: "terminal")
                         .font(.system(size: 11, weight: .semibold, design: .rounded))
                 }
                 .buttonStyle(DevPillButtonStyle(tint: .white))
@@ -367,7 +367,7 @@ struct DevTaskDetailPane: View {
                     }
                     .buttonStyle(.plain)
                     .disabled(model.draft.isEmpty)
-                    .help("Send and press Return")
+                    .help("发送并按回车键")
                 }
             }
             .padding(.horizontal, 10)
@@ -397,11 +397,11 @@ struct DevTaskDetailPane: View {
             .disabled(model.detail?.isAlive != true)
             DevIconButton(symbol: "arrow.up.forward.app", help: "Show in \(model.detail?.host?.name ?? "app")", action: model.openHost)
             Menu {
-                Button("Copy Command", action: model.copyCommand)
-                Button("Reveal Folder in Finder", action: model.revealFolder)
+                Button("复制命令", action: model.copyCommand)
+                Button("在 Finder 中显示文件夹", action: model.revealFolder)
                     .disabled(model.detail?.workingDirectory == nil)
                 if model.detail?.agent?.transcriptPath != nil {
-                    Button("Reveal Transcript", action: model.openTranscript)
+                    Button("透露成绩单", action: model.openTranscript)
                 }
             } label: {
                 Image(systemName: "ellipsis")
@@ -663,7 +663,7 @@ private struct DevSparkBars: View {
             }
         }
         .frame(height: 16, alignment: .bottom)
-        .help("Last 7 days")
+        .help("过去 7 天")
     }
 }
 
@@ -683,7 +683,7 @@ private struct DevTerminalPanel: View {
                     Text("$")
                         .font(.system(size: 12, weight: .bold, design: .monospaced))
                         .foregroundStyle(.green)
-                    NotchSearchField(placeholder: "Run a command…", text: $command, onSubmit: run)
+                    NotchSearchField(placeholder: "运行命令...", text: $command, onSubmit: run)
                         .font(.system(size: 11.5, design: .monospaced))
                         .foregroundStyle(.white)
                     if !runner.history.isEmpty {
@@ -699,7 +699,7 @@ private struct DevTerminalPanel: View {
                         .menuStyle(.borderlessButton)
                         .menuIndicator(.hidden)
                         .frame(width: 18)
-                        .help("Recent commands")
+                        .help("最近的命令")
                     }
                 }
                 .padding(.horizontal, 10)
@@ -711,7 +711,7 @@ private struct DevTerminalPanel: View {
                 }
                 .buttonStyle(DevPillButtonStyle(tint: .green))
                 .disabled(command.trimmingCharacters(in: .whitespaces).isEmpty)
-                .help("Run here and show the output")
+                .help("在这里运行并显示输出")
 
                 Button {
                     let line = command.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -723,7 +723,7 @@ private struct DevTerminalPanel: View {
                 }
                 .buttonStyle(DevPillButtonStyle(tint: .white))
                 .disabled(command.trimmingCharacters(in: .whitespaces).isEmpty)
-                .help("Run in a new Terminal window (for interactive commands)")
+                .help("在新的终端窗口中运行（用于交互式命令）")
             }
 
             if !runner.runs.isEmpty {
@@ -787,7 +787,7 @@ private struct DevTerminalPanel: View {
                 Button(abbreviate(directory)) { runner.setDirectory(directory) }
             }
             Divider()
-            Button("Choose Folder…", action: chooseFolder)
+            Button("选择文件夹...", action: chooseFolder)
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: "folder.fill").font(.system(size: 9.5))

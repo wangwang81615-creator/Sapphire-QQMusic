@@ -188,7 +188,7 @@ extension NSImage {
         let extent = ciImage.extent
 
         func getRawAverageNSColor(from rect: CGRect) -> NSColor? {
-            let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: ciImage, kCIInputExtentKey: CIVector(cgRect: rect)])!
+            let filter = CIFilter(name: "中央情报局地区平均", parameters: [kCIInputImageKey: ciImage, kCIInputExtentKey: CIVector(cgRect: rect)])!
             guard let outputImage = filter.outputImage else { return nil }
             var bitmap = [UInt8](repeating: 0, count: 4)
             ciContext.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)

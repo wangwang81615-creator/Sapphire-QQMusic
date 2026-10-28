@@ -121,7 +121,7 @@ struct Plane: Codable, Equatable, Identifiable {
 struct LayoutTemplate {
     static let columns = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
-        name: "Columns",
+        name: "专栏",
         zones: [
             .init(id: UUID(uuidString: "00000001-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 1.0 / 3.0, height: 1.0),
             .init(id: UUID(uuidString: "00000001-0002-0000-0000-000000000001")!, x: 1.0 / 3.0, y: 0.0, width: 1.0 / 3.0, height: 1.0),
@@ -131,7 +131,7 @@ struct LayoutTemplate {
 
     static let rows = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000002")!,
-        name: "Rows",
+        name: "行数",
         zones: [
             .init(id: UUID(uuidString: "00000002-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 1.0, height: 1.0 / 3.0),
             .init(id: UUID(uuidString: "00000002-0002-0000-0000-000000000001")!, x: 0.0, y: 1.0 / 3.0, width: 1.0, height: 1.0 / 3.0),
@@ -151,7 +151,7 @@ struct LayoutTemplate {
 
     static let fancy = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000004")!,
-        name: "Fancy",
+        name: "花式",
         zones: [
             .init(id: UUID(uuidString: "00000004-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 0.3, height: 0.5),
             .init(id: UUID(uuidString: "00000004-0002-0000-0000-000000000001")!, x: 0.3, y: 0.0, width: 0.4, height: 0.5),
@@ -163,7 +163,7 @@ struct LayoutTemplate {
 
     static let quarters = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000005")!,
-        name: "Quarters",
+        name: "宿舍",
         zones: [
             .init(id: UUID(uuidString: "00000005-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 0.5, height: 0.5),
             .init(id: UUID(uuidString: "00000005-0002-0000-0000-000000000001")!, x: 0.0, y: 0.5, width: 0.5, height: 0.5),
@@ -174,7 +174,7 @@ struct LayoutTemplate {
 
     static let splitscreen = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000006")!,
-        name: "Split Screen",
+        name: "分屏",
         zones: [
             .init(id: UUID(uuidString: "00000006-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 0.5, height: 1.0),
             .init(id: UUID(uuidString: "00000006-0002-0000-0000-000000000001")!, x: 0.5, y: 0.0, width: 0.5, height: 1.0),
@@ -183,7 +183,7 @@ struct LayoutTemplate {
 
     static let fullscreen = SnapLayout(
         id: UUID(uuidString: "00000000-0000-0000-0000-000000000007")!,
-        name: "Full Screen",
+        name: "全屏",
         zones: [
             .init(id: UUID(uuidString: "00000007-0001-0000-0000-000000000001")!, x: 0.0, y: 0.0, width: 1.0, height: 1.0),
         ]

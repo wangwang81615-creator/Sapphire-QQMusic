@@ -101,7 +101,7 @@ final class PlainTextPasteManager: @unchecked Sendable {
 
     private init() {
         tapToken = GlobalEventTap.shared.register(
-            name: "PlainTextPaste",
+            name: "纯文本粘贴",
             mask: 1 << CGEventType.keyDown.rawValue,
             priority: EventTapPriority.shortcut,
             enabled: false

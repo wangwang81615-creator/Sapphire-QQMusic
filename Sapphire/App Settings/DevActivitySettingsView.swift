@@ -48,7 +48,7 @@ struct DevActivitySettingsView: View {
     private var detectionSection: some View {
         VStack(alignment: .leading, spacing: 0) {
             ToggleRow(
-                title: "Show Running Work in the Notch",
+                title: "在缺口中显示正在运行的工作",
                 description: "Surface a live activity while an AI agent, a build, or a terminal command is running.",
                 isOn: $settings.settings.devActivityEnabled
             )
@@ -57,7 +57,7 @@ struct DevActivitySettingsView: View {
 
             ToggleRow(
                 title: "AI Agents",
-                description: "Claude, Codex, Cursor, Antigravity, GitHub Copilot, Devin/Windsurf, Gemini, Aider, and other coding agents.",
+                description: "Claude、Codex、Cursor、Antigravity、GitHub Copilot、Devin/Windsurf、Gemini、Aider 和其他编码代理。",
                 isOn: kindBinding(.ai, keyPath: \.devActivityKinds)
             )
 
@@ -65,7 +65,7 @@ struct DevActivitySettingsView: View {
 
             ToggleRow(
                 title: "Builds & Tests",
-                description: "Xcode, Android Studio and Gradle, Swift, cargo, Go, npm and friends, make, Docker, and test runs.",
+                description: "Xcode、Android Studio 和 Gradle、Swift、cargo、Go、npm 和朋友、make、Docker 和测试运行。",
                 isOn: kindBinding(.build, keyPath: \.devActivityKinds)
             )
 
@@ -73,14 +73,14 @@ struct DevActivitySettingsView: View {
 
             ToggleRow(
                 title: "Terminal Commands",
-                description: "Anything long-running you started in Terminal, iTerm, Warp, Ghostty, or an editor's built-in terminal. Watchers and dev servers are ignored, since they never finish.",
+                description: "您在 Terminal、iTerm、Warp、Ghostty 或编辑器的内置终端中启动的任何长时间运行的程序。观察者和开发服务器被忽略，因为它们永远不会完成。",
                 isOn: kindBinding(.command, keyPath: \.devActivityKinds)
             )
 
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "Prioritize Over Other Activities",
+                title: "优先于其他活动",
                 description: "Rank running work alongside notifications instead of with the ambient readouts, so it shows even while music is playing.",
                 isOn: $settings.settings.devActivityHighPriority
             )
@@ -88,7 +88,7 @@ struct DevActivitySettingsView: View {
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "Open Details on Click",
+                title: "点击打开详情",
                 description: "Clicking the activity opens what the task is doing: an agent's conversation, a command's terminal output, its processes, and a box to send a message or command back to it.",
                 isOn: $settings.settings.devActivityOpenOnClick
             )
@@ -96,7 +96,7 @@ struct DevActivitySettingsView: View {
             Divider().padding(.leading, 20)
 
             ToggleRow(
-                title: "Dev Widget",
+                title: "开发小部件",
                 description: "A widget in the notch with running work and today's Claude Code, Codex, Cursor, Antigravity and Gemini usage. Click it for the full dashboard and a command runner.",
                 isOn: $settings.settings.devWidgetEnabled
             )
@@ -107,10 +107,10 @@ struct DevActivitySettingsView: View {
     private var whatIsRunningSection: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("Detected Right Now")
+                Text("立即检测到")
                     .font(.system(size: 14, weight: .medium))
                 Spacer()
-                Button("Refresh") { monitor.refreshNow() }
+                Button("刷新") { monitor.refreshNow() }
                     .buttonStyle(.borderless)
                     .font(.caption)
             }
@@ -140,7 +140,7 @@ struct DevActivitySettingsView: View {
     private var accuracySection: some View {
         VStack(alignment: .leading, spacing: 0) {
             ToggleRow(
-                title: "Detect Agents Inside Editors",
+                title: "检测编辑器内部的代理",
                 description: "Cursor, Antigravity, Devin, VS Code and Zed keep their agent in the editor process, so activity there is inferred from how hard it is working. Turn this off if idle typing registers as a running agent.",
                 isOn: $settings.settings.devActivityDetectIDEAgents
             )
@@ -149,12 +149,12 @@ struct DevActivitySettingsView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 CustomSliderRowView(
-                    label: "Sensitivity",
+                    label: "灵敏度",
                     value: $settings.settings.devActivitySensitivity,
                     range: 0.4...2.0,
                     specifier: "%.1f×"
                 )
-                Text("Lower catches quieter work but may misread a busy editor as a running agent. Higher only reports sustained activity. Command-line tools that only exist while they run are unaffected.")
+                Text("较低的工作可以捕捉到更安静的工作，但可能会将忙碌的编辑误认为是正在运行的代理。较高仅报告持续的活动。仅在运行时存在的命令行工具不受影响。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -167,7 +167,7 @@ struct DevActivitySettingsView: View {
 
     private var supportedToolsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("How Detection Works")
+            Text("检测的工作原理")
                 .font(.system(size: 14, weight: .medium))
 
             Text("""
@@ -270,7 +270,7 @@ struct CaffeineAutoTaskSettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ToggleRow(
-                title: "Keep Awake While a Task Runs",
+                title: "任务运行时保持清醒",
                 description: "Automatically turn caffeinate on when an AI agent, build, or terminal command starts, and off again once everything finishes. Caffeinate you switched on yourself is never turned off by this.",
                 isOn: $settings.settings.caffeinateAutoDuringTasks
             )
@@ -280,7 +280,7 @@ struct CaffeineAutoTaskSettingsView: View {
 
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("Currently Detected")
+                        Text("目前检测到")
                         Text(runningSummary)
                             .font(.caption)
                             .foregroundStyle(.secondary)
@@ -312,12 +312,12 @@ struct CaffeineAutoTaskSettingsView: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     CustomSliderRowView(
-                        label: "Keep Awake After Finishing",
+                        label: "完成后保持清醒",
                         value: $settings.settings.caffeinateAutoTaskGrace,
                         range: 0...600,
                         specifier: "%.0fs"
                     )
-                    Text("Grace period after the last task ends, so back-to-back runs don't let the display sleep in between. Detection settings live in Dev Activity.")
+                    Text("最后一个任务结束后的宽限期，因此连续运行不会让显示器在中间休眠。检测设置位于开发活动中。")
                         .font(.caption)
                         .foregroundStyle(.secondary)
 

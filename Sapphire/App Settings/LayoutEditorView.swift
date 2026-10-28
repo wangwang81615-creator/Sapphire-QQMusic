@@ -20,7 +20,7 @@ struct LayoutEditorView: View {
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-                Text("Layout Editor")
+                Text("布局编辑器")
                     .font(.title.bold())
                 Spacer()
                 Button("Done") {
@@ -33,7 +33,7 @@ struct LayoutEditorView: View {
                 .keyboardShortcut(.defaultAction)
             }
 
-            TextField("Layout Name", text: $layout.name)
+            TextField("布局名称", text: $layout.name)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(Color.black.opacity(0.2))
@@ -68,7 +68,7 @@ struct LayoutEditorView: View {
             }
 
             HStack {
-                Button("Add Zone") {
+                Button("添加区域") {
                     let newZone = SnapZone(x: 0.25, y: 0.25, width: 0.5, height: 0.5)
                     layout.zones.append(newZone)
                     selectedZoneID = newZone.id
@@ -76,7 +76,7 @@ struct LayoutEditorView: View {
                 .buttonStyle(.bordered)
 
                 if selectedZoneID != nil {
-                    Button("Remove Selected", role: .destructive) {
+                    Button("删除所选内容", role: .destructive) {
                         layout.zones.removeAll { $0.id == selectedZoneID }
                         selectedZoneID = nil
                     }

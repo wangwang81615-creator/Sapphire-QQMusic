@@ -55,9 +55,9 @@ struct OpenBubblesActivationView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             VStack(alignment: .leading) {
-                Text("iMessage Registration")
+                Text("iMessage 注册")
                     .font(.largeTitle.bold())
-                Text("For OpenBubbles")
+                Text("对于开放气泡")
                     .font(.title2)
                     .foregroundStyle(.secondary)
             }
@@ -66,9 +66,9 @@ struct OpenBubblesActivationView: View {
                 HStack(spacing: 12) {
                     Image(systemName: "bubble.left.and.bubble.right.fill")
                         .font(.title).foregroundStyle(.blue)
-                    Text("What is OpenBubbles?").font(.headline)
+                    Text("什么是 OpenBubbles？").font(.headline)
                 }
-                Text("OpenBubbles is a free, open-source project that brings iMessage, FaceTime, and other Apple services to Android, Windows, and Linux. This tool generates a registration code using your Mac's hardware identifiers, allowing other devices to connect directly to Apple's services.")
+                Text("OpenBubbles 是一个免费的开源项目，它将 iMessage、FaceTime 和其他 Apple 服务引入 Android、Windows 和 Linux。该工具使用 Mac 的硬件标识符生成注册码，允许其他设备直接连接到 Apple 的服务。")
                     .font(.subheadline).foregroundStyle(.secondary)
 
                 Divider().padding(.vertical, 5)
@@ -76,23 +76,23 @@ struct OpenBubblesActivationView: View {
                 Grid(horizontalSpacing: 10, verticalSpacing: 10) {
                     GridRow {
                         Link(destination: URL(string: "https://openbubbles.app")!) {
-                            Label("Visit Website", systemImage: "safari.fill")
+                            Label("访问网站", systemImage: "safari.fill")
                         }
                         .buttonStyle(PillButtonStyle())
 
                         Link(destination: URL(string: "https://discord.gg/98fWS4AQqN")!) {
-                            Label("Join Discord", systemImage: "message.fill")
+                            Label("加入不和谐", systemImage: "message.fill")
                         }
                         .buttonStyle(PillButtonStyle())
                     }
                     GridRow {
                         Link(destination: URL(string: "https://play.google.com/store/apps/details?id=com.openbubbles.messaging")!) {
-                            Label("Download App", systemImage: "arrow.down.circle.fill")
+                            Label("下载应用程序", systemImage: "arrow.down.circle.fill")
                         }
                         .buttonStyle(PillButtonStyle())
 
                         Button(action: { isShowingDownloadQrSheet = true }) {
-                            Label("Show QR to Download", systemImage: "qrcode.viewfinder")
+                            Label("显示二维码即可下载", systemImage: "qrcode.viewfinder")
                         }
                         .buttonStyle(PillButtonStyle())
                     }
@@ -105,7 +105,7 @@ struct OpenBubblesActivationView: View {
             HStack(alignment: .top, spacing: 20) {
                 VStack {
                     if let hardwareQrImage {
-                        Image(hardwareQrImage, scale: 1.0, label: Text("Hardware Info QR Code"))
+                        Image(hardwareQrImage, scale: 1.0, label: Text("硬件信息二维码"))
                             .interpolation(.none).resizable().scaledToFit()
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     } else {
@@ -116,10 +116,10 @@ struct OpenBubblesActivationView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("This QR code contains your Mac's unique hardware data. **Scan it with the OpenBubbles app** on your other devices to register them for iMessage.")
+                    Text("此二维码包含您的 Mac 的独特硬件数据。 **使用其他设备上的 OpenBubbles 应用程序扫描**，以注册 iMessage。")
                         .font(.caption).foregroundStyle(.secondary)
 
-                    Toggle("Generate a shareable, single-use code", isOn: $preventSharing)
+                    Toggle("生成可共享的一次性代码", isOn: $preventSharing)
 
                     if preventSharing {
                         oneTimeCodeSection
@@ -143,9 +143,9 @@ struct OpenBubblesActivationView: View {
         VStack {
             if let code = oneTimeActivationCode {
                 VStack(alignment: .leading) {
-                    Text("Your One-Time Code:").font(.caption)
+                    Text("您的一次性代码：").font(.caption)
                     HStack {
-                        TextField("Activation Code", text: .constant(code)).textFieldStyle(.plain).disabled(true)
+                        TextField("激活码", text: .constant(code)).textFieldStyle(.plain).disabled(true)
                         Button(action: { copyToClipboard(code) }) { Image(systemName: "doc.on.doc.fill") }.buttonStyle(.plain)
                     }.padding(8).background(Color.black.opacity(0.25)).clipShape(RoundedRectangle(cornerRadius: 6))
                 }
@@ -162,12 +162,12 @@ struct OpenBubblesActivationView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill").foregroundColor(.orange)
-                Text("Do not share this code publicly. It is permanently tied to your Mac's hardware identity.").font(.caption)
+                Text("不要公开分享此代码。它与您的 Mac 硬件标识永久关联。").font(.caption)
             }.padding(10).background(.orange.opacity(0.15)).clipShape(RoundedRectangle(cornerRadius: 8))
-            Text("Your Personal Code (Unlimited Use):").font(.caption)
+            Text("您的个人代码（无限制使用）：").font(.caption)
             if let code = defaultActivationCode {
                 HStack {
-                    TextField("Activation Code", text: .constant(code)).textFieldStyle(.plain).disabled(true)
+                    TextField("激活码", text: .constant(code)).textFieldStyle(.plain).disabled(true)
                     Button(action: { copyToClipboard(code) }) { Image(systemName: "doc.on.doc.fill") }.buttonStyle(.plain)
                 }.padding(8).background(Color.black.opacity(0.25)).clipShape(RoundedRectangle(cornerRadius: 6))
             } else {
@@ -264,11 +264,11 @@ struct AppDownloadQrView: View {
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack(spacing: 20) {
-            Text("Scan to Download").font(.largeTitle.bold())
-            Text("Open the camera app on your phone and point it at this QR code to go to the download page.")
+            Text("扫描下载").font(.largeTitle.bold())
+            Text("打开手机上的相机应用程序并将其指向此二维码以转到下载页面。")
                 .font(.headline).multilineTextAlignment(.center).foregroundStyle(.secondary).padding(.horizontal)
             if let qrImage {
-                Image(qrImage, scale: 1.0, label: Text("App Download QR Code"))
+                Image(qrImage, scale: 1.0, label: Text("应用程序下载二维码"))
                     .interpolation(.none).resizable().scaledToFit().frame(width: 250, height: 250)
                     .background(Color.white).padding(10).clipShape(RoundedRectangle(cornerRadius: 16))
             } else {

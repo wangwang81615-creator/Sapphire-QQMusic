@@ -24,7 +24,7 @@ struct TimerDetailView: View {
             if timerManager.activeTimers.isEmpty
                 && timerManager.activeStopwatches.isEmpty
                 && timerManager.sapphireTimers.isEmpty {
-                Text("No Active Timers or Stopwatches")
+                Text("没有活动计时器或秒表")
                     .font(.headline)
                     .foregroundColor(.secondary)
                     .padding(.vertical, 8)
@@ -92,12 +92,12 @@ struct TimerDetailView: View {
         if !timers.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Sapphire Timers")
+                    Text("蓝宝石计时器")
                         .font(.title3.bold())
                         .foregroundColor(.orange)
                     Spacer()
                     if timers.contains(where: { $0.remainingTime <= 0 }) {
-                        Button("Clear Finished") {
+                        Button("清除完成") {
                             timerManager.clearFinishedSapphireTimers()
                         }
                         .font(.caption)
@@ -146,11 +146,11 @@ struct TimerDetailView: View {
                 controlButton("hourglass.badge.plus", accent: .orange) {
                     timerManager.addOneMinuteToSapphireTimer(id: timer.id)
                 }
-                .help("Add 1 minute")
+                .help("添加 1 分钟")
                 controlButton("stop.fill", accent: .red) {
                     timerManager.removeSapphireTimer(id: timer.id)
                 }
-                .help("Stop timer")
+                .help("停止定时器")
             } else {
                 controlButton("play.fill", accent: .green) {
                     timerManager.resumeSapphireTimer(id: timer.id)
@@ -158,7 +158,7 @@ struct TimerDetailView: View {
                 controlButton("stop.fill", accent: .red) {
                     timerManager.removeSapphireTimer(id: timer.id)
                 }
-                .help("Remove timer")
+                .help("删除计时器")
             }
         }
     }
@@ -204,7 +204,7 @@ struct TimerDetailView: View {
     private var systemStopwatchesSection: some View {
         if !timerManager.activeStopwatches.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Stopwatches")
+                Text("秒表")
                     .font(.title3.bold())
                     .foregroundColor(.green)
                 ForEach(timerManager.activeStopwatches) { stopwatch in

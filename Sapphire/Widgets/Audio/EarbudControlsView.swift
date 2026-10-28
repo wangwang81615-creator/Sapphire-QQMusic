@@ -203,7 +203,7 @@ struct EarbudControlsView: View {
 
             if snap.noiseMode == "anc", snap.vendor == .galaxy {
                 HStack(spacing: 8) {
-                    Text("ANC Strength")
+                    Text("非国大实力")
                         .font(.system(size: 12, weight: .semibold))
                     Spacer()
                     ModernChip(title: "Low", isSelected: !snap.ancHigh) { manager.setAncHigh(false) }
@@ -268,7 +268,7 @@ struct EarbudControlsView: View {
             VStack(spacing: 0) {
                 if snap.supportsDSEE {
                     compactToggle(
-                        title: "DSEE Extreme",
+                        title: "DSEE 极限",
                         detail: "Upscale compressed audio",
                         symbol: "waveform.badge.plus",
                         isOn: Binding(get: { snap.dsee }, set: { manager.setDsee($0) })
@@ -277,7 +277,7 @@ struct EarbudControlsView: View {
                 if snap.supportsSeamless {
                     if snap.supportsDSEE { extrasDivider }
                     compactToggle(
-                        title: "Seamless Connection",
+                        title: "无缝连接",
                         detail: "Stay linked to Mac and phone",
                         symbol: "antenna.radiowaves.left.and.right",
                         isOn: Binding(get: { snap.seamless }, set: { manager.setSeamless($0) })
@@ -289,7 +289,7 @@ struct EarbudControlsView: View {
                     }
                     if snap.supportsDetectConversations {
                         compactToggle(
-                            title: "Detect Conversations",
+                            title: "检测对话",
                             detail: "Ambient when you start talking",
                             symbol: "person.wave.2.fill",
                             isOn: Binding(get: { snap.detectConversations }, set: { manager.setDetectConversations($0) })
@@ -297,7 +297,7 @@ struct EarbudControlsView: View {
                         if snap.detectConversations {
                             extrasDivider
                             HStack(spacing: 8) {
-                                Text("Resume after")
+                                Text("之后恢复")
                                     .font(.system(size: 12, weight: .semibold))
                                     .foregroundStyle(.secondary)
                                 Spacer()
@@ -316,7 +316,7 @@ struct EarbudControlsView: View {
                     if snap.supportsGaming {
                         if snap.supportsDetectConversations { extrasDivider }
                         compactToggle(
-                            title: "Gaming Mode",
+                            title: "游戏模式",
                             detail: "Lower latency for games and video",
                             symbol: "gamecontroller.fill",
                             isOn: Binding(get: { snap.gamingMode }, set: { manager.setGamingMode($0) })
@@ -325,7 +325,7 @@ struct EarbudControlsView: View {
                     if snap.supportsSpatial {
                         extrasDivider
                         compactToggle(
-                            title: "Spatial Audio",
+                            title: "空间音频",
                             detail: "Immersive spatial sound on the buds",
                             symbol: "dot.radiowaves.left.and.right",
                             isOn: Binding(get: { snap.spatialAudio }, set: { manager.setSpatialAudio($0) })
@@ -334,7 +334,7 @@ struct EarbudControlsView: View {
                     if snap.supportsTouchLock {
                         extrasDivider
                         compactToggle(
-                            title: "Lock Touchpad",
+                            title: "锁定触摸板",
                             detail: "Ignore accidental touches",
                             symbol: "lock.fill",
                             isOn: Binding(get: { snap.touchpadLocked }, set: { manager.setTouchpadLock($0) })
@@ -342,25 +342,25 @@ struct EarbudControlsView: View {
                         if snap.supportsOutsideDoubleTap {
                             extrasDivider
                             compactToggle(
-                                title: "Outside Double Tap",
+                                title: "外部双击",
                                 detail: "Double-tap the outside for volume",
                                 symbol: "hand.tap.fill",
                                 isOn: Binding(get: { snap.outsideDoubleTap }, set: { manager.setOutsideDoubleTap($0) })
                             )
                         }
                         extrasDivider
-                        touchOptionRow(title: "Touch · Left", selected: snap.touchLeft) {
+                        touchOptionRow(title: "触摸·左", selected: snap.touchLeft) {
                             manager.setTouchLeft($0)
                         }
                         extrasDivider
-                        touchOptionRow(title: "Touch · Right", selected: snap.touchRight) {
+                        touchOptionRow(title: "触摸·右", selected: snap.touchRight) {
                             manager.setTouchRight($0)
                         }
                     }
                     if snap.supportsPassthrough {
                         extrasDivider
                         compactToggle(
-                            title: "Passthrough",
+                            title: "直通",
                             detail: "Relieve ambient pressure (Buds Live)",
                             symbol: "wind",
                             isOn: Binding(get: { snap.passthrough }, set: { manager.setPassthrough($0) })
@@ -369,28 +369,28 @@ struct EarbudControlsView: View {
                     if snap.supportsAmbientExtras {
                         extrasDivider
                         compactToggle(
-                            title: "Sidetone",
+                            title: "侧音",
                             detail: "Hear your own voice while talking",
                             symbol: "mic.fill",
                             isOn: Binding(get: { snap.sidetone }, set: { manager.setSidetone($0) })
                         )
                         extrasDivider
                         compactToggle(
-                            title: "Extra High Ambient",
+                            title: "超高环境",
                             detail: "Louder ambient / passthrough",
                             symbol: "speaker.wave.3.fill",
                             isOn: Binding(get: { snap.extraHighAmbient }, set: { manager.setExtraHighAmbient($0) })
                         )
                         extrasDivider
                         compactToggle(
-                            title: "Amplify Ambient",
+                            title: "放大环境",
                             detail: "Boost ambient pickup",
                             symbol: "waveform.badge.plus",
                             isOn: Binding(get: { snap.amplifyAmbient }, set: { manager.setAmplifyAmbient($0) })
                         )
                         extrasDivider
                         compactToggle(
-                            title: "Speak Seamlessly",
+                            title: "无缝通话",
                             detail: "Keep ANC while talking",
                             symbol: "mouth.fill",
                             isOn: Binding(get: { snap.speakSeamlessly }, set: { manager.setSpeakSeamlessly($0) })
@@ -399,7 +399,7 @@ struct EarbudControlsView: View {
                     if snap.supportsANC {
                         extrasDivider
                         compactToggle(
-                            title: "ANC with One Earbud",
+                            title: "带一只耳塞的 ANC",
                             detail: "Keep noise cancelling on a single bud",
                             symbol: "ear",
                             isOn: Binding(get: { snap.ancOneEarbud }, set: { manager.setAncOneEarbud($0) })
@@ -407,14 +407,14 @@ struct EarbudControlsView: View {
                     }
                     extrasDivider
                     compactToggle(
-                        title: "Auto Switch Audio",
+                        title: "自动切换音频",
                         detail: "Follow playback between devices",
                         symbol: "arrow.left.arrow.right",
                         isOn: Binding(get: { snap.autoSwitchAudio }, set: { manager.setAutoSwitchAudio($0) })
                     )
                     extrasDivider
                     compactToggle(
-                        title: "Pause When One Bud Removed",
+                        title: "当一芽被移除时暂停",
                         detail: "Pause media if you take one out",
                         symbol: "pause.circle",
                         isOn: Binding(get: { snap.pauseOnOneBudRemoved }, set: { manager.setPauseOnOneBud($0) })
@@ -422,21 +422,21 @@ struct EarbudControlsView: View {
                     if snap.supportsCallExtras {
                         extrasDivider
                         compactToggle(
-                            title: "In-Band Ringtone",
+                            title: "带内铃声",
                             detail: "Hear the call ring in the buds",
                             symbol: "bell.fill",
                             isOn: Binding(get: { snap.inBandRingtone }, set: { manager.setInBandRingtone($0) })
                         )
                         extrasDivider
                         compactToggle(
-                            title: "Calls Through Buds",
+                            title: "通过芽通话",
                             detail: "Route phone calls to the earbuds",
                             symbol: "phone.fill",
                             isOn: Binding(get: { snap.callPathControl }, set: { manager.setCallPathControl($0) })
                         )
                         extrasDivider
                         compactToggle(
-                            title: "Ambient During Calls",
+                            title: "通话期间的环境",
                             detail: "Hear surroundings on calls",
                             symbol: "ear.badge.waveform",
                             isOn: Binding(get: { snap.ambientDuringCall }, set: { manager.setAmbientDuringCall($0) })
@@ -444,7 +444,7 @@ struct EarbudControlsView: View {
                         if snap.supportsExtraClearCall {
                             extrasDivider
                             compactToggle(
-                                title: "Extra Clear Call Sound",
+                                title: "超清晰的通话声音",
                                 detail: "Boost voice clarity on calls",
                                 symbol: "waveform",
                                 isOn: Binding(get: { snap.extraClearCall }, set: { manager.setExtraClearCall($0) })
@@ -488,9 +488,9 @@ struct EarbudControlsView: View {
                                 .foregroundStyle(.cyan)
                                 .frame(width: 22)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Enter Pairing Mode")
+                                Text("进入配对模式")
                                     .font(.system(size: 13, weight: .semibold))
-                                Text("Make the buds discoverable for a new device")
+                                Text("让新设备可以发现耳机")
                                     .font(.system(size: 11))
                                     .foregroundStyle(.secondary)
                             }
@@ -618,7 +618,7 @@ private struct EarbudAmbientSlider: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Label("Ambient Level", systemImage: "ear")
+                Label("环境电平", systemImage: "ear")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
                 Text("\(Int(level))")

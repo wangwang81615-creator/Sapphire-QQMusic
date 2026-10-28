@@ -1685,10 +1685,10 @@ class SpotifyPrivateAPIManager {
             components.path = "/api/token"
             components.queryItems = [
                 URLQueryItem(name: "reason", value: reason),
-                URLQueryItem(name: "productType", value: "web-player"),
+                URLQueryItem(name: "产品类型", value: "web-player"),
                 URLQueryItem(name: "totp", value: totp),
-                URLQueryItem(name: "totpVer", value: String(totpVer)),
-                URLQueryItem(name: "totpServer", value: totp)
+                URLQueryItem(name: "顶部版本", value: String(totpVer)),
+                URLQueryItem(name: "顶级服务器", value: totp)
             ]
             do {
                 let response = try await openSpotifyClient.get(
@@ -3359,7 +3359,7 @@ extension SpotifyPrivateAPIManager {
 
         let query = [
             URLQueryItem(name: "format", value: "json"),
-            URLQueryItem(name: "vocalRemoval", value: "false"),
+            URLQueryItem(name: "去除声音", value: "false"),
             URLQueryItem(name: "market", value: "from_token")
         ]
 
@@ -5241,7 +5241,7 @@ extension SpotifyPrivateAPIManager {
         do {
             let response = try await client.get(
                 path: "/gander/v2/GetUserHasUnreadNotification",
-                queryItems: [URLQueryItem(name: "postFix", value: "a")]
+                queryItems: [URLQueryItem(name: "修复后", value: "a")]
             )
             let decoded = try JSONDecoder().decode(NotificationResponse.self, from: response.body)
             publishExtendedState(hasUnreadNotifications: decoded.userHasUnreadNotification)
@@ -5360,7 +5360,7 @@ extension SpotifyPrivateAPIManager {
                 path: "/playlist/v2/user/\(username)/rootlist",
                 queryItems: [
                     URLQueryItem(name: "decorate", value: "revision,length,attributes,timestamp,owner,capabilities"),
-                    URLQueryItem(name: "bustCache", value: String(Int(Date().timeIntervalSince1970 * 1000)))
+                    URLQueryItem(name: "缓存", value: String(Int(Date().timeIntervalSince1970 * 1000)))
                 ]
             )
             let decoded = try JSONDecoder().decode(PlaylistRootlistResponse.self, from: response.body)

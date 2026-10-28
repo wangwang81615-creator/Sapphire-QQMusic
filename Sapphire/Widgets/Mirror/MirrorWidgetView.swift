@@ -60,14 +60,14 @@ struct MirrorWidgetView: View {
         }
         .contextMenu {
             if camera.isLive {
-                Button("Stop Camera") { camera.stop() }
+                Button("停止摄像头") { camera.stop() }
             } else if camera.isPending {
                 Button("Cancel") { camera.stop() }
             } else if camera.isDenied {
-                Button("Open Camera Privacy Settings") { camera.openSystemPrivacySettings() }
+                Button("打开相机隐私设置") { camera.openSystemPrivacySettings() }
             }
             if camera.cameras.count > 1 {
-                Menu("Camera") {
+                Menu("相机") {
                     MirrorCameraMenuItems(camera: camera)
                 }
             }
@@ -92,7 +92,7 @@ struct MirrorWidgetView: View {
                 )
         }
         .buttonStyle(.plain)
-        .help("Stop camera")
+        .help("停止摄像头")
     }
 
     private var idleView: some View {

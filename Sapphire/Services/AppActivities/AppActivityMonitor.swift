@@ -154,7 +154,7 @@ final class AppActivityMonitor: ObservableObject {
                 case .teams:
                     if micActive {
                         let meeting = windows.first { !$0.isEmpty && $0 != "Microsoft Teams" }
-                        activity = Self.make(app, pid, bundleID, title: "Teams call",
+                        activity = Self.make(app, pid, bundleID, title: "团队呼叫",
                                              subtitle: meeting?.components(separatedBy: " | ").first, previous: previous[app])
                     }
                 default:

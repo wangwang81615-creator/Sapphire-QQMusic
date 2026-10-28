@@ -88,17 +88,17 @@ class PermissionsManager: NSObject, ObservableObject, @MainActor CLLocationManag
     private var cancellables = Set<AnyCancellable>()
 
     public let allPermissions: [PermissionItem] = [
-        .init(type: .accessibility, title: "Accessibility", description: "Needed for media key presses, window snapping, and HUDs.", iconName: "figure.wave.circle.fill", iconColor: .purple, category: .required),
-        .init(type: .fullDiskAccess, title: "Full Disk Access", description: "Enables File Shelf, Intelligence file access, and deeper system integrations.", iconName: "folder.badge.gearshape", iconColor: .gray, category: .recommended),
-        .init(type: .screenRecording, title: "Screen Recording", description: "Required for Gemini Live screen sharing, per-app audio capture, live window previews, and the hinge-driven desktop animation.", iconName: "record.circle", iconColor: .orange, category: .recommended),
-        .init(type: .localNetwork, title: "Local Network", description: "Needed to discover and control supported media players on your network.", iconName: "network", iconColor: .cyan, category: .recommended),
-        .init(type: .automation, title: "Automation", description: "Needed to control playback and get track info from Spotify and Music.", iconName: "play.display", iconColor: .green, category: .recommended),
-        .init(type: .notifications, title: "Notifications", description: "Needed to show custom alerts for messages and system events.", iconName: "bell.badge.fill", iconColor: .red, category: .recommended),
-        .init(type: .location, title: "Location", description: "Needed to provide live weather updates for your current location.", iconName: "location.fill", iconColor: .blue, category: .recommended),
-        .init(type: .calendar, title: "Calendar", description: "Needed to show your upcoming events.", iconName: "calendar", iconColor: .red, category: .recommended),
-        .init(type: .bluetooth, title: "Bluetooth", description: "Needed to detect connected devices and their battery levels.", iconName: "ipad.landscape.and.iphone", iconColor: .blue, category: .recommended),
-        .init(type: .reminders, title: "Reminders", description: "Needed to show your upcoming reminders.", iconName: "checklist", iconColor: .orange, category: .optional),
-        .init(type: .focusStatus, title: "Focus Status", description: "Needed to show when a Focus mode is active.", iconName: "moon.fill", iconColor: .indigo, category: .optional)
+        .init(type: .accessibility, title: "无障碍", description: "媒体按键、窗口捕捉和 HUD 需要。", iconName: "figure.wave.circle.fill", iconColor: .purple, category: .required),
+        .init(type: .fullDiskAccess, title: "全磁盘访问", description: "支持文件架、智能文件访问和更深入的系统集成。", iconName: "folder.badge.gearshape", iconColor: .gray, category: .recommended),
+        .init(type: .screenRecording, title: "Screen Recording", description: "Gemini Live 屏幕共享、每个应用程序音频捕获、实时窗口预览和铰链驱动的桌面动画所需。", iconName: "record.circle", iconColor: .orange, category: .recommended),
+        .init(type: .localNetwork, title: "本地网络", description: "需要发现和控制网络上支持的媒体播放器。", iconName: "network", iconColor: .cyan, category: .recommended),
+        .init(type: .automation, title: "Automation", description: "需要控制播放并从 Spotify 和音乐获取曲目信息。", iconName: "play.display", iconColor: .green, category: .recommended),
+        .init(type: .notifications, title: "Notifications", description: "需要显示消息和系统事件的自定义警报。", iconName: "bell.badge.fill", iconColor: .red, category: .recommended),
+        .init(type: .location, title: "Location", description: "需要提供您当前位置的实时天气更新。", iconName: "location.fill", iconColor: .blue, category: .recommended),
+        .init(type: .calendar, title: "Calendar", description: "需要展示您即将举办的活动。", iconName: "calendar", iconColor: .red, category: .recommended),
+        .init(type: .bluetooth, title: "Bluetooth", description: "需要检测连接的设备及其电池电量。", iconName: "ipad.landscape.and.iphone", iconColor: .blue, category: .recommended),
+        .init(type: .reminders, title: "Reminders", description: "需要显示您即将发出的提醒。", iconName: "checklist", iconColor: .orange, category: .optional),
+        .init(type: .focusStatus, title: "焦点状态", description: "需要显示聚焦模式何时处于活动状态。", iconName: "moon.fill", iconColor: .indigo, category: .optional)
     ]
 
     var requiredPermissions: [PermissionItem] { allPermissions.filter { $0.category == .required } }

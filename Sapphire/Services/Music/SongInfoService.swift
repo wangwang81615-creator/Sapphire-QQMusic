@@ -39,10 +39,10 @@ struct SongInfo: Decodable, Equatable, Sendable {
         }
         return [
             CreditSection(title: "Written By", names: names(["writer", "composer", "lyricist", "librettist"], in: writing)),
-            CreditSection(title: "Produced By", names: names(["producer"], in: production)),
-            CreditSection(title: "Mixing", names: names(["mix"], in: production)),
-            CreditSection(title: "Mastering", names: names(["mastering"], in: production)),
-            CreditSection(title: "Engineering", names: names(["recording", "engineer", "audio"], in: production)),
+            CreditSection(title: "制作人", names: names(["producer"], in: production)),
+            CreditSection(title: "混合", names: names(["mix"], in: production)),
+            CreditSection(title: "母带处理", names: names(["mastering"], in: production)),
+            CreditSection(title: "工程", names: names(["recording", "engineer", "audio"], in: production)),
         ].filter { !$0.names.isEmpty }
     }
 

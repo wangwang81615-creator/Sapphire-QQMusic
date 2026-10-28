@@ -468,9 +468,9 @@ class TidalAPIManager {
     private func searchFirstTrack(query: String) async -> TidalResource? {
         var components = URLComponents(string: "\(baseURL)/searchResults")!
         components.queryItems = [
-            URLQueryItem(name: "filter[query]", value: query),
+            URLQueryItem(name: "过滤器[查询]", value: query),
             URLQueryItem(name: "include", value: "tracks"),
-            URLQueryItem(name: "countryCode", value: Locale.current.regionCode ?? "US"),
+            URLQueryItem(name: "国家代码", value: Locale.current.regionCode ?? "US"),
         ]
         guard let url = components.url else { return nil }
         let document: TidalJSONAPIDocument<TidalResource>? = await requestData(url: url)
@@ -577,7 +577,7 @@ class TidalAPIManager {
         guard let cursor = links?.nextCursor, !cursor.isEmpty,
               var components = URLComponents(string: fallbackPath) else { return nil }
         components.queryItems = (components.queryItems ?? []) + [
-            URLQueryItem(name: "page[cursor]", value: cursor)
+            URLQueryItem(name: "页[光标]", value: cursor)
         ]
         return components.url
     }

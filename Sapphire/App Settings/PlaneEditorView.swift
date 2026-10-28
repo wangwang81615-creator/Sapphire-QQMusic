@@ -29,20 +29,20 @@ struct PlaneEditorView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Edit Plane")
+            Text("编辑平面")
                 .font(.title.bold())
 
             VStack(alignment: .leading, spacing: 15) {
-                TextField("Plane Name", text: $plane.name)
+                TextField("飞机名称", text: $plane.name)
 
-                Picker("Layout:", selection: $plane.layoutID) {
+                Picker("布局：", selection: $plane.layoutID) {
                     ForEach(allLayouts) { layout in
                         Text(layout.name).tag(layout.id)
                     }
                 }
 
                 HStack {
-                    Text("Keyboard Shortcut")
+                    Text("键盘快捷键")
                     Spacer()
                     Button(action: {
                         if shortcutRecorder.isRecording {
@@ -54,12 +54,12 @@ struct PlaneEditorView: View {
                         }
                     }) {
                         if shortcutRecorder.isRecording {
-                            Text("Recording... (Esc to cancel)")
+                            Text("正在录制...（Esc 取消）")
                                 .foregroundColor(.accentColor)
                         } else if let shortcut = plane.shortcut {
                             Text("\(KeyboardShortcutHelper.description(for: shortcut.modifiers)) \(shortcut.key)")
                         } else {
-                            Text("Record Shortcut")
+                            Text("录制快捷方式")
                         }
                     }
                     .buttonStyle(.bordered)
@@ -70,7 +70,7 @@ struct PlaneEditorView: View {
 
             Divider()
 
-            Text("App Assignments")
+            Text("应用程序分配")
                 .font(.headline)
 
             if let layout = selectedLayout {
@@ -97,7 +97,7 @@ struct PlaneEditorView: View {
                 .background(Color.black.opacity(0.15))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             } else {
-                Text("Select a valid layout to assign apps.")
+                Text("选择有效的布局来分配应用程序。")
                     .foregroundColor(.secondary)
                     .frame(maxHeight: .infinity)
             }
@@ -105,7 +105,7 @@ struct PlaneEditorView: View {
             HStack {
                 Button("Cancel", role: .cancel) { dismiss() }
                 Spacer()
-                Button("Save") {
+                Button("保存") {
                     onSave(plane)
                     dismiss()
                 }

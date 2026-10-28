@@ -76,7 +76,7 @@ struct FocusStreakPanelView: View {
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.white.opacity(0.55))
                 }
-                Text("Focus streak")
+                Text("焦点条纹")
                     .font(.system(size: 11, weight: .medium))
                     .foregroundColor(.white.opacity(0.5))
             }
@@ -87,8 +87,8 @@ struct FocusStreakPanelView: View {
 
     private var stripLegend: some View {
         HStack(spacing: 12) {
-            legendItem(icon: "flame.fill", color: .orange, label: "Focused")
-            legendItem(icon: "shield.fill", color: .teal, label: "Immunity")
+            legendItem(icon: "flame.fill", color: .orange, label: "专注")
+            legendItem(icon: "shield.fill", color: .teal, label: "免疫力")
             legendItem(icon: "circle.fill", color: .white.opacity(0.12), label: "Missed")
         }
         .padding(.top, 2)
@@ -113,7 +113,7 @@ struct FocusStreakPanelView: View {
                 Image(systemName: "ticket.fill")
                     .font(.system(size: 13))
                     .foregroundColor(.purple)
-                Text("Streak Passes")
+                Text("连续传球")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(.white.opacity(0.85))
                 Spacer()
@@ -151,7 +151,7 @@ struct FocusStreakPanelView: View {
                     .font(.system(size: 13))
                     .foregroundColor(.orange)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Your streak broke")
+                    Text("你的连胜纪录被打破了")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(.white)
                     Text(brokenDayText)
@@ -166,7 +166,7 @@ struct FocusStreakPanelView: View {
                     confirmationText = "Streak revived "
                 }
             }) {
-                Label("Revive with a streak pass", systemImage: "flame.fill")
+                Label("连续传球复活", systemImage: "flame.fill")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -199,15 +199,15 @@ struct FocusStreakPanelView: View {
                 Image(systemName: "shield.lefthalf.fill")
                     .font(.system(size: 13))
                     .foregroundColor(.teal)
-                Text("Immunity Days")
+                Text("免疫日")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(.white.opacity(0.85))
                 Spacer()
-                Text("Unlimited")
+                Text("无限")
                     .font(.system(size: 10, weight: .semibold))
                     .foregroundColor(.teal)
             }
-            Text("Report days you can’t focus — at least 3 days in advance — and they won’t break your streak. Unlimited.")
+            Text("报告你无法集中注意力的日子——至少提前 3 天——这样它们就不会打破你的连续记录。无限。")
                 .font(.system(size: 10))
                 .foregroundColor(.white.opacity(0.45))
 
@@ -247,12 +247,12 @@ struct FocusStreakPanelView: View {
                                     .foregroundColor(Color.teal.opacity(0.9))
                             }
                             .buttonStyle(.plain)
-                            .help("Remove this immunity day")
+                            .help("删除这个免疫日")
                         }
                     }
                 }
             } else {
-                Text("No upcoming immunity days.")
+                Text("没有即将到来的免疫日。")
                     .font(.system(size: 11))
                     .foregroundColor(.white.opacity(0.4))
             }

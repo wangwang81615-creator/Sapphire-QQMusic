@@ -610,7 +610,7 @@ enum NotchRegionTransition {
             filter.setValue(blurName, forKey: "name")
             filter.setValue(0, forKey: "inputRadius")
             layer.filters = [filter]
-        } else if let blur = CIFilter(name: "CIGaussianBlur") {
+        } else if let blur = CIFilter(name: "CI高斯模糊") {
             blur.name = blurName
             blur.setValue(0, forKey: kCIInputRadiusKey)
             layer.filters = [blur]

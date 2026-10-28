@@ -92,8 +92,8 @@ struct DeviceAdjustView: View {
                 HStack(spacing: 16) {
                     VStack(spacing: 12) {
                         ModernDarkSlider(label: "Volume", value: $settings.volume, range: 0...1.0, formatDisplay: { "\(Int($0 * 100))%" })
-                        ModernDarkSlider(label: "Delay", value: $settings.delay, range: 0...0.5, formatDisplay: { "\(Int($0 * 1000))ms" })
-                        ModernDarkSlider(label: "Balance", value: $settings.balance, range: 0...1.0, formatDisplay: { val in
+                        ModernDarkSlider(label: "延迟", value: $settings.delay, range: 0...0.5, formatDisplay: { "\(Int($0 * 1000))ms" })
+                        ModernDarkSlider(label: "平衡", value: $settings.balance, range: 0...1.0, formatDisplay: { val in
                             if abs(val - 0.5) < 0.02 { return "Center" }
                             return val < 0.5 ? "L \(Int((0.5-val)*200))" : "R \(Int((val-0.5)*200))"
                         })
@@ -103,7 +103,7 @@ struct DeviceAdjustView: View {
 
                     if !appStore.runningApps.isEmpty {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("APP MIXER").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
+                            Text("应用程序混合器").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
                             VStack(spacing: 8) {
                                 ForEach(appStore.runningApps.prefix(3)) { app in
                                     AppMixRow(app: app, volume: appStore.volume(for: app.bundleID), onVolumeChange: { appStore.setVolume($0, for: app.bundleID) })
@@ -128,11 +128,11 @@ struct DeviceAdjustView: View {
         HStack(alignment: .top, spacing: 16) {
             VStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("LEVELS").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
-                    ModernDarkSlider(label: "Input Gain", value: Binding(get: { micGain }, set: { micGain = $0; audioManager.setInputVolume(Float($0), for: device.id) }), range: 0...1.0, formatDisplay: { "\(Int($0 * 100))%" })
+                    Text("级别").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
+                    ModernDarkSlider(label: "输入增益", value: Binding(get: { micGain }, set: { micGain = $0; audioManager.setInputVolume(Float($0), for: device.id) }), range: 0...1.0, formatDisplay: { "\(Int($0 * 100))%" })
 
                     HStack {
-                        Label("Hardware Mute", systemImage: isMicMuted ? "mic.slash.fill" : "mic.fill")
+                        Label("硬件静音", systemImage: isMicMuted ? "mic.slash.fill" : "mic.fill")
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(isMicMuted ? .red : .white.opacity(0.8))
                         Spacer()
@@ -150,7 +150,7 @@ struct DeviceAdjustView: View {
                 Button(action: { NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Audio MIDI Setup.app")) }) {
                     HStack {
                         Image(systemName: "dial.min.fill")
-                        Text("Open Audio MIDI Setup").font(.system(size: 13, weight: .medium))
+                        Text("打开音频 MIDI 设置").font(.system(size: 13, weight: .medium))
                         Spacer()
                         Image(systemName: "arrow.up.right.square").opacity(0.5)
                     }
@@ -162,15 +162,15 @@ struct DeviceAdjustView: View {
             .frame(width: 360)
 
             VStack(alignment: .leading, spacing: 12) {
-                Text("SPECIFICATIONS").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
+                Text("规格").font(.system(size: 9, weight: .bold)).foregroundStyle(.white.opacity(0.4)).tracking(1)
 
                 VStack(spacing: 12) {
-                    specRow(label: "Stream Format", value: streamFormat)
+                    specRow(label: "码流格式", value: streamFormat)
 
                     Divider().background(Color.white.opacity(0.1))
 
                     HStack {
-                        Text("Sample Rate").font(.caption).foregroundStyle(.secondary)
+                        Text("采样率").font(.caption).foregroundStyle(.secondary)
                         Spacer()
                         Picker("", selection: Binding(get: { sampleRate }, set: { sampleRate = $0; audioManager.setNominalSampleRate($0, for: device.id) })) {
                             ForEach(availableRates, id: \.self) { rate in

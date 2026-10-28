@@ -79,7 +79,7 @@ struct BatteryWidgetView: View {
         .foregroundColor(.white)
         .preferredColorScheme(.dark)
         .contentShape(Rectangle())
-        .help("Click for the full battery & power overview")
+        .help("单击查看完整的电池和电源概述")
         .onAppear {
             stats.start()
             StatsManager.shared.setPolling(for: statsPollingRequester, requiredStats: [.systemPower, .batteryPower])

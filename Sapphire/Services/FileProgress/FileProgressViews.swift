@@ -81,7 +81,7 @@ struct FileProgressDetailView: View {
                 Spacer()
             }
             if tracker.transfers.isEmpty {
-                Text("Nothing is downloading or copying.")
+                Text("没有任何内容正在下载或复制。")
                     .font(.system(size: 12))
                     .foregroundStyle(.white.opacity(0.6))
                     .frame(maxWidth: .infinity, minHeight: 50)

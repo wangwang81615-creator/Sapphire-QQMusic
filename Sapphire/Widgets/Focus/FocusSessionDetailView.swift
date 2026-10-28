@@ -103,7 +103,7 @@ struct FocusSessionDetailView: View {
                         Text("Custom")
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundColor(isCustomDuration ? accent : .white.opacity(0.4))
-                        TextField("Minutes", value: $customMinutes, format: .number)
+                        TextField("分钟", value: $customMinutes, format: .number)
                             .textFieldStyle(.plain)
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
                             .multilineTextAlignment(.center)
@@ -141,7 +141,7 @@ struct FocusSessionDetailView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "play.fill")
                             .font(.system(size: 11, weight: .bold))
-                        Text("Begin Focus")
+                        Text("开始聚焦")
                             .font(.system(size: 13, weight: .semibold))
                     }
                     .foregroundColor(Color(red: 0.05, green: 0.07, blue: 0.06))
@@ -174,7 +174,7 @@ struct FocusSessionDetailView: View {
                             HStack(spacing: 5) {
                                 Image(systemName: "clock.arrow.circlepath")
                                     .font(.system(size: 11, weight: .semibold))
-                                Text("+5m Postpone")
+                                Text("+5m 延迟")
                                     .font(.system(size: 12, weight: .semibold))
                             }
                             .foregroundColor(.white.opacity(0.9))
@@ -183,7 +183,7 @@ struct FocusSessionDetailView: View {
                             .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .buttonStyle(.plain)
-                        .help("Postpone the break by 5 minutes and keep focusing")
+                        .help("推迟 5 分钟休息并继续集中注意力")
                     } else {
                         Button {
                             focusManager.skipBlock()
@@ -195,7 +195,7 @@ struct FocusSessionDetailView: View {
                                 .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .buttonStyle(.plain)
-                        .help("Skip break")
+                        .help("跳过休息时间")
                     }
 
                     Button {
@@ -277,11 +277,11 @@ struct FocusSessionDetailView: View {
 
     private var railHeader: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("SESSION CONTROL")
+            Text("会话控制")
                 .font(.system(size: 9, weight: .bold))
                 .tracking(1.4)
                 .foregroundColor(accent)
-            Text("Stay in the zone")
+            Text("留在该区域")
                 .font(.system(size: 21, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
         }
@@ -289,11 +289,11 @@ struct FocusSessionDetailView: View {
 
     private var statsStrip: some View {
         HStack(spacing: 8) {
-            statItem(label: "Focused", value: FocusSessionManager.format(focusManager.completedToday))
+            statItem(label: "专注", value: FocusSessionManager.format(focusManager.completedToday))
             Divider().frame(height: 20).opacity(0.15)
-            statItem(label: "Blocks", value: "\(focusManager.blocksCompletedThisSession)")
+            statItem(label: "积木", value: "\(focusManager.blocksCompletedThisSession)")
             Divider().frame(height: 20).opacity(0.15)
-            statItem(label: "Total", value: "\(focusManager.history.count)")
+            statItem(label: "合计", value: "\(focusManager.history.count)")
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 2)
@@ -320,14 +320,14 @@ struct FocusSessionDetailView: View {
     private var ambientMiniPlayer: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Label("Ambiance", systemImage: "waveform")
+                Label("氛围", systemImage: "waveform")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
 
                 Spacer()
 
                 if ambient.isPlaying {
-                    Text("PLAYING")
+                    Text("演奏")
                         .font(.system(size: 8, weight: .bold))
                         .foregroundColor(accent)
                         .tracking(1)
@@ -399,7 +399,7 @@ struct FocusSessionDetailView: View {
     private var environmentQuickToggles: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("Environment Control")
+                Text("环境控制")
                 Spacer()
                 Image(systemName: "slider.horizontal.3")
                     .font(.system(size: 10, weight: .semibold))
@@ -410,22 +410,22 @@ struct FocusSessionDetailView: View {
 
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
                 quickToggleChip(
-                    title: "Dim Apps",
+                    title: "昏暗的应用程序",
                     icon: "moon.fill",
                     isOn: $settings.settings.focusDimInactiveApps
                 )
                 quickToggleChip(
-                    title: "Mission Ctl",
+                    title: "任务控制中心",
                     icon: "rectangle.inset.filled",
                     isOn: $settings.settings.focusDisableDimInMissionControl
                 )
                 quickToggleChip(
-                    title: "Hide Wall",
+                    title: "隐藏墙",
                     icon: "photo.fill",
                     isOn: $settings.settings.focusHideWallpaper
                 )
                 quickToggleChip(
-                    title: "App Limit",
+                    title: "应用程序限制",
                     icon: "shield.fill",
                     isOn: $settings.settings.focusAppLimitEnabled
                 )
@@ -524,7 +524,7 @@ private struct FocusSessionTimerRing: View {
                     .contentTransition(.numericText())
                     .animation(.smooth(duration: 0.2), value: Int(progress * 100))
             } else {
-                Text("TAP START TO BEGIN")
+                Text("点击开始开始")
                     .font(.system(size: 9, weight: .bold))
                     .tracking(1.2)
                     .foregroundColor(.white.opacity(0.35))

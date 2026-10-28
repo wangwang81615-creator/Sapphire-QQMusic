@@ -27,7 +27,7 @@ struct DisplaySettingsView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Displays").font(.title2.bold())
-                    Text("Notch size, hiding and full-screen behaviour for each display.")
+                    Text("每个显示器的凹口大小、隐藏和全屏行为。")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -38,7 +38,7 @@ struct DisplaySettingsView: View {
                     } label: {
                         Label(testDisplay.isActive ? "Remove Test Display" : "Add Test Display", systemImage: "display.2")
                     }
-                    .help("Debug: add a notchless 1920×1080 virtual display, shown in a window, to test multi-display and floating island behaviour")
+                    .help("调试：添加无缺口 1920×1080 虚拟显示器（显示在窗口中），以测试多显示器和浮岛行为")
                 }
             }
 
@@ -49,11 +49,11 @@ struct DisplaySettingsView: View {
             if connectedScreens.count > 1 {
                 HStack(spacing: 12) {
                     SettingsRowLabel(
-                        title: "Show Notch On",
+                        title: "显示缺口打开",
                         description: "For displays you haven't switched on or off below, including ones you connect later."
                     )
                     Spacer(minLength: 8)
-                    Picker("Show Notch On", selection: $settings.settings.notchDisplayTarget) {
+                    Picker("显示缺口打开", selection: $settings.settings.notchDisplayTarget) {
                         ForEach(NotchDisplayTarget.allCases) { target in
                             Text(target.displayName).tag(target)
                         }
@@ -71,7 +71,7 @@ struct DisplaySettingsView: View {
             }
 
             if connectedScreens.isEmpty {
-                Text("No displays detected.")
+                Text("未检测到显示器。")
                     .foregroundColor(.secondary)
                     .padding()
                     .modifier(SettingsContainerModifier())
@@ -105,7 +105,7 @@ struct SoftwareDimmingRows: View {
                 Divider().padding(.leading, 20)
                 ToggleRow(
                     title: "Always Use Software Dimming on \(row.name)",
-                    description: "Dim this monitor in software even if it answers DDC, for monitors whose DDC is slow or unreliable.",
+                    description: "对于 DDC 缓慢或不可靠的显示器，即使它响应 DDC，也要在软件中调暗该显示器。",
                     isOn: Binding(
                         get: { row.prefersSoftware },
                         set: { newValue in
@@ -142,8 +142,8 @@ private struct FullScreenBehaviorEditor: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SettingsRowLabel(title: "In Full Screen", description: visibility.detail)
-            Picker("In Full Screen", selection: $visibility) {
+            SettingsRowLabel(title: "全屏显示", description: visibility.detail)
+            Picker("全屏显示", selection: $visibility) {
                 ForEach(FullScreenActivityVisibility.allCases) { visibility in
                     Text(visibility.displayName).tag(visibility)
                 }
@@ -152,19 +152,19 @@ private struct FullScreenBehaviorEditor: View {
             .labelsHidden()
 
             HStack(spacing: 12) {
-                SettingsRowLabel(title: "Hide Notch", description: hideNotchDescription)
+                SettingsRowLabel(title: "隐藏缺口", description: hideNotchDescription)
                 Spacer(minLength: 8)
-                SettingsSwitch(title: "Hide Notch", isOn: $hideNotch)
+                SettingsSwitch(title: "隐藏缺口", isOn: $hideNotch)
             }
 
             if musicCanShow {
                 HStack(spacing: 12) {
                     SettingsRowLabel(
-                        title: "Hide Lyrics",
-                        description: "Hide the lyrics line under the music live activity so it doesn't cover the full-screen app. The song still shows."
+                        title: "隐藏歌词",
+                        description: "将歌词行隐藏在音乐现场活动下方，这样它就不会覆盖全屏应用程序。这首歌仍然显示。"
                     )
                     Spacer(minLength: 8)
-                    SettingsSwitch(title: "Hide Lyrics", isOn: $hideLyrics)
+                    SettingsSwitch(title: "隐藏歌词", isOn: $hideLyrics)
                 }
             }
         }
@@ -186,7 +186,7 @@ private struct FullScreenSelectedActivitiesCard: View {
     @EditingSettings var settings: SettingsEditingSession
 
     var body: some View {
-        SettingsCard(title: "Hide Selected", description: "Activities hidden in full screen on displays set to Hide Selected.") {
+        SettingsCard(title: "Hide Selected", description: "在设置为“隐藏选定项”的显示器上全屏隐藏活动。") {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 12, alignment: .leading)], alignment: .leading, spacing: 10) {
                 ForEach(LiveActivityType.allCases) { type in
                     Toggle(type.displayName, isOn: binding(for: type))
@@ -226,27 +226,27 @@ private struct PerDisplaySettingsCard: View {
                 Image(systemName: isBuiltIn ? "laptopcomputer" : "display")
                     .foregroundColor(.secondary)
                 Text(screen.displayLabel).font(.headline)
-                if isBuiltIn { Text("Built-in").font(.caption).foregroundColor(.secondary) }
+                if isBuiltIn { Text("内置").font(.caption).foregroundColor(.secondary) }
                 Spacer()
                 if canApplyToAll && showsNotch {
-                    Button("Apply to All Displays") {
+                    Button("适用于所有显示器") {
                         settings.settings.value.applyDisplaySettingsToAllDisplays(
                             from: displayID,
                             includeFloatingIsland: !NotchConfiguration.hasHardwareNotch(on: screen)
                         )
                     }
                     .controlSize(.small)
-                    .help("Use this display's notch size, hiding and full-screen settings on every display, including ones you connect later")
+                    .help("在每个显示器（包括您稍后连接的显示器）上使用此显示器的凹口尺寸、隐藏和全屏设置")
                 }
-                SettingsSwitch(title: "Show Notch", isOn: showNotchBinding)
-                    .help("Show the notch on this display")
+                SettingsSwitch(title: "显示缺口", isOn: showNotchBinding)
+                    .help("在该显示屏上显示凹口")
             }
             .padding([.top, .horizontal])
 
             if showsNotch {
                 notchRows
             } else {
-                Text("The notch is off on this display.")
+                Text("该显示器上的凹口已关闭。")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .padding()
@@ -276,9 +276,9 @@ private struct PerDisplaySettingsCard: View {
         }
         Divider().padding(.leading, 20)
         HStack(spacing: 12) {
-            SettingsRowLabel(title: "Hide Notch When Inactive", description: "Hide the notch until something is happening.")
+            SettingsRowLabel(title: "不活动时隐藏缺口", description: "隐藏凹口直到有事情发生。")
             Spacer(minLength: 8)
-            SettingsSwitch(title: "Hide Notch When Inactive", isOn: inactiveBinding)
+            SettingsSwitch(title: "不活动时隐藏缺口", isOn: inactiveBinding)
         }
         .padding()
         Divider().padding(.leading, 20)
@@ -293,7 +293,7 @@ private struct PerDisplaySettingsCard: View {
     private var sizeRow: some View {
         let resolved = ResolvedNotchConfiguration(from: settings.settings.value, screen: screen)
         return HStack(spacing: 18) {
-            Text("Notch Size")
+            Text("缺口尺寸")
                 .font(.system(size: 14, weight: .medium))
                 .lineLimit(1)
                 .layoutPriority(-1)
@@ -315,11 +315,11 @@ private struct PerDisplaySettingsCard: View {
         let isIsland = settings.settings.value.resolvedFloatingIsland(forDisplayID: displayID)
         HStack(spacing: 12) {
             SettingsRowLabel(
-                title: "Floating Island",
-                description: "Show a pill that floats below the top edge instead of a notch. This display has no hardware notch."
+                title: "浮岛",
+                description: "显示一个漂浮在顶部边缘下方而不是凹口下方的药丸。该显示器没有硬件凹口。"
             )
             Spacer(minLength: 8)
-            SettingsSwitch(title: "Floating Island", isOn: floatingIslandBinding)
+            SettingsSwitch(title: "浮岛", isOn: floatingIslandBinding)
         }
         .padding()
         if isIsland {
@@ -327,7 +327,7 @@ private struct PerDisplaySettingsCard: View {
                 withAnimation(.snappy) { showsIslandAdvanced.toggle() }
             } label: {
                 HStack(spacing: 6) {
-                    Text("Advanced")
+                    Text("高级")
                     Image(systemName: "chevron.right")
                         .font(.caption.weight(.semibold))
                         .rotationEffect(.degrees(showsIslandAdvanced ? 90 : 0))
@@ -347,7 +347,7 @@ private struct PerDisplaySettingsCard: View {
                         .padding(.bottom)
 
                     HStack(spacing: 12) {
-                        SettingsRowLabel(title: "Island Top Offset", description: "Distance from the top edge.")
+                        SettingsRowLabel(title: "Island Top Offset", description: "距顶部边缘的距离。")
                         Spacer(minLength: 8)
                         DeferredValueEditor(value: islandTopOffsetBinding) { draft, onEditingChanged in
                             HStack(spacing: 8) {
@@ -408,7 +408,7 @@ private struct PerDisplaySettingsCard: View {
 
     private func resetButton(visible: Bool, help: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Label("Reset", systemImage: "arrow.counterclockwise").font(.callout)
+            Label("重置", systemImage: "arrow.counterclockwise").font(.callout)
         }
         .buttonStyle(.plain)
         .foregroundColor(.accentColor)

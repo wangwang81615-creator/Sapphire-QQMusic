@@ -414,7 +414,7 @@ final class FocusSessionManager: ObservableObject {
                 syncBlocking()
                 NotificationCenter.default.post(name: .focusSessionBlockCompleted, object: nil, userInfo: ["phase": "break"])
                 postCompletionNotification(
-                    title: "Focus block complete ",
+                    title: "焦点块完成",
                     body: "Great work! Time for a \(Int(plannedBreakDuration / 60)) minute break."
                 )
             } else {
@@ -434,7 +434,7 @@ final class FocusSessionManager: ObservableObject {
             syncBlocking()
             NotificationCenter.default.post(name: .focusSessionBlockCompleted, object: nil, userInfo: ["phase": "focus"])
             postCompletionNotification(
-                title: "Break over ",
+                title: "突破",
                 body: "Back to it — new focus block started."
             )
         case .sessionFinished:
@@ -455,7 +455,7 @@ final class FocusSessionManager: ObservableObject {
         stopShortcutTimerIfNeeded()
         NotificationCenter.default.post(name: .focusSessionEnded, object: nil)
         postCompletionNotification(
-            title: "Focus session complete ",
+            title: "焦点会议完成",
             body: "You finished \(sessionCompletedBlocks) block\(sessionCompletedBlocks == 1 ? "" : "s"). Total focus today: \(Self.format(completedToday))."
         )
     }

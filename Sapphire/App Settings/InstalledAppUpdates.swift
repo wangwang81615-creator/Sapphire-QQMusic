@@ -1114,7 +1114,7 @@ private enum AppStoreClient {
         guard !bundleIdentifiers.isEmpty else { return nil }
         var components = URLComponents(string: "https://itunes.apple.com/lookup")
         components?.queryItems = [
-            URLQueryItem(name: "bundleId", value: bundleIdentifiers.joined(separator: ",")),
+            URLQueryItem(name: "捆绑包 ID", value: bundleIdentifiers.joined(separator: ",")),
             URLQueryItem(name: "entity", value: "macSoftware"),
             URLQueryItem(name: "country", value: country),
         ]

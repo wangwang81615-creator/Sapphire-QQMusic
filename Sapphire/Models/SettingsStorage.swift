@@ -20,7 +20,7 @@ struct StoredThenPublished<Value> {
         subject = CurrentValueSubject(wrappedValue)
     }
 
-    @available(*, unavailable, message: "@StoredThenPublished is only available on ObservableObject classes")
+    @available(*, unavailable, message: "@StoredThenPublished 仅适用于 ObservableObject 类")
     var wrappedValue: Value {
         get { fatalError() }
         set { fatalError() }

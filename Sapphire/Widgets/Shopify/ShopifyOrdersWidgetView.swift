@@ -20,7 +20,7 @@ struct ShopifyOrdersWidgetView: View {
 
             if let order = latestOrder {
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("Shopify")
+                    Text("购物")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Text(order.name)

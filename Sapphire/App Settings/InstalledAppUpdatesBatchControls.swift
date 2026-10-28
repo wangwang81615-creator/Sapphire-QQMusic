@@ -55,7 +55,7 @@ struct InstalledAppUpdatesBatchBar: View {
                         Button {
                             checker.updateSelected()
                         } label: {
-                            Label("Update selected", systemImage: "arrow.down.circle")
+                            Label("更新所选内容", systemImage: "arrow.down.circle")
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.small)
@@ -107,7 +107,7 @@ struct InstalledAppUpdateSelectionToggle: View {
                 .toggleStyle(.checkbox)
                 .labelsHidden()
                 .disabled(true)
-                .help("Updated from its own row — not included in batch updates")
+                .help("从其自己的行更新 - 不包含在批量更新中")
         }
     }
 }

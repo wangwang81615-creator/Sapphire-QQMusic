@@ -42,7 +42,7 @@ struct TimerWidgetView: View {
         .fixedSize()
         .foregroundColor(.white)
         .contentShape(Rectangle())
-        .help("Open Timers")
+        .help("打开定时器")
     }
 
     private var timerPicker: some View {
@@ -75,7 +75,7 @@ struct TimerWidgetView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .help("Open Timers")
+                .help("打开定时器")
             }
             .frame(width: 234)
         }

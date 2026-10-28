@@ -95,7 +95,7 @@ final class SapphireBrowserIntegration {
         MainActor.assumeIsolated {
             FileShelfManager.shared.addFiles(from: [url])
             postLocalNotification(
-                title: "Saved to File Shelf",
+                title: "保存到文件架",
                 body: "\(url.lastPathComponent) from Sapphire Browser",
                 category: nil,
                 userInfo: nil
@@ -120,14 +120,14 @@ final class SapphireBrowserIntegration {
                     .prefix(60)
                 FileShelfManager.shared.addText(url.absoluteString, named: String(safeName))
                 postLocalNotification(
-                    title: "Saved to File Shelf",
+                    title: "保存到文件架",
                     body: title,
                     category: nil,
                     userInfo: nil
                 )
             } else {
                 postLocalNotification(
-                    title: "Link from Sapphire Browser",
+                    title: "来自蓝宝石浏览器的链接",
                     body: title,
                     category: Self.linkNotificationCategory,
                     userInfo: ["url": url.absoluteString]
@@ -163,7 +163,7 @@ final class SapphireBrowserIntegration {
                 options: [.deliverImmediately]
             )
             postLocalNotification(
-                title: "Sapphire Browser isn't installed",
+                title: "蓝宝石浏览器未安装",
                 body: "Install it to open \(url.host ?? "this link").",
                 category: nil,
                 userInfo: nil
@@ -176,7 +176,7 @@ final class SapphireBrowserIntegration {
     private func registerNotificationCategory() {
         let openAction = UNNotificationAction(
             identifier: "OPEN_IN_BROWSER",
-            title: "Open in Browser",
+            title: "在浏览器中打开",
             options: [.foreground]
         )
         let category = UNNotificationCategory(

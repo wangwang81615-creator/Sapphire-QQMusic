@@ -195,7 +195,7 @@ struct FaceIDRegistrationView: View {
 
                         VStack {
                             Spacer()
-                            Text("Hold Still")
+                            Text("保持不动")
                                 .font(.caption.bold())
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 14)
@@ -230,7 +230,7 @@ struct FaceIDRegistrationView: View {
                     } else {
                         VStack(spacing: 16) {
                             HStack(spacing: 10) {
-                                poseIndicator(label: "Front", key: "center")
+                                poseIndicator(label: "正面", key: "center")
                                 poseIndicator(label: "Left", key: "left")
                                 poseIndicator(label: "Right", key: "right")
                             }

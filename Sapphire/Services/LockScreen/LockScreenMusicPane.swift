@@ -570,7 +570,7 @@ private struct LockScreenMusicPaneContent: View {
             .animation(.easeInOut(duration: 0.25), value: current?.id)
         }
         .buttonStyle(.plain)
-        .help("Show Lyrics")
+        .help("显示歌词")
     }
 
     private func upNextCard(_ tracks: [PaneTrack], _ m: PaneMetrics) -> some View {
@@ -579,7 +579,7 @@ private struct LockScreenMusicPaneContent: View {
                 eyebrow("Up Next", m)
                 Spacer()
                 Button { controller.selectTab(.queue) } label: {
-                    Text("See All")
+                    Text("查看全部")
                         .font(.system(size: 12 * m.k, weight: .semibold, design: .rounded))
                         .foregroundStyle(.white.opacity(0.6))
                 }
@@ -1406,7 +1406,7 @@ private struct PaneLyrics: View {
             let elapsed = musicManager.lyricsElapsedTime(at: context.date)
 
             if musicManager.lyrics.isEmpty {
-                Text("Lyrics aren't available for this song.")
+                Text("这首歌的歌词不可用。")
                     .font(.system(size: 30 * k, weight: .bold, design: .rounded))
                     .foregroundStyle(.white.opacity(0.4))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -1512,7 +1512,7 @@ private struct PaneMacOutputs: View {
     var body: some View {
         if !audio.availableOutputDevices.isEmpty {
             VStack(alignment: .leading, spacing: 14 * m.k) {
-                Text("THIS MAC")
+                Text("这个MAC")
                     .font(.system(size: 12 * m.k, weight: .semibold, design: .rounded))
                     .tracking(1.6 * m.k)
                     .foregroundStyle(.white.opacity(0.55))

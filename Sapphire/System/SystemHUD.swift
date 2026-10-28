@@ -226,7 +226,7 @@ class SystemHUDManager: ObservableObject {
 
     @MainActor
     private func registerTrustAwareness() {
-        AccessibilityTrustMonitor.shared.register(name: "SystemHUD") { [weak self] in
+        AccessibilityTrustMonitor.shared.register(name: "系统HUD") { [weak self] in
             MainActor.assumeIsolated { self?.suspendEventTap() }
         } reinstall: { [weak self] in
             MainActor.assumeIsolated { self?.resumeEventTap() }
@@ -1270,7 +1270,7 @@ struct ExternalDeviceIndicatorHUD: View {
                         Capsule()
                             .fill(Color.gray.opacity(0.25))
                             .frame(height: 14)
-                            .overlay(Text("Volume Not Adjustable").font(.caption2).foregroundColor(.secondary))
+                            .overlay(Text("音量不可调节").font(.caption2).foregroundColor(.secondary))
                     }
                 }
 
